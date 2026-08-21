@@ -89,6 +89,25 @@ ipcMain.handle('vault:delete-entry', async (_event, vaultPath: string, moduleFol
   }
 })
 
+// electron/main.ts — add below your other handlers
+ipcMain.handle('vault:create-folder', async (_event, parentPath: string, folderName: string) => {
+  const newVaultPath = path.join(parentPath, folderName)
+  try {
+    // fails if it already exists — prevents silently overwriting an existing project
+    await fs.mkdir(newVaultPath, { recursive: false })
+
+    // Scaffold the standard module subfolders up front
+    await fs.mkdir(path.join(newVaultPath, 'Characters'), { recursive: true })
+    await fs.mkdir(path.join(newVaultPath, 'Locations'), { recursive: true })
+    await fs.mkdir(path.join(newVaultPath, 'Manuscript'), { recursive: true })
+
+    return newVaultPath
+  } catch (err) {
+    console.error('create-folder failed:', err)
+    return null
+  }
+})
+
 app.whenReady().then(createWindow)
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
