@@ -1,5 +1,5 @@
 // src/components/modules/characters/CharacterEditor.tsx
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Save, Trash2 } from 'lucide-react'
 import type { Character, CharacterData } from '../../../types/character'
 
@@ -17,6 +17,20 @@ export function CharacterEditor({ character, onSave, onDelete }: CharacterEditor
   const [content, setContent] = useState(character.content)
   const [saving, setSaving] = useState(false)
 
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  // Auto-grow: starts compact, expands as content grows, caps at MAX_HEIGHT then scrolls
+  const MIN_HEIGHT = 120  // px, roughly 5-6 lines
+  const MAX_HEIGHT = 480  // px, roughly half a screen — beyond this it scrolls internally
+
+  useEffect(() => {
+    const el = textareaRef.current
+    if (!el) return
+    el.style.height = 'auto' // reset so scrollHeight recalculates correctly
+    const nextHeight = Math.min(Math.max(el.scrollHeight, MIN_HEIGHT), MAX_HEIGHT)
+    el.style.height = `${nextHeight}px`
+  }, [content])
+
   const handleSave = async () => {
     setSaving(true)
     const data: CharacterData = {
@@ -31,7 +45,7 @@ export function CharacterEditor({ character, onSave, onDelete }: CharacterEditor
   }
 
   return (
-    <div className="max-w-2xl space-y-6">
+    <div className="max-w-2xl space-y-6 pb-10">
       <div className="flex items-start justify-between gap-4">
         <input
           value={name}
@@ -79,11 +93,12 @@ export function CharacterEditor({ character, onSave, onDelete }: CharacterEditor
       <div>
         <label className="text-xs uppercase tracking-wide text-neutral-500">Biography / Notes</label>
         <textarea
+          ref={textareaRef}
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          rows={14}
           placeholder="Write freely — this becomes the Markdown body beneath the YAML frontmatter."
-          className="mt-1 w-full bg-neutral-900 border border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-200 outline-none focus:border-orange-600 font-mono resize-y"
+          className="mt-1 w-full bg-neutral-900 border border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-200 outline-none focus:border-orange-600 font-mono resize-none overflow-y-auto transition-[height] duration-100"
+          style={{ height: `${MIN_HEIGHT}px` }}
         />
       </div>
 
