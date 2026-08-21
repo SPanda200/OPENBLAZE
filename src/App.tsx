@@ -1,14 +1,24 @@
+// src/App.tsx
 import { AppShell } from './components/layout/AppShell'
+import { Dashboard } from './components/modules/Dashboard'
 
 function App() {
   return (
     <AppShell>
-      {(activeModule) => (
-        <div className="text-neutral-300">
-          <h1 className="text-xl font-medium capitalize">{activeModule}</h1>
-          <p className="text-sm text-neutral-500 mt-2">Module content will render here.</p>
-        </div>
-      )}
+      {(activeModule) => {
+        switch (activeModule) {
+          case 'dashboard':
+            return <Dashboard />
+          case 'manuscript':
+          case 'characters':
+          case 'locations':
+            return (
+              <div className="text-neutral-500 text-sm">
+                {activeModule} module coming in Phase 2.
+              </div>
+            )
+        }
+      }}
     </AppShell>
   )
 }
