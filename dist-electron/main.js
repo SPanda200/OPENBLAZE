@@ -8212,14 +8212,17 @@ var __dirname = path.dirname(__filename);
 var mainWindow = null;
 function createWindow() {
 	mainWindow = new BrowserWindow({
-		width: 1280,
-		height: 800,
+		width: 1400,
+		height: 900,
+		minWidth: 900,
+		minHeight: 600,
 		webPreferences: {
 			preload: path.join(__dirname, "preload.mjs"),
 			contextIsolation: true,
 			nodeIntegration: false
 		}
 	});
+	mainWindow.maximize();
 	if (process.env.VITE_DEV_SERVER_URL) mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
 	else mainWindow.loadFile(path.join(__dirname, "../dist/index.html"));
 }

@@ -13,15 +13,18 @@ let mainWindow: BrowserWindow | null = null
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1280,
-    height: 800,
+    width: 1400,
+    height: 900,
+    minWidth: 900,
+    minHeight: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.mjs'), // note: .mjs, see below
+      preload: path.join(__dirname, 'preload.mjs'),
       contextIsolation: true,
       nodeIntegration: false,
     },
   })
-  // ...rest unchanged
+
+  mainWindow.maximize() // opens filling the screen, but still resizable/restorable
 
   if (process.env.VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
