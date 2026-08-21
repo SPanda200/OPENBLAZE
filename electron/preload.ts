@@ -12,4 +12,6 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.invoke('vault:write-entry', vaultPath, moduleFolder, fileName, data, content),
   deleteEntry: (vaultPath: string, moduleFolder: string, fileName: string): Promise<boolean> =>
     ipcRenderer.invoke('vault:delete-entry', vaultPath, moduleFolder, fileName),
+  createVaultFolder: (parentPath: string, folderName: string): Promise<string | null> =>
+    ipcRenderer.invoke('vault:create-folder', parentPath, folderName),
 })

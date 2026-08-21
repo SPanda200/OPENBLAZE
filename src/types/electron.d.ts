@@ -17,6 +17,7 @@ export interface ElectronAPI {
     content: string
   ) => Promise<boolean>
   deleteEntry: (vaultPath: string, moduleFolder: string, fileName: string) => Promise<boolean>
+  createVaultFolder: (parentPath: string, folderName: string) => Promise<string | null>
 }
 
 declare global {
