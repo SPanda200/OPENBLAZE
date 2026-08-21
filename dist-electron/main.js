@@ -8265,6 +8265,16 @@ ipcMain.handle("vault:write-entry", async (_event, vaultPath, moduleFolder, file
 	await fs.writeFile(filePath, fileString, "utf-8");
 	return true;
 });
+ipcMain.handle("vault:delete-entry", async (_event, vaultPath, moduleFolder, fileName) => {
+	const filePath = path.join(vaultPath, moduleFolder, fileName);
+	try {
+		await fs.unlink(filePath);
+		return true;
+	} catch (err) {
+		console.error("delete-entry failed:", err);
+		return false;
+	}
+});
 app.whenReady().then(createWindow);
 app.on("window-all-closed", () => {
 	if (process.platform !== "darwin") app.quit();

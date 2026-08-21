@@ -77,6 +77,18 @@ ipcMain.handle(
   }
 )
 
+// electron/main.ts — add below vault:write-entry
+ipcMain.handle('vault:delete-entry', async (_event, vaultPath: string, moduleFolder: string, fileName: string) => {
+  const filePath = path.join(vaultPath, moduleFolder, fileName)
+  try {
+    await fs.unlink(filePath)
+    return true
+  } catch (err) {
+    console.error('delete-entry failed:', err)
+    return false
+  }
+})
+
 app.whenReady().then(createWindow)
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
