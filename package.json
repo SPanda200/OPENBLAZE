@@ -3,11 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "build": "tsc && vite build && electron-builder"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
