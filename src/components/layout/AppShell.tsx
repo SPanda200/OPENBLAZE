@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Sidebar, ModuleKey } from './Sidebar'
+import { Sidebar } from './Sidebar'
+import type { ModuleKey } from './Sidebar'
 
 interface AppShellProps {
   children: (activeModule: ModuleKey) => React.ReactNode
