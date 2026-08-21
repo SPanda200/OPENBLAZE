@@ -5,6 +5,7 @@ electron.contextBridge.exposeInMainWorld("electron", {
 	listEntries: (vaultPath, moduleFolder) => electron.ipcRenderer.invoke("vault:list-entries", vaultPath, moduleFolder),
 	readEntry: (vaultPath, moduleFolder, fileName) => electron.ipcRenderer.invoke("vault:read-entry", vaultPath, moduleFolder, fileName),
 	writeEntry: (vaultPath, moduleFolder, fileName, data, content) => electron.ipcRenderer.invoke("vault:write-entry", vaultPath, moduleFolder, fileName, data, content),
-	deleteEntry: (vaultPath, moduleFolder, fileName) => electron.ipcRenderer.invoke("vault:delete-entry", vaultPath, moduleFolder, fileName)
+	deleteEntry: (vaultPath, moduleFolder, fileName) => electron.ipcRenderer.invoke("vault:delete-entry", vaultPath, moduleFolder, fileName),
+	createVaultFolder: (parentPath, folderName) => electron.ipcRenderer.invoke("vault:create-folder", parentPath, folderName)
 });
 //#endregion

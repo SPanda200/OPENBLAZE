@@ -8275,6 +8275,19 @@ ipcMain.handle("vault:delete-entry", async (_event, vaultPath, moduleFolder, fil
 		return false;
 	}
 });
+ipcMain.handle("vault:create-folder", async (_event, parentPath, folderName) => {
+	const newVaultPath = path.join(parentPath, folderName);
+	try {
+		await fs.mkdir(newVaultPath, { recursive: false });
+		await fs.mkdir(path.join(newVaultPath, "Characters"), { recursive: true });
+		await fs.mkdir(path.join(newVaultPath, "Locations"), { recursive: true });
+		await fs.mkdir(path.join(newVaultPath, "Manuscript"), { recursive: true });
+		return newVaultPath;
+	} catch (err) {
+		console.error("create-folder failed:", err);
+		return null;
+	}
+});
 app.whenReady().then(createWindow);
 app.on("window-all-closed", () => {
 	if (process.platform !== "darwin") app.quit();
