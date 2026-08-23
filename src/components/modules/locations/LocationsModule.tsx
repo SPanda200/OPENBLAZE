@@ -11,6 +11,7 @@ import { LocationEditor } from './LocationEditor'
 export function LocationsModule() {
   const { locations, loading, createLocation, saveLocation, deleteLocation } = useLocationData()
   const { guardNavigation } = useUnsavedChanges()
+  const { pendingTarget, clearPendingTarget } = useNavigation()   // <-- was missing
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null)
 
   const tree = buildLocationTree(locations)
@@ -18,7 +19,7 @@ export function LocationsModule() {
 
   useEffect(() => {
     if (pendingTarget?.moduleKey === 'locations') {
-      const match = characters.find((c) => c.data.id === pendingTarget.entityId)
+      const match = locations.find((l) => l.data.id === pendingTarget.entityId)  // <-- was `characters`
       if (match) {
         setSelectedFileName(match.fileName)
         clearPendingTarget()
