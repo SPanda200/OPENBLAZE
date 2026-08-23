@@ -37,7 +37,7 @@ export function AddPanelMenu({ onAdd, onDeleteAll }: AddPanelMenuProps) {
         Add Panel
       </button>
       {open && (
-        <div className="absolute left-0 top-9 z-10 w-52 bg-neutral-800 border border-neutral-700 rounded-md shadow-lg py-1 text-sm overflow-hidden">
+        <div className="absolute right-0 top-9 z-10 w-52 bg-neutral-800 border border-neutral-700 rounded-md shadow-lg py-1 text-sm overflow-hidden">
           {PANEL_OPTIONS.map(({ type, label, icon: Icon }) => (
             <button
               key={type}
