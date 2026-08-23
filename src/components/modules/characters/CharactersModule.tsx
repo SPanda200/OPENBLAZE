@@ -1,5 +1,6 @@
 // src/components/modules/characters/CharactersModule.tsx
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigation } from '../../../context/NavigationContext'
 import { Plus, User } from 'lucide-react'
 import { useCharacterData } from '../../../hooks/useCharacterData'
 import { useUnsavedChanges } from '../../../context/UnsavedChangesContext'
@@ -8,9 +9,20 @@ import { CharacterEditor } from './CharacterEditor'
 export function CharactersModule() {
   const { characters, loading, createCharacter, saveCharacter, deleteCharacter } = useCharacterData()
   const { guardNavigation } = useUnsavedChanges()
+  const { pendingTarget, clearPendingTarget } = useNavigation()
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null)
 
   const selected = characters.find((c) => c.fileName === selectedFileName) ?? null
+
+  useEffect(() => {
+    if (pendingTarget?.moduleKey === 'characters') {
+      const match = characters.find((c) => c.data.id === pendingTarget.entityId)
+      if (match) {
+        setSelectedFileName(match.fileName)
+        clearPendingTarget()
+      }
+    }
+  }, [pendingTarget, characters, clearPendingTarget])
 
   const handleSelect = (fileName: string) => guardNavigation(() => setSelectedFileName(fileName))
 

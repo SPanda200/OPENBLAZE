@@ -1,8 +1,8 @@
 // src/components/layout/Sidebar.tsx
 import { useState } from 'react'
 import { LayoutDashboard, BookOpen, Users, Map, PanelLeftClose, PanelLeftOpen, Flame } from 'lucide-react'
-
-export type ModuleKey = 'dashboard' | 'manuscript' | 'characters' | 'locations'
+import type { ModuleKey } from '../../types/navigation'
+export type { ModuleKey } from '../../types/navigation'
 
 const NAV_ITEMS: { key: ModuleKey; label: string; icon: React.ElementType }[] = [
   { key: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },

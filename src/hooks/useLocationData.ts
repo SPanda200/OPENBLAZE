@@ -1,17 +1,29 @@
 // src/hooks/useLocationData.ts
 import { useEntityData } from './useEntityData'
 import { locationPanelTemplate } from '../templates/panelTemplates'
+import { useEntityRegistry } from '../context/EntityRegistryContext'
+import type { EntityData } from '../types/entity'
 
 export function useLocationData() {
   const entity = useEntityData('Locations')
-  const createLocation = (parentId: string | null = null) =>
-    entity.createEntity(locationPanelTemplate(), { parentId })
+  const { refresh: refreshRegistry } = useEntityRegistry()
 
-  return {
-    ...entity,
-    locations: entity.entities,
-    createLocation,
-    saveLocation: entity.saveEntity,     // <-- add this alias
-    deleteLocation: entity.deleteEntity, // <-- and this one
+  const createLocation = async (parentId: string | null = null) => {
+    const created = await entity.createEntity(locationPanelTemplate(), { parentId })
+    refreshRegistry()
+    return created
   }
+
+  const saveLocation = async (fileName: string, data: EntityData, content: string) => {
+    await entity.saveEntity(fileName, data, content)
+    refreshRegistry()
+  }
+
+  const deleteLocation = async (fileName: string) => {
+    const result = await entity.deleteEntity(fileName)
+    refreshRegistry()
+    return result
+  }
+
+  return { ...entity, locations: entity.entities, createLocation, saveLocation, deleteLocation }
 }
