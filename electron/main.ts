@@ -98,13 +98,12 @@ ipcMain.handle('vault:delete-entry', async (_event, vaultPath: string, moduleFol
   const filePath = path.join(vaultPath, moduleFolder, fileName)
   try {
     await fs.unlink(filePath)
-    return true
+    return { success: true }
   } catch (err) {
     console.error('delete-entry failed:', err)
-    return false
+    return { success: false, error: (err as Error).message }
   }
 })
-
 // electron/main.ts — add below your other handlers
 ipcMain.handle('vault:create-folder', async (_event, parentPath: string, folderName: string) => {
   const newVaultPath = path.join(parentPath, folderName)

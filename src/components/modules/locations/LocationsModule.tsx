@@ -23,10 +23,15 @@ export function LocationsModule() {
     setSelectedFileName(created.fileName)
   }
 
-  const handleDelete = async (fileName: string) => {
-    // Note: children of a deleted location become top-level automatically,
-    // since buildLocationTree falls back to root when a parentId no longer resolves.
-    await deleteLocation(fileName)
+  const handleDelete = async (fileName: string, name: string) => {
+    const confirmed = window.confirm(`Delete "${name}"? This cannot be undone.`)
+    if (!confirmed) return
+
+    const result = await deleteLocation(fileName) // or deleteLocation(fileName)
+    if (!result.success) {
+      window.alert(`Couldn't delete: ${result.error ?? 'unknown error'}`)
+      return
+    }
     if (selectedFileName === fileName) setSelectedFileName(null)
   }
 

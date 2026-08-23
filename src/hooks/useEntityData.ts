@@ -50,11 +50,12 @@ export function useEntityData(moduleFolder: string) {
     [moduleFolder, saveEntity]
   )
 
-  const deleteEntity = useCallback(
+    const deleteEntity = useCallback(
     async (fileName: string) => {
-      if (!vaultPath) return
-      await window.electron.deleteEntry(vaultPath, moduleFolder, fileName)
-      await refresh()
+        if (!vaultPath) return { success: false, error: 'No vault open.' }
+        const result = await window.electron.deleteEntry(vaultPath, moduleFolder, fileName)
+        if (result.success) await refresh()
+        return result
     },
     [vaultPath, moduleFolder, refresh]
   )

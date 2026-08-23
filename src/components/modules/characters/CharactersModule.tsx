@@ -15,8 +15,15 @@ export function CharactersModule() {
     setSelectedFileName(created.fileName)
   }
 
-  const handleDelete = async (fileName: string) => {
-    await deleteCharacter(fileName)
+  const handleDelete = async (fileName: string, name: string) => {
+    const confirmed = window.confirm(`Delete "${name}"? This cannot be undone.`)
+    if (!confirmed) return
+
+    const result = await deleteCharacter(fileName) // or deleteLocation(fileName)
+    if (!result.success) {
+      window.alert(`Couldn't delete: ${result.error ?? 'unknown error'}`)
+      return
+    }
     if (selectedFileName === fileName) setSelectedFileName(null)
   }
 

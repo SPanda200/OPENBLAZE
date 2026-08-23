@@ -16,7 +16,7 @@ export interface ElectronAPI {
     data: object,
     content: string
   ) => Promise<boolean>
-  deleteEntry: (vaultPath: string, moduleFolder: string, fileName: string) => Promise<boolean>
+  deleteEntry: (vaultPath: string, moduleFolder: string, fileName: string) => Promise<{ success: boolean; error?: string }>
   createVaultFolder: (parentPath: string, folderName: string) => Promise<string | null>
 }
 

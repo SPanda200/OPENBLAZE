@@ -8278,10 +8278,13 @@ ipcMain.handle("vault:delete-entry", async (_event, vaultPath, moduleFolder, fil
 	const filePath = path.join(vaultPath, moduleFolder, fileName);
 	try {
 		await fs.unlink(filePath);
-		return true;
+		return { success: true };
 	} catch (err) {
 		console.error("delete-entry failed:", err);
-		return false;
+		return {
+			success: false,
+			error: err.message
+		};
 	}
 });
 ipcMain.handle("vault:create-folder", async (_event, parentPath, folderName) => {
