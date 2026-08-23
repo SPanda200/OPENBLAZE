@@ -10,6 +10,7 @@ import type { ModuleKey } from '../../types/navigation'
 import { useNavigation } from '../../context/NavigationContext'
 import { useEntityRegistry } from '../../context/EntityRegistryContext'
 import { EntityPicker } from './EntityPicker'
+import { useEntitySearch } from '../../hooks/useEntitySearch'
 
 interface PanelBodyProps {
   panel: Panel
@@ -69,9 +70,11 @@ function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextP
   const [editing, setEditing] = useState(false)
   const [pickerOpen, setPickerOpen] = useState(false)
   const [pickerQuery, setPickerQuery] = useState('')
+  const [highlightedIndex, setHighlightedIndex] = useState(0)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const { navigateToEntity } = useNavigation()
   const { entities } = useEntityRegistry()
+  const { results } = useEntitySearch(pickerQuery)
 
   const handleTextChange = (value: string) => {
     onChange({ text: value })
@@ -81,6 +84,7 @@ function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextP
     if (match) {
       setPickerQuery(match[1])
       setPickerOpen(true)
+      setHighlightedIndex(0) // reset selection whenever the search text changes
     } else {
       setPickerOpen(false)
     }
@@ -106,6 +110,24 @@ function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextP
     })
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (!pickerOpen || results.length === 0) return
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      setHighlightedIndex((i) => (i + 1) % results.length)
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      setHighlightedIndex((i) => (i - 1 + results.length) % results.length)
+    } else if (e.key === 'Enter') {
+      e.preventDefault()
+      insertLink(results[highlightedIndex])
+    } else if (e.key === 'Escape') {
+      e.preventDefault()
+      setPickerOpen(false)
+    }
+  }
+
   if (!editing) {
     return (
       <div onClick={() => setEditing(true)} className="min-h-[80px] cursor-text text-sm text-neutral-300 leading-relaxed whitespace-pre-wrap">
@@ -125,12 +147,13 @@ function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextP
         autoFocus
         value={data.text}
         onChange={(e) => handleTextChange(e.target.value)}
+        onKeyDown={handleKeyDown}
         onBlur={() => { setEditing(false); setPickerOpen(false) }}
         placeholder="Type here... use @ to link a character, location, or other entry"
         rows={5}
         className="w-full bg-transparent text-sm text-neutral-300 placeholder-neutral-600 outline-none resize-y leading-relaxed"
       />
-      {pickerOpen && <EntityPicker query={pickerQuery} onSelect={insertLink} onClose={() => setPickerOpen(false)} />}
+      {pickerOpen && <EntityPicker query={pickerQuery} highlightedIndex={highlightedIndex} onSelect={insertLink} />}
     </div>
   )
 }
