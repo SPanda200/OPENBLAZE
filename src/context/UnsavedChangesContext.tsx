@@ -1,7 +1,7 @@
 // src/context/UnsavedChangesContext.tsx
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
-import { UnsavedChangesModal } from '../components/UnsavedChangesModal'
+import { UnsavedChangesModal } from './UnsavedChangesModal'
 
 interface Handlers {
   onSave: () => Promise<void>
