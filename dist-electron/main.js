@@ -8226,6 +8226,11 @@ function createWindow() {
 	if (process.env.VITE_DEV_SERVER_URL) mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
 	else mainWindow.loadFile(path.join(__dirname, "../dist/index.html"));
 }
+function stripUndefined(obj) {
+	const clean = {};
+	for (const key in obj) if (obj[key] !== void 0) clean[key] = obj[key];
+	return clean;
+}
 ipcMain.handle("vault:select-folder", async () => {
 	const result = await dialog.showOpenDialog({ properties: ["openDirectory"] });
 	if (result.canceled || result.filePaths.length === 0) return null;
@@ -8264,7 +8269,8 @@ ipcMain.handle("vault:write-entry", async (_event, vaultPath, moduleFolder, file
 	const dirPath = path.join(vaultPath, moduleFolder);
 	await fs.mkdir(dirPath, { recursive: true });
 	const filePath = path.join(dirPath, fileName);
-	const fileString = import_gray_matter.default.stringify(content ?? "", data ?? {});
+	const cleanData = stripUndefined(data);
+	const fileString = import_gray_matter.default.stringify(content ?? "", cleanData);
 	await fs.writeFile(filePath, fileString, "utf-8");
 	return true;
 });

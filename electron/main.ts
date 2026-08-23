@@ -33,6 +33,18 @@ function createWindow() {
   }
 }
 
+// electron/main.ts — add above your IPC handlers
+function stripUndefined<T extends Record<string, any>>(obj: T): Partial<T> {
+  const clean: Partial<T> = {}
+  for (const key in obj) {
+    if (obj[key] !== undefined) {
+      clean[key] = obj[key]
+    }
+  }
+  return clean
+}
+
+
 // --- IPC: pick a project folder (the "vault") ---
 ipcMain.handle('vault:select-folder', async () => {
   const result = await dialog.showOpenDialog({ properties: ['openDirectory'] })
@@ -74,7 +86,8 @@ ipcMain.handle(
     const dirPath = path.join(vaultPath, moduleFolder)
     await fs.mkdir(dirPath, { recursive: true })
     const filePath = path.join(dirPath, fileName)
-    const fileString = matter.stringify(content ?? '', data ?? {})
+    const cleanData = stripUndefined(data as Record<string, any>) // <-- strip undefined before serializing
+    const fileString = matter.stringify(content ?? '', cleanData)
     await fs.writeFile(filePath, fileString, 'utf-8')
     return true
   }
