@@ -8210,6 +8210,7 @@ var import_gray_matter = /* @__PURE__ */ __toESM(require_gray_matter(), 1);
 var __filename = fileURLToPath(import.meta.url);
 var __dirname = path.dirname(__filename);
 var mainWindow = null;
+var allowClose = false;
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		width: 1400,
@@ -8223,6 +8224,12 @@ function createWindow() {
 		}
 	});
 	mainWindow.maximize();
+	mainWindow.on("close", (event) => {
+		if (!allowClose) {
+			event.preventDefault();
+			mainWindow?.webContents.send("app:before-close");
+		}
+	});
 	if (process.env.VITE_DEV_SERVER_URL) mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
 	else mainWindow.loadFile(path.join(__dirname, "../dist/index.html"));
 }
@@ -8231,6 +8238,10 @@ function stripUndefined(obj) {
 	for (const key in obj) if (obj[key] !== void 0) clean[key] = obj[key];
 	return clean;
 }
+ipcMain.on("app:confirm-close", () => {
+	allowClose = true;
+	mainWindow?.close();
+});
 ipcMain.handle("vault:select-folder", async () => {
 	const result = await dialog.showOpenDialog({ properties: ["openDirectory"] });
 	if (result.canceled || result.filePaths.length === 0) return null;

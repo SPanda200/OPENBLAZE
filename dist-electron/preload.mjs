@@ -6,6 +6,12 @@ electron.contextBridge.exposeInMainWorld("electron", {
 	readEntry: (vaultPath, moduleFolder, fileName) => electron.ipcRenderer.invoke("vault:read-entry", vaultPath, moduleFolder, fileName),
 	writeEntry: (vaultPath, moduleFolder, fileName, data, content) => electron.ipcRenderer.invoke("vault:write-entry", vaultPath, moduleFolder, fileName, data, content),
 	deleteEntry: (vaultPath, moduleFolder, fileName) => electron.ipcRenderer.invoke("vault:delete-entry", vaultPath, moduleFolder, fileName),
-	createVaultFolder: (parentPath, folderName) => electron.ipcRenderer.invoke("vault:create-folder", parentPath, folderName)
+	createVaultFolder: (parentPath, folderName) => electron.ipcRenderer.invoke("vault:create-folder", parentPath, folderName),
+	onBeforeClose: (callback) => {
+		const listener = () => callback();
+		electron.ipcRenderer.on("app:before-close", listener);
+		return () => electron.ipcRenderer.removeListener("app:before-close", listener);
+	},
+	confirmClose: () => electron.ipcRenderer.send("app:confirm-close")
 });
 //#endregion
