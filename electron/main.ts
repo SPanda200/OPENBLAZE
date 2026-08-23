@@ -10,6 +10,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 let mainWindow: BrowserWindow | null = null
+let allowClose = false // set true only after the renderer confirms it's safe to close
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -24,7 +25,15 @@ function createWindow() {
     },
   })
 
-  mainWindow.maximize() // opens filling the screen, but still resizable/restorable
+  mainWindow.maximize()
+
+  // Intercept close attempts — ask the renderer first instead of closing immediately
+  mainWindow.on('close', (event) => {
+    if (!allowClose) {
+      event.preventDefault()
+      mainWindow?.webContents.send('app:before-close')
+    }
+  })
 
   if (process.env.VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
@@ -43,6 +52,14 @@ function stripUndefined<T extends Record<string, any>>(obj: T): Partial<T> {
   }
   return clean
 }
+
+
+// Renderer calls this once it's confirmed there's nothing unsaved (or user chose to discard)
+ipcMain.on('app:confirm-close', () => {
+  allowClose = true
+  mainWindow?.close()
+})
+
 
 
 // --- IPC: pick a project folder (the "vault") ---
