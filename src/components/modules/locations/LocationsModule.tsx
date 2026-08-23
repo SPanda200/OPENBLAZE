@@ -68,7 +68,7 @@ export function LocationsModule() {
             location={selected}
             allLocations={locations}
             onSave={saveLocation}
-            onDelete={() => handleDelete(selected.fileName)}
+            onDelete={() => handleDelete(selected.fileName, selected.data.name)}
           />
         ) : (
           <div className="flex items-center justify-center h-full text-neutral-600 text-sm">

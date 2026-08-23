@@ -67,7 +67,7 @@ export function CharactersModule() {
             key={selected.fileName}
             character={selected}
             onSave={saveCharacter}
-            onDelete={() => handleDelete(selected.fileName)}
+            onDelete={() => handleDelete(selected.fileName, selected.data.name)}
           />
         ) : (
           <div className="flex items-center justify-center h-full text-neutral-600 text-sm">
