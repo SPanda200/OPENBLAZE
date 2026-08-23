@@ -1,5 +1,6 @@
 // src/components/modules/locations/LocationsModule.tsx
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigation } from '../../../context/NavigationContext'
 import { Plus } from 'lucide-react'
 import { useLocationData } from '../../../hooks/useLocationData'
 import { useUnsavedChanges } from '../../../context/UnsavedChangesContext'
@@ -14,6 +15,16 @@ export function LocationsModule() {
 
   const tree = buildLocationTree(locations)
   const selected = locations.find((l) => l.fileName === selectedFileName) ?? null
+
+  useEffect(() => {
+    if (pendingTarget?.moduleKey === 'locations') {
+      const match = characters.find((c) => c.data.id === pendingTarget.entityId)
+      if (match) {
+        setSelectedFileName(match.fileName)
+        clearPendingTarget()
+      }
+    }
+  }, [pendingTarget, locations, clearPendingTarget])
 
   const handleSelect = (fileName: string) => guardNavigation(() => setSelectedFileName(fileName))
 
