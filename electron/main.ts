@@ -121,6 +121,7 @@ ipcMain.handle('vault:delete-entry', async (_event, vaultPath: string, moduleFol
     return { success: false, error: (err as Error).message }
   }
 })
+
 // electron/main.ts — add below your other handlers
 ipcMain.handle('vault:create-folder', async (_event, parentPath: string, folderName: string) => {
   const newVaultPath = path.join(parentPath, folderName)
@@ -138,6 +139,26 @@ ipcMain.handle('vault:create-folder', async (_event, parentPath: string, folderN
     console.error('create-folder failed:', err)
     return null
   }
+})
+
+// --- NEW CONFIG HANDLERS ---
+const CONFIG_DIR = '.openblaze'
+
+ipcMain.handle('vault:read-config', async (_event, vaultPath: string, key: string) => {
+  const filePath = path.join(vaultPath, CONFIG_DIR, `${key}.json`)
+  try {
+    const raw = await fs.readFile(filePath, 'utf-8')
+    return JSON.parse(raw)
+  } catch {
+    return null // missing/corrupt — caller falls back to defaults
+  }
+})
+
+ipcMain.handle('vault:write-config', async (_event, vaultPath: string, key: string, data: unknown) => {
+  const dirPath = path.join(vaultPath, CONFIG_DIR)
+  await fs.mkdir(dirPath, { recursive: true })
+  await fs.writeFile(path.join(dirPath, `${key}.json`), JSON.stringify(data, null, 2), 'utf-8')
+  return true
 })
 
 app.whenReady().then(createWindow)
