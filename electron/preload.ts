@@ -20,6 +20,12 @@ contextBridge.exposeInMainWorld('electron', {
   createVaultFolder: (parentPath: string, folderName: string): Promise<string | null> =>
     ipcRenderer.invoke('vault:create-folder', parentPath, folderName),
 
+  readConfig: (vaultPath: string, key: string) => 
+    ipcRenderer.invoke('vault:read-config', vaultPath, key),
+  
+  writeConfig: (vaultPath: string, key: string, data: unknown) => 
+    ipcRenderer.invoke('vault:write-config', vaultPath, key, data),
+
   // App lifecycle methods added here:
   onBeforeClose: (callback: () => void) => {
     const listener = () => callback()
