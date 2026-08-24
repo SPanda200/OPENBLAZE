@@ -1,4 +1,5 @@
 // src/main.tsx
+import { EntityTypesProvider } from './context/EntityTypesContext'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
@@ -12,11 +13,13 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <VaultProvider>
       <UnsavedChangesProvider>
-        <EntityRegistryProvider>
-          <NavigationProvider>
-            <App />
-          </NavigationProvider>
-        </EntityRegistryProvider>
+        <EntityTypesProvider>
+          <EntityRegistryProvider>
+            <NavigationProvider>
+              <App />
+            </NavigationProvider>
+          </EntityRegistryProvider>
+        </EntityTypesProvider>
       </UnsavedChangesProvider>
     </VaultProvider>
   </StrictMode>,

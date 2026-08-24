@@ -17,7 +17,7 @@ export function EntityPicker({ query, highlightedIndex, onSelect }: EntityPicker
       {!loading && results.length === 0 && <p className="px-3 py-2 text-neutral-500 text-xs">No matches for "{query}"</p>}
       {results.map((entity, i) => (
         <button
-          key={`${entity.moduleKey}-${entity.id}`}
+          key={`${entity.entityTypeId}-${entity.id}`}
           onMouseDown={(e) => { e.preventDefault(); onSelect(entity) }}
           className={`w-full flex items-center justify-between gap-2 px-3 py-1.5 text-left ${
             i === highlightedIndex ? 'bg-orange-600/20 text-orange-300' : 'text-neutral-200 hover:bg-neutral-700'
