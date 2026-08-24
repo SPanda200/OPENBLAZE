@@ -5,7 +5,7 @@ import type { ModuleKey } from '../types/navigation'
 import { useUnsavedChanges } from './UnsavedChangesContext'
 
 interface PendingTarget {
-  moduleKey: ModuleKey
+  entityTypeId: string
   entityId: string
 }
 
@@ -13,7 +13,7 @@ interface NavigationContextValue {
   activeModule: ModuleKey
   setActiveModule: (key: ModuleKey) => void
   pendingTarget: PendingTarget | null
-  navigateToEntity: (moduleKey: ModuleKey, entityId: string) => void
+  navigateToEntity: (entityTypeId: string, entityId: string) => void
   clearPendingTarget: () => void
 }
 
@@ -24,16 +24,13 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   const [pendingTarget, setPendingTarget] = useState<PendingTarget | null>(null)
   const { guardNavigation } = useUnsavedChanges()
 
-  const setActiveModule = useCallback(
-    (key: ModuleKey) => guardNavigation(() => setActiveModuleState(key)),
-    [guardNavigation]
-  )
+  const setActiveModule = useCallback((key: ModuleKey) => guardNavigation(() => setActiveModuleState(key)), [guardNavigation])
 
   const navigateToEntity = useCallback(
-    (moduleKey: ModuleKey, entityId: string) => {
+    (entityTypeId: string, entityId: string) => {
       guardNavigation(() => {
-        setPendingTarget({ moduleKey, entityId })
-        setActiveModuleState(moduleKey)
+        setPendingTarget({ entityTypeId, entityId })
+        setActiveModuleState(entityTypeId)
       })
     },
     [guardNavigation]

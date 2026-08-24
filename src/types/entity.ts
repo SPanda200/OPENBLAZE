@@ -1,11 +1,10 @@
 // src/types/entity.ts
 import type { Panel } from './panel'
-import type { ModuleKey } from './navigation'
 
 export interface LinkableEntity {
   id: string
   name: string
-  moduleKey: ModuleKey
+  entityTypeId: string
   typeLabel: string
   fileName: string
 }

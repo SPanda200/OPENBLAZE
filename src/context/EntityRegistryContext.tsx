@@ -1,8 +1,8 @@
 // src/context/EntityRegistryContext.tsx
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
-import { useEntityData } from '../hooks/useEntityData'
-import { ENTITY_TYPES } from '../config/entityTypes'
+import { useVault } from './VaultContext'
+import { useEntityTypes } from './EntityTypesContext'
 import type { LinkableEntity } from '../types/entity'
 
 interface EntityRegistryContextValue {
@@ -14,34 +14,32 @@ interface EntityRegistryContextValue {
 const EntityRegistryContext = createContext<EntityRegistryContextValue | undefined>(undefined)
 
 export function EntityRegistryProvider({ children }: { children: ReactNode }) {
-  // Adding a new entity type later: register it in entityTypes.ts,
-  // then add one more useEntityData(...) call + map below.
-  const characters = useEntityData('Characters')
-  const locations = useEntityData('Locations')
+  const { vaultPath } = useVault()
+  const { entityTypes } = useEntityTypes()
+  const [entities, setEntities] = useState<LinkableEntity[]>([])
+  const [loading, setLoading] = useState(false)
+  const [tick, setTick] = useState(0)
 
-  const entities = useMemo<LinkableEntity[]>(() => {
-    const characterType = ENTITY_TYPES.find((t) => t.folder === 'Characters')!
-    const locationType = ENTITY_TYPES.find((t) => t.folder === 'Locations')!
-    return [
-      ...characters.entities.map((e) => ({
-        id: e.data.id, name: e.data.name, moduleKey: characterType.moduleKey, typeLabel: characterType.label, fileName: e.fileName,
-      })),
-      ...locations.entities.map((e) => ({
-        id: e.data.id, name: e.data.name, moduleKey: locationType.moduleKey, typeLabel: locationType.label, fileName: e.fileName,
-      })),
-    ]
-  }, [characters.entities, locations.entities])
+  const refresh = useCallback(() => setTick((t) => t + 1), [])
 
-  const refresh = () => {
-    characters.refresh()
-    locations.refresh()
-  }
+  useEffect(() => {
+    let cancelled = false
+    async function load() {
+      if (!vaultPath || entityTypes.length === 0) { setEntities([]); return }
+      setLoading(true)
+      const all: LinkableEntity[] = []
+      for (const type of entityTypes) {
+        const fileNames = await window.electron.listEntries(vaultPath, type.folder)
+        const loaded = await Promise.all(fileNames.map((fn) => window.electron.readEntry(vaultPath, type.folder, fn)))
+        loaded.forEach((e: any) => all.push({ id: e.data.id, name: e.data.name, entityTypeId: type.id, typeLabel: type.label, fileName: e.fileName }))
+      }
+      if (!cancelled) { setEntities(all); setLoading(false) }
+    }
+    load()
+    return () => { cancelled = true }
+  }, [vaultPath, entityTypes, tick])
 
-  return (
-    <EntityRegistryContext.Provider value={{ entities, loading: characters.loading || locations.loading, refresh }}>
-      {children}
-    </EntityRegistryContext.Provider>
-  )
+  return <EntityRegistryContext.Provider value={{ entities, loading, refresh }}>{children}</EntityRegistryContext.Provider>
 }
 
 export function useEntityRegistry() {
