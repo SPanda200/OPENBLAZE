@@ -7,6 +7,8 @@ electron.contextBridge.exposeInMainWorld("electron", {
 	writeEntry: (vaultPath, moduleFolder, fileName, data, content) => electron.ipcRenderer.invoke("vault:write-entry", vaultPath, moduleFolder, fileName, data, content),
 	deleteEntry: (vaultPath, moduleFolder, fileName) => electron.ipcRenderer.invoke("vault:delete-entry", vaultPath, moduleFolder, fileName),
 	createVaultFolder: (parentPath, folderName) => electron.ipcRenderer.invoke("vault:create-folder", parentPath, folderName),
+	readConfig: (vaultPath, key) => electron.ipcRenderer.invoke("vault:read-config", vaultPath, key),
+	writeConfig: (vaultPath, key, data) => electron.ipcRenderer.invoke("vault:write-config", vaultPath, key, data),
 	onBeforeClose: (callback) => {
 		const listener = () => callback();
 		electron.ipcRenderer.on("app:before-close", listener);

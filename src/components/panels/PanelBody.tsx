@@ -1,15 +1,14 @@
-// src/components/panels/PanelBody.tsx
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Plus, Trash2 } from 'lucide-react'
 import type {
   Panel, AnyPanelData, TextPanelData, ListPanelData, StatsPanelData,
   TablePanelData, ImagePanelData, LinksPanelData, AttributesPanelData,
 } from '../../types/panel'
-import type { LinkableEntity } from '../../types/entity'
 import { useNavigation } from '../../context/NavigationContext'
 import { useEntityRegistry } from '../../context/EntityRegistryContext'
 import { EntityPicker } from './EntityPicker'
-import { useEntitySearch } from '../../hooks/useEntitySearch'
+import { useLinkableTextarea } from '../../hooks/useLinkableTextarea'
+import { LinkedText } from '../shared/LinkedText'
 
 interface PanelBodyProps {
   panel: Panel
@@ -28,110 +27,18 @@ export function PanelBody({ panel, onChange }: PanelBodyProps) {
   }
 }
 
-// Matches tokens like [[characters:char_123:Kael]]
-const LINK_TOKEN_REGEX = /\[\[(\w+):([\w-]+):([^\]]+)\]\]/g
-
-function RenderedText({ text, entities, onLinkClick }: { text: string; entities: LinkableEntity[]; onLinkClick: (entityTypeId: string, id: string) => void }) {
-  const parts: React.ReactNode[] = []
-  let lastIndex = 0
-  let match: RegExpExecArray | null
-  let key = 0
-  const regex = new RegExp(LINK_TOKEN_REGEX)
-
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index))
-    const [, entityTypeId, id, fallbackDisplay] = match   // <-- renamed from moduleKey
-    const live = entities.find((e) => e.id === id && e.entityTypeId === entityTypeId)
-    const displayName = live?.name || fallbackDisplay
-    const broken = !live
-
-    parts.push(
-      <button
-        key={key++}
-        onClick={(e) => { e.stopPropagation(); if (!broken) onLinkClick(entityTypeId, id) }}
-        title={broken ? 'This linked entry no longer exists' : `Go to ${displayName}`}
-        className={
-          broken
-            ? 'inline text-neutral-600 line-through cursor-default'
-            : 'inline text-orange-400 hover:text-orange-300 underline underline-offset-2 decoration-orange-400/40 cursor-pointer'
-        }
-      >
-        {displayName}
-      </button>
-    )
-    lastIndex = regex.lastIndex
-  }
-  if (lastIndex < text.length) parts.push(text.slice(lastIndex))
-  return <>{parts}</>
-}
-
 function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextPanelData) => void }) {
   const [editing, setEditing] = useState(false)
-  const [pickerOpen, setPickerOpen] = useState(false)
-  const [pickerQuery, setPickerQuery] = useState('')
-  const [highlightedIndex, setHighlightedIndex] = useState(0)
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
   const { navigateToEntity } = useNavigation()
   const { entities } = useEntityRegistry()
-  const { results } = useEntitySearch(pickerQuery)
-
-  const handleTextChange = (value: string) => {
-    onChange({ text: value })
-    const cursor = textareaRef.current?.selectionStart ?? value.length
-    const uptoCursor = value.slice(0, cursor)
-    const match = uptoCursor.match(/@([^\s@[\]]*)$/)
-    if (match) {
-      setPickerQuery(match[1])
-      setPickerOpen(true)
-      setHighlightedIndex(0) // reset selection whenever the search text changes
-    } else {
-      setPickerOpen(false)
-    }
-  }
-
-  const insertLink = (entity: LinkableEntity) => {
-    const el = textareaRef.current
-    if (!el) return
-    const cursor = el.selectionStart
-    const value = data.text
-    const uptoCursor = value.slice(0, cursor)
-    const match = uptoCursor.match(/@([^\s@[\]]*)$/)
-    if (!match) return
-    const startOfAt = cursor - match[0].length
-    const token = `[[${entity.entityTypeId}:${entity.id}:${entity.name}]]`
-    const newValue = value.slice(0, startOfAt) + token + ' ' + value.slice(cursor)
-    onChange({ text: newValue })
-    setPickerOpen(false)
-    requestAnimationFrame(() => {
-      el.focus()
-      const newCursor = startOfAt + token.length + 1
-      el.setSelectionRange(newCursor, newCursor)
-    })
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (!pickerOpen || results.length === 0) return
-
-    if (e.key === 'ArrowDown') {
-      e.preventDefault()
-      setHighlightedIndex((i) => (i + 1) % results.length)
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault()
-      setHighlightedIndex((i) => (i - 1 + results.length) % results.length)
-    } else if (e.key === 'Enter') {
-      e.preventDefault()
-      insertLink(results[highlightedIndex])
-    } else if (e.key === 'Escape') {
-      e.preventDefault()
-      setPickerOpen(false)
-    }
-  }
+  const { textareaRef, pickerOpen, pickerQuery, highlightedIndex, handleChange, handleKeyDown, insertLink, closePicker } =
+    useLinkableTextarea({ value: data.text, onChange: (text) => onChange({ text }) })
 
   if (!editing) {
     return (
       <div onClick={() => setEditing(true)} className="min-h-[80px] cursor-text text-sm text-neutral-300 leading-relaxed whitespace-pre-wrap">
         {data.text ? (
-          <RenderedText text={data.text} entities={entities} onLinkClick={navigateToEntity} />
+          <LinkedText text={data.text} entities={entities} onLinkClick={navigateToEntity} />
         ) : (
           <span className="text-neutral-600">Click to add notes — type @ to link a character, location, or other entry.</span>
         )}
@@ -145,9 +52,9 @@ function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextP
         ref={textareaRef}
         autoFocus
         value={data.text}
-        onChange={(e) => handleTextChange(e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        onBlur={() => { setEditing(false); setPickerOpen(false) }}
+        onBlur={() => { setEditing(false); closePicker() }}
         placeholder="Type here... use @ to link a character, location, or other entry"
         rows={5}
         className="w-full bg-transparent text-sm text-neutral-300 placeholder-neutral-600 outline-none resize-y leading-relaxed"

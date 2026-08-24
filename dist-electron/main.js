@@ -8311,6 +8311,22 @@ ipcMain.handle("vault:create-folder", async (_event, parentPath, folderName) => 
 		return null;
 	}
 });
+var CONFIG_DIR = ".openblaze";
+ipcMain.handle("vault:read-config", async (_event, vaultPath, key) => {
+	const filePath = path.join(vaultPath, CONFIG_DIR, `${key}.json`);
+	try {
+		const raw = await fs.readFile(filePath, "utf-8");
+		return JSON.parse(raw);
+	} catch {
+		return null;
+	}
+});
+ipcMain.handle("vault:write-config", async (_event, vaultPath, key, data) => {
+	const dirPath = path.join(vaultPath, CONFIG_DIR);
+	await fs.mkdir(dirPath, { recursive: true });
+	await fs.writeFile(path.join(dirPath, `${key}.json`), JSON.stringify(data, null, 2), "utf-8");
+	return true;
+});
 app.whenReady().then(createWindow);
 app.on("window-all-closed", () => {
 	if (process.platform !== "darwin") app.quit();
