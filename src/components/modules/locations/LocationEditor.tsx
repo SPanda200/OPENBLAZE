@@ -4,7 +4,7 @@ import { Save, Trash2 } from 'lucide-react'
 import type { Entity, EntityData } from '../../../types/entity'
 import type { Panel } from '../../../types/panel'
 import { PanelGrid } from '../../panels/PanelGrid'
-import { getDescendantIds } from '../../../utils/buildLocationTree'
+import { getDescendantIds } from '../../../utils/buildEntityTree'
 import { useUnsavedChanges } from '../../../context/UnsavedChangesContext'
 
 interface LocationEditorProps {

@@ -1,7 +1,7 @@
 // src/components/modules/locations/LocationTree.tsx
 import { useState } from 'react'
 import { ChevronRight, ChevronDown, MapPin, Plus } from 'lucide-react'
-import type { LocationTreeNode } from '../../../utils/buildLocationTree'
+import type { LocationTreeNode } from '../../../utils/buildEntityTree'
 
 interface LocationTreeProps {
   nodes: LocationTreeNode[]

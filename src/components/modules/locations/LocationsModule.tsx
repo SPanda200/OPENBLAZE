@@ -4,7 +4,7 @@ import { useNavigation } from '../../../context/NavigationContext'
 import { Plus } from 'lucide-react'
 import { useLocationData } from '../../../hooks/useLocationData'
 import { useUnsavedChanges } from '../../../context/UnsavedChangesContext'
-import { buildLocationTree } from '../../../utils/buildLocationTree'
+import { buildLocationTree } from '../../../utils/buildEntityTree'
 import { LocationTree } from './LocationTree'
 import { LocationEditor } from './LocationEditor'
 
