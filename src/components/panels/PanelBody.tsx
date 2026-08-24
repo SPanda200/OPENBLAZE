@@ -6,7 +6,6 @@ import type {
   TablePanelData, ImagePanelData, LinksPanelData, AttributesPanelData,
 } from '../../types/panel'
 import type { LinkableEntity } from '../../types/entity'
-import type { ModuleKey } from '../../types/navigation'
 import { useNavigation } from '../../context/NavigationContext'
 import { useEntityRegistry } from '../../context/EntityRegistryContext'
 import { EntityPicker } from './EntityPicker'
@@ -32,7 +31,7 @@ export function PanelBody({ panel, onChange }: PanelBodyProps) {
 // Matches tokens like [[characters:char_123:Kael]]
 const LINK_TOKEN_REGEX = /\[\[(\w+):([\w-]+):([^\]]+)\]\]/g
 
-function RenderedText({ text, entities, onLinkClick }: { text: string; entities: LinkableEntity[]; onLinkClick: (moduleKey: ModuleKey, id: string) => void }) {
+function RenderedText({ text, entities, onLinkClick }: { text: string; entities: LinkableEntity[]; onLinkClick: (entityTypeId: string, id: string) => void }) {
   const parts: React.ReactNode[] = []
   let lastIndex = 0
   let match: RegExpExecArray | null
@@ -41,15 +40,15 @@ function RenderedText({ text, entities, onLinkClick }: { text: string; entities:
 
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index))
-    const [, moduleKey, id, fallbackDisplay] = match
-    const live = entities.find((e) => e.id === id && e.moduleKey === moduleKey)
+    const [, entityTypeId, id, fallbackDisplay] = match   // <-- renamed from moduleKey
+    const live = entities.find((e) => e.id === id && e.entityTypeId === entityTypeId)
     const displayName = live?.name || fallbackDisplay
     const broken = !live
 
     parts.push(
       <button
         key={key++}
-        onClick={(e) => { e.stopPropagation(); if (!broken) onLinkClick(moduleKey as ModuleKey, id) }}
+        onClick={(e) => { e.stopPropagation(); if (!broken) onLinkClick(entityTypeId, id) }}
         title={broken ? 'This linked entry no longer exists' : `Go to ${displayName}`}
         className={
           broken
@@ -99,7 +98,7 @@ function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextP
     const match = uptoCursor.match(/@([^\s@[\]]*)$/)
     if (!match) return
     const startOfAt = cursor - match[0].length
-    const token = `[[${entity.moduleKey}:${entity.id}:${entity.name}]]`
+    const token = `[[${entity.entityTypeId}:${entity.id}:${entity.name}]]`
     const newValue = value.slice(0, startOfAt) + token + ' ' + value.slice(cursor)
     onChange({ text: newValue })
     setPickerOpen(false)
