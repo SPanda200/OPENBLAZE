@@ -29,7 +29,7 @@ export function ChapterEditor({ chapter, onSave, onDelete }: ChapterEditorProps)
 
   const initialSnapshot = useRef(JSON.stringify({ title: chapter.data.title ?? '', mode: chapter.data.mode ?? 'markdown', content: chapter.content }))
 
-  const { textareaRef, pickerOpen, pickerQuery, highlightedIndex, handleChange, handleKeyDown, insertLink, closePicker } =
+  const { textareaRef, pickerOpen, pickerQuery, highlightedIndex, anchorRect, handleChange, handleKeyDown, insertLink, closePicker } =
     useLinkableTextarea({ value: content, onChange: setContent })
 
   const buildData = (): ChapterData => ({ id: chapter.data.id, title: title.trim() || 'Untitled Chapter', order: chapter.data.order, mode })
@@ -108,7 +108,7 @@ export function ChapterEditor({ chapter, onSave, onDelete }: ChapterEditorProps)
             rows={24}
             className="w-full min-h-[50vh] bg-neutral-900/40 border border-neutral-800 rounded-lg p-5 text-sm text-neutral-200 placeholder-neutral-600 outline-none focus:border-orange-600 resize-y leading-relaxed font-mono"
           />
-          {pickerOpen && <EntityPicker query={pickerQuery} highlightedIndex={highlightedIndex} onSelect={insertLink} />}
+          {pickerOpen && <EntityPicker query={pickerQuery} highlightedIndex={highlightedIndex} onSelect={insertLink} anchorRect={anchorRect} />}
         </div>
       )}
     </div>

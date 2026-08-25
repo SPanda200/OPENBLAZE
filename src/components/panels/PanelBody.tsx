@@ -31,7 +31,7 @@ function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextP
   const [editing, setEditing] = useState(false)
   const { navigateToEntity } = useNavigation()
   const { entities } = useEntityRegistry()
-  const { textareaRef, pickerOpen, pickerQuery, highlightedIndex, handleChange, handleKeyDown, insertLink, closePicker } =
+  const { textareaRef, pickerOpen, pickerQuery, highlightedIndex, anchorRect, handleChange, handleKeyDown, insertLink, closePicker } =
     useLinkableTextarea({ value: data.text, onChange: (text) => onChange({ text }) })
 
   if (!editing) {
@@ -59,7 +59,7 @@ function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextP
         rows={5}
         className="w-full bg-transparent text-sm text-neutral-300 placeholder-neutral-600 outline-none resize-y leading-relaxed"
       />
-      {pickerOpen && <EntityPicker query={pickerQuery} highlightedIndex={highlightedIndex} onSelect={insertLink} />}
+      {pickerOpen && <EntityPicker query={pickerQuery} highlightedIndex={highlightedIndex} onSelect={insertLink} anchorRect={anchorRect} />}
     </div>
   )
 }

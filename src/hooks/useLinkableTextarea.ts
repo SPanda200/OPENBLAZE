@@ -1,7 +1,10 @@
 // src/hooks/useLinkableTextarea.ts
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useEntitySearch } from './useEntitySearch'
+import { getCaretCoordinates } from '../utils/getCaretCoordinates'
 import type { LinkableEntity } from '../types/entity'
+
+interface AnchorRect { top: number; left: number }
 
 interface UseLinkableTextareaOptions {
   value: string
@@ -13,7 +16,27 @@ export function useLinkableTextarea({ value, onChange }: UseLinkableTextareaOpti
   const [pickerOpen, setPickerOpen] = useState(false)
   const [pickerQuery, setPickerQuery] = useState('')
   const [highlightedIndex, setHighlightedIndex] = useState(0)
+  const [anchorRect, setAnchorRect] = useState<AnchorRect | null>(null)
   const { results } = useEntitySearch(pickerQuery)
+
+  // Close instead of leaving a stale position if the page scrolls underneath the picker
+  useEffect(() => {
+    if (!pickerOpen) return
+    const handleScroll = () => setPickerOpen(false)
+    window.addEventListener('scroll', handleScroll, true)
+    return () => window.removeEventListener('scroll', handleScroll, true)
+  }, [pickerOpen])
+
+  const updateAnchor = (cursor: number) => {
+    const el = textareaRef.current
+    if (!el) return
+    const caret = getCaretCoordinates(el, cursor)
+    const box = el.getBoundingClientRect()
+    setAnchorRect({
+      top: box.top + (caret.top - el.scrollTop) + caret.height + 4,
+      left: box.left + caret.left,
+    })
+  }
 
   const handleChange = (newValue: string) => {
     onChange(newValue)
@@ -24,6 +47,7 @@ export function useLinkableTextarea({ value, onChange }: UseLinkableTextareaOpti
       setPickerQuery(match[1])
       setPickerOpen(true)
       setHighlightedIndex(0)
+      updateAnchor(cursor)
     } else {
       setPickerOpen(false)
     }
@@ -58,5 +82,5 @@ export function useLinkableTextarea({ value, onChange }: UseLinkableTextareaOpti
 
   const closePicker = () => setPickerOpen(false)
 
-  return { textareaRef, pickerOpen, pickerQuery, highlightedIndex, handleChange, handleKeyDown, insertLink, closePicker }
+  return { textareaRef, pickerOpen, pickerQuery, highlightedIndex, anchorRect, handleChange, handleKeyDown, insertLink, closePicker }
 }
