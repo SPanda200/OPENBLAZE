@@ -7,6 +7,7 @@ import type { Panel } from '../../types/panel'
 import { PanelGrid } from '../panels/PanelGrid'
 import { getDescendantIds } from '../../utils/buildEntityTree'
 import { useUnsavedChanges } from '../../context/UnsavedChangesContext'
+import { BacklinksPanel } from './BacklinksPanel'
 
 interface EntityEditorProps {
   entity: Entity
@@ -88,6 +89,7 @@ export function EntityEditor({ entity, entityType, allEntities, onSave, onDelete
       )}
 
       <PanelGrid panels={panels} onChange={setPanels} />
+      <BacklinksPanel entityTypeId={entityType.id} entityId={entity.data.id} />
     </div>
   )
 }

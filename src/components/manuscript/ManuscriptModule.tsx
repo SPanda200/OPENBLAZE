@@ -1,29 +1,48 @@
 // src/components/manuscript/ManuscriptModule.tsx
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Plus } from 'lucide-react'
 import { useManuscriptData } from '../../hooks/useManuscriptData'
 import { useUnsavedChanges } from '../../context/UnsavedChangesContext'
+import { useNavigation } from '../../context/NavigationContext'
+import { useEntityRegistry } from '../../context/EntityRegistryContext'
 import { ChapterList } from './ChapterList'
 import { ChapterEditor } from './ChapterEditor'
+import type { ChapterData } from '../../types/chapter'
 
 export function ManuscriptModule() {
   const { chapters, loading, createChapter, saveChapter, deleteChapter, reorderChapter } = useManuscriptData()
   const { guardNavigation } = useUnsavedChanges()
+  const { pendingTarget, clearPendingTarget } = useNavigation()
+  const { refresh: refreshRegistry } = useEntityRegistry()
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null)
 
   const selected = chapters.find((c) => c.fileName === selectedFileName) ?? null
+
+  useEffect(() => {
+    if (pendingTarget?.entityTypeId === 'manuscript') {
+      const match = chapters.find((c) => c.data.id === pendingTarget.entityId)
+      if (match) { setSelectedFileName(match.fileName); clearPendingTarget() }
+    }
+  }, [pendingTarget, chapters, clearPendingTarget])
 
   const handleSelect = (fileName: string) => guardNavigation(() => setSelectedFileName(fileName))
 
   const handleCreate = () => guardNavigation(async () => {
     const created = await createChapter()
+    refreshRegistry()
     setSelectedFileName(created.fileName)
   })
+
+  const handleSave = async (fileName: string, data: ChapterData, content: string) => {
+    await saveChapter(fileName, data, content)
+    refreshRegistry()
+  }
 
   const handleDelete = async (fileName: string, title: string) => {
     const confirmed = window.confirm(`Delete "${title}"? This cannot be undone.`)
     if (!confirmed) return
     const result = await deleteChapter(fileName)
+    refreshRegistry()
     if (!result.success) { window.alert(`Couldn't delete: ${result.error ?? 'unknown error'}`); return }
     if (selectedFileName === fileName) setSelectedFileName(null)
   }
@@ -46,7 +65,7 @@ export function ManuscriptModule() {
 
       <div className="flex-1 overflow-y-auto p-6">
         {selected ? (
-          <ChapterEditor key={selected.fileName} chapter={selected} onSave={saveChapter} onDelete={() => handleDelete(selected.fileName, selected.data.title)} />
+          <ChapterEditor key={selected.fileName} chapter={selected} onSave={handleSave} onDelete={() => handleDelete(selected.fileName, selected.data.title)} />
         ) : (
           <div className="flex items-center justify-center h-full text-neutral-600 text-sm">Select a chapter or create a new one.</div>
         )}
