@@ -26,6 +26,15 @@ contextBridge.exposeInMainWorld('electron', {
   writeConfig: (vaultPath: string, key: string, data: unknown) => 
     ipcRenderer.invoke('vault:write-config', vaultPath, key, data),
 
+  importImage: (vaultPath: string): Promise<{ success: boolean; relativePath?: string; error?: string } | null> =>
+    ipcRenderer.invoke('vault:import-image-dialog', vaultPath),
+
+  importImageFromPath: (vaultPath: string, sourcePath: string): Promise<{ success: boolean; relativePath?: string; error?: string }> =>
+    ipcRenderer.invoke('vault:import-image-path', vaultPath, sourcePath),
+
+  getAssetUrl: (vaultPath: string, relativePath: string): Promise<string> =>
+    ipcRenderer.invoke('vault:get-asset-url', vaultPath, relativePath),
+
   // App lifecycle methods added here:
   onBeforeClose: (callback: () => void) => {
     const listener = () => callback()

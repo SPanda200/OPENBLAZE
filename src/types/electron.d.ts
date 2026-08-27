@@ -20,6 +20,9 @@ export interface ElectronAPI {
   createVaultFolder: (parentPath: string, folderName: string) => Promise<string | null>
   readConfig: (vaultPath: string, key: string) => Promise<any | null>
   writeConfig: (vaultPath: string, key: string, data: unknown) => Promise<boolean>
+  importImage: (vaultPath: string) => Promise<{ success: boolean; relativePath?: string; error?: string } | null>
+  importImageFromPath: (vaultPath: string, sourcePath: string) => Promise<{ success: boolean; relativePath?: string; error?: string }>
+  getAssetUrl: (vaultPath: string, relativePath: string) => Promise<string>
   onBeforeClose: (callback: () => void) => () => void
   confirmClose: () => void
 }

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Plus, Trash2 } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Plus, Trash2, Image as ImageIcon, Upload } from 'lucide-react'
 import type {
   Panel, AnyPanelData, TextPanelData, ListPanelData, StatsPanelData,
   TablePanelData, ImagePanelData, LinksPanelData, AttributesPanelData,
@@ -9,6 +9,7 @@ import { useEntityRegistry } from '../../context/EntityRegistryContext'
 import { EntityPicker } from './EntityPicker'
 import { useLinkableTextarea } from '../../hooks/useLinkableTextarea'
 import { LinkedText } from '../shared/LinkedText'
+import { useVault } from '../../context/VaultContext'
 
 interface PanelBodyProps {
   panel: Panel
@@ -189,11 +190,84 @@ function TableBody({ data, onChange }: { data: TablePanelData; onChange: (d: Tab
 }
 
 function ImageBody({ data, onChange }: { data: ImagePanelData; onChange: (d: ImagePanelData) => void }) {
+  const { vaultPath } = useVault()
+  const [resolvedSrc, setResolvedSrc] = useState<string | null>(null)
+  const [importing, setImporting] = useState(false)
+  const [dragActive, setDragActive] = useState(false)
+
+  // Pasted external URLs render directly; vault-relative paths (imported files)
+  // resolve through the openblaze-asset:// protocol, which is async.
+  useEffect(() => {
+    let cancelled = false
+    async function resolve() {
+      if (!data.imageUrl) { setResolvedSrc(null); return }
+      if (/^https?:\/\//i.test(data.imageUrl)) { setResolvedSrc(data.imageUrl); return }
+      if (!vaultPath) { setResolvedSrc(null); return }
+      const url = await window.electron.getAssetUrl(vaultPath, data.imageUrl)
+      if (!cancelled) setResolvedSrc(url)
+    }
+    resolve()
+    return () => { cancelled = true }
+  }, [data.imageUrl, vaultPath])
+
+  const handleBrowse = async () => {
+    if (!vaultPath) return
+    setImporting(true)
+    const result = await window.electron.importImage(vaultPath)
+    setImporting(false)
+    if (result?.success && result.relativePath) onChange({ ...data, imageUrl: result.relativePath })
+    else if (result && !result.success) window.alert(`Couldn't import image: ${result.error ?? 'unknown error'}`)
+  }
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault()
+    setDragActive(false)
+    if (!vaultPath) return
+    const file = e.dataTransfer.files[0] as (File & { path?: string }) | undefined
+    if (!file?.path) return
+    setImporting(true)
+    const result = await window.electron.importImageFromPath(vaultPath, file.path)
+    setImporting(false)
+    if (result.success && result.relativePath) onChange({ ...data, imageUrl: result.relativePath })
+    else if (!result.success) window.alert(`Couldn't import image: ${result.error ?? 'unknown error'}`)
+  }
+
   return (
     <div className="space-y-2">
-      {data.imageUrl && <img src={data.imageUrl} alt={data.caption} className="w-full rounded-md border border-neutral-800 object-cover max-h-64" />}
-      <input value={data.imageUrl} onChange={(e) => onChange({ ...data, imageUrl: e.target.value })} placeholder="Paste an image URL or local file path..." className="w-full text-xs bg-neutral-800/50 border border-neutral-800 rounded px-2 py-1.5 text-neutral-300 outline-none focus:border-orange-600" />
-      <input value={data.caption} onChange={(e) => onChange({ ...data, caption: e.target.value })} placeholder="Caption..." className="w-full text-xs bg-transparent text-neutral-500 outline-none" />
+      <div
+        onDragOver={(e) => { e.preventDefault(); setDragActive(true) }}
+        onDragLeave={() => setDragActive(false)}
+        onDrop={handleDrop}
+        className={`rounded-md border transition-colors ${dragActive ? 'border-orange-500 bg-orange-600/5' : 'border-neutral-800'}`}
+      >
+        {resolvedSrc ? (
+          <img src={resolvedSrc} alt={data.caption} className="w-full rounded-md object-cover max-h-64" />
+        ) : (
+          <div className="flex flex-col items-center justify-center gap-2 py-10 text-neutral-600 text-xs">
+            <ImageIcon className="w-6 h-6" />
+            Drag an image here, or browse
+          </div>
+        )}
+      </div>
+
+      <div className="flex items-center gap-2">
+        <button onClick={handleBrowse} disabled={importing} className="flex items-center gap-1.5 text-xs bg-neutral-800 hover:bg-neutral-700 disabled:opacity-50 text-neutral-300 rounded px-2.5 py-1.5">
+          <Upload className="w-3 h-3" />
+          {importing ? 'Importing...' : 'Browse...'}
+        </button>
+        {data.imageUrl && (
+          <button onClick={() => onChange({ ...data, imageUrl: '' })} className="text-xs text-neutral-600 hover:text-red-500">
+            Remove
+          </button>
+        )}
+      </div>
+
+      <input
+        value={data.caption}
+        onChange={(e) => onChange({ ...data, caption: e.target.value })}
+        placeholder="Caption..."
+        className="w-full text-xs bg-transparent text-neutral-500 outline-none"
+      />
     </div>
   )
 }

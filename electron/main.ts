@@ -1,9 +1,9 @@
 // electron/main.ts
-import { app, BrowserWindow, ipcMain, dialog } from 'electron'
+import { app, BrowserWindow, ipcMain, dialog, protocol, net } from 'electron'
 import path from 'node:path'
 import fs from 'node:fs/promises'
 import matter from 'gray-matter'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 
 // ESM has no __dirname — reconstruct it from import.meta.url
 const __filename = fileURLToPath(import.meta.url)
@@ -11,6 +11,22 @@ const __dirname = path.dirname(__filename)
 
 let mainWindow: BrowserWindow | null = null
 let allowClose = false // set true only after the renderer confirms it's safe to close
+
+// Must be registered before app is ready. This scheme is how the renderer
+// safely loads local vault images, since raw file:// URLs get blocked when
+// the app is served over http://localhost in dev.
+protocol.registerSchemesAsPrivileged([
+  { scheme: 'openblaze-asset', privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, bypassCSP: true, corsEnabled: true } },
+])
+
+function registerAssetProtocol() {
+  protocol.handle('openblaze-asset', (request) => {
+    const url = new URL(request.url)
+    const encodedPath = url.pathname.replace(/^\//, '')
+    const filePath = decodeURIComponent(encodedPath)
+    return net.fetch(pathToFileURL(filePath).href)
+  })
+}
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -161,7 +177,50 @@ ipcMain.handle('vault:write-config', async (_event, vaultPath: string, key: stri
   return true
 })
 
-app.whenReady().then(createWindow)
+const ASSETS_DIR = '.assets'
+const ALLOWED_IMAGE_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'])
+
+async function importImageFile(vaultPath: string, sourcePath: string) {
+  const ext = path.extname(sourcePath).toLowerCase()
+  if (!ALLOWED_IMAGE_EXTENSIONS.has(ext)) {
+    return { success: false, error: `Unsupported file type: ${ext || 'unknown'}` }
+  }
+  try {
+    const assetsDir = path.join(vaultPath, ASSETS_DIR)
+    await fs.mkdir(assetsDir, { recursive: true })
+    const safeName = `img_${Date.now()}${ext}`
+    const destPath = path.join(assetsDir, safeName)
+    await fs.copyFile(sourcePath, destPath)
+    return { success: true, relativePath: path.join(ASSETS_DIR, safeName) }
+  } catch (err) {
+    console.error('import-image failed:', err)
+    return { success: false, error: (err as Error).message }
+  }
+}
+
+ipcMain.handle('vault:import-image-dialog', async (_event, vaultPath: string) => {
+  const result = await dialog.showOpenDialog({
+    properties: ['openFile'],
+    filters: [{ name: 'Images', extensions: ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'] }],
+  })
+  if (result.canceled || result.filePaths.length === 0) return null
+  return importImageFile(vaultPath, result.filePaths[0])
+})
+
+ipcMain.handle('vault:import-image-path', async (_event, vaultPath: string, sourcePath: string) => {
+  return importImageFile(vaultPath, sourcePath)
+})
+
+ipcMain.handle('vault:get-asset-url', async (_event, vaultPath: string, relativePath: string) => {
+  const absolute = path.join(vaultPath, relativePath)
+  return `openblaze-asset://local/${encodeURIComponent(absolute)}`
+})
+
+app.whenReady().then(() => {
+  registerAssetProtocol()
+  createWindow()
+})
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
