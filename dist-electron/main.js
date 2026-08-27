@@ -1,8 +1,8 @@
 import { createRequire } from "node:module";
-import { BrowserWindow, app, dialog, ipcMain } from "electron";
+import { BrowserWindow, app, dialog, ipcMain, net, protocol } from "electron";
 import path from "node:path";
 import fs from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 //#region \0rolldown/runtime.js
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -8211,6 +8211,24 @@ var __filename = fileURLToPath(import.meta.url);
 var __dirname = path.dirname(__filename);
 var mainWindow = null;
 var allowClose = false;
+protocol.registerSchemesAsPrivileged([{
+	scheme: "openblaze-asset",
+	privileges: {
+		standard: true,
+		secure: true,
+		supportFetchAPI: true,
+		stream: true,
+		bypassCSP: true,
+		corsEnabled: true
+	}
+}]);
+function registerAssetProtocol() {
+	protocol.handle("openblaze-asset", (request) => {
+		const encodedPath = new URL(request.url).pathname.replace(/^\//, "");
+		const filePath = decodeURIComponent(encodedPath);
+		return net.fetch(pathToFileURL(filePath).href);
+	});
+}
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		width: 1400,
@@ -8327,7 +8345,82 @@ ipcMain.handle("vault:write-config", async (_event, vaultPath, key, data) => {
 	await fs.writeFile(path.join(dirPath, `${key}.json`), JSON.stringify(data, null, 2), "utf-8");
 	return true;
 });
-app.whenReady().then(createWindow);
+var ASSETS_DIR = ".assets";
+var ALLOWED_IMAGE_EXTENSIONS = /* @__PURE__ */ new Set([
+	".png",
+	".jpg",
+	".jpeg",
+	".gif",
+	".webp",
+	".svg"
+]);
+var MAX_IMAGE_SIZE_BYTES = 15728640;
+async function importImageFile(vaultPath, sourcePath) {
+	const ext = path.extname(sourcePath).toLowerCase();
+	if (!ALLOWED_IMAGE_EXTENSIONS.has(ext)) return {
+		success: false,
+		error: `Unsupported file type: ${ext || "unknown"}`
+	};
+	try {
+		const stats = await fs.stat(sourcePath);
+		if (stats.size > MAX_IMAGE_SIZE_BYTES) return {
+			success: false,
+			error: `Image is too large (${(stats.size / 1048576).toFixed(1)} MB). Maximum size is 15 MB.`
+		};
+	} catch (err) {
+		console.error("image stat failed:", err);
+		return {
+			success: false,
+			error: "Could not read the selected file."
+		};
+	}
+	try {
+		const assetsDir = path.join(vaultPath, ASSETS_DIR);
+		await fs.mkdir(assetsDir, { recursive: true });
+		const safeName = `img_${Date.now()}${ext}`;
+		const destPath = path.join(assetsDir, safeName);
+		await fs.copyFile(sourcePath, destPath);
+		return {
+			success: true,
+			relativePath: path.join(ASSETS_DIR, safeName)
+		};
+	} catch (err) {
+		console.error("import-image failed:", err);
+		return {
+			success: false,
+			error: err.message
+		};
+	}
+}
+ipcMain.handle("vault:import-image-dialog", async (_event, vaultPath) => {
+	const result = await dialog.showOpenDialog({
+		properties: ["openFile"],
+		filters: [{
+			name: "Images",
+			extensions: [
+				"png",
+				"jpg",
+				"jpeg",
+				"gif",
+				"webp",
+				"svg"
+			]
+		}]
+	});
+	if (result.canceled || result.filePaths.length === 0) return null;
+	return importImageFile(vaultPath, result.filePaths[0]);
+});
+ipcMain.handle("vault:import-image-path", async (_event, vaultPath, sourcePath) => {
+	return importImageFile(vaultPath, sourcePath);
+});
+ipcMain.handle("vault:get-asset-url", async (_event, vaultPath, relativePath) => {
+	const absolute = path.join(vaultPath, relativePath);
+	return `openblaze-asset://local/${encodeURIComponent(absolute)}`;
+});
+app.whenReady().then(() => {
+	registerAssetProtocol();
+	createWindow();
+});
 app.on("window-all-closed", () => {
 	if (process.platform !== "darwin") app.quit();
 });

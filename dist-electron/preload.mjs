@@ -9,6 +9,9 @@ electron.contextBridge.exposeInMainWorld("electron", {
 	createVaultFolder: (parentPath, folderName) => electron.ipcRenderer.invoke("vault:create-folder", parentPath, folderName),
 	readConfig: (vaultPath, key) => electron.ipcRenderer.invoke("vault:read-config", vaultPath, key),
 	writeConfig: (vaultPath, key, data) => electron.ipcRenderer.invoke("vault:write-config", vaultPath, key, data),
+	importImage: (vaultPath) => electron.ipcRenderer.invoke("vault:import-image-dialog", vaultPath),
+	importImageFromPath: (vaultPath, sourcePath) => electron.ipcRenderer.invoke("vault:import-image-path", vaultPath, sourcePath),
+	getAssetUrl: (vaultPath, relativePath) => electron.ipcRenderer.invoke("vault:get-asset-url", vaultPath, relativePath),
 	onBeforeClose: (callback) => {
 		const listener = () => callback();
 		electron.ipcRenderer.on("app:before-close", listener);

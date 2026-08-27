@@ -179,12 +179,25 @@ ipcMain.handle('vault:write-config', async (_event, vaultPath: string, key: stri
 
 const ASSETS_DIR = '.assets'
 const ALLOWED_IMAGE_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'])
+const MAX_IMAGE_SIZE_BYTES = 15 * 1024 * 1024 // 15 MB
 
 async function importImageFile(vaultPath: string, sourcePath: string) {
   const ext = path.extname(sourcePath).toLowerCase()
   if (!ALLOWED_IMAGE_EXTENSIONS.has(ext)) {
     return { success: false, error: `Unsupported file type: ${ext || 'unknown'}` }
   }
+
+  try {
+    const stats = await fs.stat(sourcePath)
+    if (stats.size > MAX_IMAGE_SIZE_BYTES) {
+      const sizeMb = (stats.size / (1024 * 1024)).toFixed(1)
+      return { success: false, error: `Image is too large (${sizeMb} MB). Maximum size is 15 MB.` }
+    }
+  } catch (err) {
+    console.error('image stat failed:', err)
+    return { success: false, error: 'Could not read the selected file.' }
+  }
+
   try {
     const assetsDir = path.join(vaultPath, ASSETS_DIR)
     await fs.mkdir(assetsDir, { recursive: true })

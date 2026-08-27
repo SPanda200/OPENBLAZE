@@ -241,7 +241,7 @@ function ImageBody({ data, onChange }: { data: ImagePanelData; onChange: (d: Ima
         className={`rounded-md border transition-colors ${dragActive ? 'border-orange-500 bg-orange-600/5' : 'border-neutral-800'}`}
       >
         {resolvedSrc ? (
-          <img src={resolvedSrc} alt={data.caption} className="w-full rounded-md object-cover max-h-64" />
+          <img src={resolvedSrc} alt={data.caption} className="w-full rounded-md object-contain" />
         ) : (
           <div className="flex flex-col items-center justify-center gap-2 py-10 text-neutral-600 text-xs">
             <ImageIcon className="w-6 h-6" />
