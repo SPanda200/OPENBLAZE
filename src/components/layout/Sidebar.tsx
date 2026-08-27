@@ -24,7 +24,7 @@ export function Sidebar({ active, onSelect, onManageTypes }: SidebarProps) {
 
   return (
     <aside onMouseEnter={() => setHovering(true)} onMouseLeave={handleMouseLeave}
-      className={`relative shrink-0 h-screen bg-neutral-900 text-neutral-200 flex flex-col border-r border-neutral-800 transition-[width] duration-150 ease-in-out overflow-hidden ${expanded ? 'w-60' : 'w-14'}`}>
+      className={`relative shrink-0 h-screen bg-neutral-900 text-neutral-200 flex flex-col border-r border-neutral-800 transition-[width] duration-150 ease-in-out overflow-hidden ${expanded ? 'w-64' : 'w-14'}`}>
       <div className="flex items-center justify-between px-3 h-14 shrink-0 border-b border-neutral-800">
         <div className="flex items-center gap-2 min-w-0">
           <Flame className="w-5 h-5 text-orange-500 shrink-0" />
@@ -35,7 +35,7 @@ export function Sidebar({ active, onSelect, onManageTypes }: SidebarProps) {
         </button>
       </div>
 
-      <nav className="flex-1 px-2 py-3 space-y-1 overflow-y-auto">
+      <nav className="flex-1 px-2 py-3 space-y-1 overflow-y-auto overflow-x-hidden">
         <NavButton active={active === 'dashboard'} icon={LayoutDashboard} label="Dashboard" expanded={expanded} onClick={() => handleSelect('dashboard')} />
         <NavButton active={active === 'manuscript'} icon={BookOpen} label="Manuscript" expanded={expanded} onClick={() => handleSelect('manuscript')} />
         <div className="pt-2 mt-2 border-t border-neutral-800/60">

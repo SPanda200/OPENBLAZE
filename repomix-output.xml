@@ -1,0 +1,3232 @@
+This file is a merged representation of a subset of the codebase, containing files not matching ignore patterns, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching these patterns are excluded: .git/**, dist/**, dist-electron/**, node_modules/**
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+electron/
+  main.ts
+  preload.ts
+  tsconfig.json
+public/
+  favicon.svg
+  icons.svg
+src/
+  assets/
+    hero.png
+    react.svg
+    vite.svg
+  components/
+    entities/
+      EntityEditor.tsx
+      EntityModule.tsx
+      EntityTree.tsx
+      ManageEntityTypesModal.tsx
+    layout/
+      AppShell.tsx
+      Sidebar.tsx
+    manuscript/
+      ChapterEditor.tsx
+      ChapterList.tsx
+      ManuscriptModule.tsx
+      MarkdownRenderer.tsx
+    modules/
+      Dashboard.tsx
+    panels/
+      AddPanelMenu.tsx
+      EntityPicker.tsx
+      PanelBody.tsx
+      PanelCard.tsx
+      PanelGrid.tsx
+    shared/
+      LinkedText.tsx
+  config/
+    builtInEntityTypes.ts
+    entityTypes.ts
+    iconOptions.ts
+  context/
+    EntityRegistryContext.tsx
+    EntityTypesContext.tsx
+    NavigationContext.tsx
+    UnsavedChangesContext.tsx
+    UnsavedChangesModal.tsx
+    VaultContext.tsx
+  hooks/
+    useEntityData.ts
+    useEntitySearch.ts
+    useLinkableTextarea.ts
+    useManuscriptData.ts
+    useVaultData.ts
+  templates/
+    panelTemplates.ts
+  types/
+    chapter.ts
+    electron.d.ts
+    entity.ts
+    entityType.ts
+    navigation.ts
+    panel.ts
+  utils/
+    buildEntityTree.ts
+    getCaretCoordinates.ts
+  App.css
+  App.tsx
+  index.css
+  main.tsx
+.gitignore
+eslint.config.js
+index.html
+package.json
+README.md
+tailwind.config.js
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="electron/tsconfig.json">
+
+</file>
+
+<file path="public/favicon.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="46" fill="none" viewBox="0 0 48 46"><path fill="#863bff" d="M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z" style="fill:#863bff;fill:color(display-p3 .5252 .23 1);fill-opacity:1"/><mask id="a" width="48" height="46" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M25.842 44.938c-.664.844-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.183c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.498 0-3.579-1.842-3.579H1.133c-.92 0-1.456-1.04-.92-1.787L9.91.473c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.578 1.842 3.578h11.377c.943 0 1.473 1.088.89 1.832L25.843 44.94z" style="fill:#000;fill-opacity:1"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#ede6ff" rx="5.508" ry="14.704" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -4.47 31.516)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#ede6ff" rx="10.399" ry="29.851" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -39.328 7.883)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#7e14ff" rx="5.508" ry="30.487" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -25.913 -14.639)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -32.644 -3.334)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -34.34 30.47)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#ede6ff" rx="14.072" ry="22.078" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="rotate(93.35 24.506 48.493)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx=".387" cy="8.972" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(39.51 .387 8.972)"/></g><g filter="url(#k)"><ellipse cx="47.523" cy="-6.092" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 47.523 -6.092)"/></g><g filter="url(#l)"><ellipse cx="41.412" cy="6.333" fill="#47bfff" rx="5.971" ry="9.665" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 41.412 6.333)"/></g><g filter="url(#m)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#n)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#o)"><ellipse cx="35.651" cy="29.907" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 35.651 29.907)"/></g><g filter="url(#p)"><ellipse cx="38.418" cy="32.4" fill="#47bfff" rx="5.971" ry="15.297" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 38.418 32.4)"/></g></g><defs><filter id="b" width="60.045" height="41.654" x="-19.77" y="16.149" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-54.613" y="-7.533" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-49.64" y="2.03" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-45.045" y="20.029" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-43.513" y="21.178" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="15.756" y="-17.901" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-27.636" y="-22.853" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="20.116" y="-38.415" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="24.641" y="-11.323" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="8.244" y="-2.416" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="18.713" y="10.588" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter></defs></svg>
+</file>
+
+<file path="public/icons.svg">
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="bluesky-icon" viewBox="0 0 16 17">
+    <g clip-path="url(#bluesky-clip)"><path fill="#08060d" d="M7.75 7.735c-.693-1.348-2.58-3.86-4.334-5.097-1.68-1.187-2.32-.981-2.74-.79C.188 2.065.1 2.812.1 3.251s.241 3.602.398 4.13c.52 1.744 2.367 2.333 4.07 2.145-2.495.37-4.71 1.278-1.805 4.512 3.196 3.309 4.38-.71 4.987-2.746.608 2.036 1.307 5.91 4.93 2.746 2.72-2.746.747-4.143-1.747-4.512 1.702.189 3.55-.4 4.07-2.145.156-.528.397-3.691.397-4.13s-.088-1.186-.575-1.406c-.42-.19-1.06-.395-2.741.79-1.755 1.24-3.64 3.752-4.334 5.099"/></g>
+    <defs><clipPath id="bluesky-clip"><path fill="#fff" d="M.1.85h15.3v15.3H.1z"/></clipPath></defs>
+  </symbol>
+  <symbol id="discord-icon" viewBox="0 0 20 19">
+    <path fill="#08060d" d="M16.224 3.768a14.5 14.5 0 0 0-3.67-1.153c-.158.286-.343.67-.47.976a13.5 13.5 0 0 0-4.067 0c-.128-.306-.317-.69-.476-.976A14.4 14.4 0 0 0 3.868 3.77C1.546 7.28.916 10.703 1.231 14.077a14.7 14.7 0 0 0 4.5 2.306q.545-.748.965-1.587a9.5 9.5 0 0 1-1.518-.74q.191-.14.372-.293c2.927 1.369 6.107 1.369 8.999 0q.183.152.372.294-.723.437-1.52.74.418.838.963 1.588a14.6 14.6 0 0 0 4.504-2.308c.37-3.911-.63-7.302-2.644-10.309m-9.13 8.234c-.878 0-1.599-.82-1.599-1.82 0-.998.705-1.82 1.6-1.82.894 0 1.614.82 1.599 1.82.001 1-.705 1.82-1.6 1.82m5.91 0c-.878 0-1.599-.82-1.599-1.82 0-.998.705-1.82 1.6-1.82.893 0 1.614.82 1.599 1.82 0 1-.706 1.82-1.6 1.82"/>
+  </symbol>
+  <symbol id="documentation-icon" viewBox="0 0 21 20">
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="m15.5 13.333 1.533 1.322c.645.555.967.833.967 1.178s-.322.623-.967 1.179L15.5 18.333m-3.333-5-1.534 1.322c-.644.555-.966.833-.966 1.178s.322.623.966 1.179l1.534 1.321"/>
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M17.167 10.836v-4.32c0-1.41 0-2.117-.224-2.68-.359-.906-1.118-1.621-2.08-1.96-.599-.21-1.349-.21-2.848-.21-2.623 0-3.935 0-4.983.369-1.684.591-3.013 1.842-3.641 3.428C3 6.449 3 7.684 3 10.154v2.122c0 2.558 0 3.838.706 4.726q.306.383.713.671c.76.536 1.79.64 3.581.66"/>
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M3 10a2.78 2.78 0 0 1 2.778-2.778c.555 0 1.209.097 1.748-.047.48-.129.854-.503.982-.982.145-.54.048-1.194.048-1.749a2.78 2.78 0 0 1 2.777-2.777"/>
+  </symbol>
+  <symbol id="github-icon" viewBox="0 0 19 19">
+    <path fill="#08060d" fill-rule="evenodd" d="M9.356 1.85C5.05 1.85 1.57 5.356 1.57 9.694a7.84 7.84 0 0 0 5.324 7.44c.387.079.528-.168.528-.376 0-.182-.013-.805-.013-1.454-2.165.467-2.616-.935-2.616-.935-.349-.91-.864-1.143-.864-1.143-.71-.48.051-.48.051-.48.787.051 1.2.805 1.2.805.695 1.194 1.817.857 2.268.649.064-.507.27-.857.49-1.052-1.728-.182-3.545-.857-3.545-3.87 0-.857.31-1.558.8-2.104-.078-.195-.349-1 .077-2.078 0 0 .657-.208 2.14.805a7.5 7.5 0 0 1 1.946-.26c.657 0 1.328.092 1.946.26 1.483-1.013 2.14-.805 2.14-.805.426 1.078.155 1.883.078 2.078.502.546.799 1.247.799 2.104 0 3.013-1.818 3.675-3.558 3.87.284.247.528.714.528 1.454 0 1.052-.012 1.896-.012 2.156 0 .208.142.455.528.377a7.84 7.84 0 0 0 5.324-7.441c.013-4.338-3.48-7.844-7.773-7.844" clip-rule="evenodd"/>
+  </symbol>
+  <symbol id="social-icon" viewBox="0 0 20 20">
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M12.5 6.667a4.167 4.167 0 1 0-8.334 0 4.167 4.167 0 0 0 8.334 0"/>
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M2.5 16.667a5.833 5.833 0 0 1 8.75-5.053m3.837.474.513 1.035c.07.144.257.282.414.309l.93.155c.596.1.736.536.307.965l-.723.73a.64.64 0 0 0-.152.531l.207.903c.164.715-.213.991-.84.618l-.872-.52a.63.63 0 0 0-.577 0l-.872.52c-.624.373-1.003.094-.84-.618l.207-.903a.64.64 0 0 0-.152-.532l-.723-.729c-.426-.43-.289-.864.306-.964l.93-.156a.64.64 0 0 0 .412-.31l.513-1.034c.28-.562.735-.562 1.012 0"/>
+  </symbol>
+  <symbol id="x-icon" viewBox="0 0 19 19">
+    <path fill="#08060d" fill-rule="evenodd" d="M1.893 1.98c.052.072 1.245 1.769 2.653 3.77l2.892 4.114c.183.261.333.48.333.486s-.068.089-.152.183l-.522.593-.765.867-3.597 4.087c-.375.426-.734.834-.798.905a1 1 0 0 0-.118.148c0 .01.236.017.664.017h.663l.729-.83c.4-.457.796-.906.879-.999a692 692 0 0 0 1.794-2.038c.034-.037.301-.34.594-.675l.551-.624.345-.392a7 7 0 0 1 .34-.374c.006 0 .93 1.306 2.052 2.903l2.084 2.965.045.063h2.275c1.87 0 2.273-.003 2.266-.021-.008-.02-1.098-1.572-3.894-5.547-2.013-2.862-2.28-3.246-2.273-3.266.008-.019.282-.332 2.085-2.38l2-2.274 1.567-1.782c.022-.028-.016-.03-.65-.03h-.674l-.3.342a871 871 0 0 1-1.782 2.025c-.067.075-.405.458-.75.852a100 100 0 0 1-.803.91c-.148.172-.299.344-.99 1.127-.304.343-.32.358-.345.327-.015-.019-.904-1.282-1.976-2.808L6.365 1.85H1.8zm1.782.91 8.078 11.294c.772 1.08 1.413 1.973 1.425 1.984.016.017.241.02 1.05.017l1.03-.004-2.694-3.766L7.796 5.75 5.722 2.852l-1.039-.004-1.039-.004z" clip-rule="evenodd"/>
+  </symbol>
+</svg>
+</file>
+
+<file path="src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="src/assets/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="77" height="47" fill="none" aria-labelledby="vite-logo-title" viewBox="0 0 77 47"><title id="vite-logo-title">Vite</title><style>.parenthesis{fill:#000}@media (prefers-color-scheme:dark){.parenthesis{fill:#fff}}</style><path fill="#9135ff" d="M40.151 45.71c-.663.844-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.493c-.92 0-1.457-1.04-.92-1.788l7.479-10.471c1.07-1.498 0-3.578-1.842-3.578H15.443c-.92 0-1.456-1.04-.92-1.788l9.696-13.576c.213-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.472c-1.07 1.497 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.087.89 1.83L40.153 45.712z"/><mask id="a" width="48" height="47" x="14" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M40.047 45.71c-.663.843-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.389c-.92 0-1.457-1.04-.92-1.788l7.479-10.472c1.07-1.497 0-3.578-1.842-3.578H15.34c-.92 0-1.456-1.04-.92-1.788l9.696-13.575c.213-.297.556-.474.92-.474H53.93c.92 0 1.456 1.04.92 1.788L47.37 13.03c-1.07 1.498 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.088.89 1.831L40.049 45.712z"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#eee6ff" rx="5.508" ry="14.704" transform="rotate(269.814 20.96 11.29)scale(-1 1)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#eee6ff" rx="10.399" ry="29.851" transform="rotate(89.814 -16.902 -8.275)scale(1 -1)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#8900ff" rx="5.508" ry="30.487" transform="rotate(89.814 -19.197 -7.127)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.928 4.177)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.738 5.52)scale(1 -1)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#eee6ff" rx="14.072" ry="22.078" transform="rotate(93.35 31.245 55.578)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx="14.592" cy="9.743" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(39.51 14.592 9.743)"/></g><g filter="url(#k)"><ellipse cx="61.728" cy="-5.321" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 61.728 -5.32)"/></g><g filter="url(#l)"><ellipse cx="55.618" cy="7.104" fill="#00c2ff" rx="5.971" ry="9.665" transform="rotate(37.892 55.618 7.104)"/></g><g filter="url(#m)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#n)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#o)"><ellipse cx="49.857" cy="30.678" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 49.857 30.678)"/></g><g filter="url(#p)"><ellipse cx="52.623" cy="33.171" fill="#00c2ff" rx="5.971" ry="15.297" transform="rotate(37.892 52.623 33.17)"/></g></g><path d="M6.919 0c-9.198 13.166-9.252 33.575 0 46.789h6.215c-9.25-13.214-9.196-33.623 0-46.789zm62.424 0h-6.215c9.198 13.166 9.252 33.575 0 46.789h6.215c9.25-13.214 9.196-33.623 0-46.789" class="parenthesis"/><defs><filter id="b" width="60.045" height="41.654" x="-5.564" y="16.92" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-40.407" y="-6.762" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-35.435" y="2.801" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-30.84" y="20.8" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-29.307" y="21.949" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="29.961" y="-17.13" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-13.43" y="-22.082" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="34.321" y="-37.644" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="38.847" y="-10.552" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="22.45" y="-1.645" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="32.919" y="11.36" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter></defs></svg>
+</file>
+
+<file path="src/components/entities/EntityEditor.tsx">
+// src/components/entities/EntityEditor.tsx
+import { useEffect, useRef, useState } from 'react'
+import { Save, Trash2 } from 'lucide-react'
+import type { Entity, EntityData } from '../../types/entity'
+import type { EntityTypeDefinition } from '../../types/entityType'
+import type { Panel } from '../../types/panel'
+import { PanelGrid } from '../panels/PanelGrid'
+import { getDescendantIds } from '../../utils/buildEntityTree'
+import { useUnsavedChanges } from '../../context/UnsavedChangesContext'
+
+interface EntityEditorProps {
+  entity: Entity
+  entityType: EntityTypeDefinition
+  allEntities: Entity[]
+  onSave: (fileName: string, data: EntityData, content: string) => Promise<void>
+  onDelete: () => void
+}
+
+export function EntityEditor({ entity, entityType, allEntities, onSave, onDelete }: EntityEditorProps) {
+  const [name, setName] = useState(entity.data.name ?? '')
+  const [tagsInput, setTagsInput] = useState((entity.data.tags ?? []).join(', '))
+  const [parentId, setParentId] = useState<string>(entity.data.parentId ?? '')
+  const [panels, setPanels] = useState<Panel[]>(entity.data.panels ?? [])
+  const [saving, setSaving] = useState(false)
+
+  const { setDirty, registerHandlers } = useUnsavedChanges()
+  const initialSnapshot = useRef(JSON.stringify({
+    name: entity.data.name ?? '', tagsInput: (entity.data.tags ?? []).join(', '),
+    parentId: entity.data.parentId ?? '', panels: entity.data.panels ?? [],
+  }))
+
+  const excludedIds = entityType.nestable ? getDescendantIds(entity.data.id, allEntities) : new Set<string>()
+  excludedIds.add(entity.data.id)
+  const validParentOptions = allEntities.filter((e) => !excludedIds.has(e.data.id))
+
+  const buildData = (): EntityData => ({
+    id: entity.data.id,
+    name: name.trim() || 'Untitled',
+    tags: tagsInput.split(',').map((t) => t.trim()).filter(Boolean),
+    parentId: entityType.nestable ? (parentId || null) : undefined,
+    panels,
+  })
+
+  const handleSave = async () => {
+    setSaving(true)
+    await onSave(entity.fileName, buildData(), entity.content)
+    setSaving(false)
+    initialSnapshot.current = JSON.stringify({ name, tagsInput, parentId, panels })
+    setDirty(false)
+  }
+
+  useEffect(() => {
+    setDirty(JSON.stringify({ name, tagsInput, parentId, panels }) !== initialSnapshot.current)
+  }, [name, tagsInput, parentId, panels, setDirty])
+
+  useEffect(() => {
+    registerHandlers({ onSave: handleSave })
+    return () => registerHandlers(null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, tagsInput, parentId, panels])
+
+  return (
+    <div className="space-y-6 pb-16">
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1 min-w-0 space-y-1">
+          <input value={name} onChange={(e) => setName(e.target.value)} placeholder={`${entityType.label} name`} className="text-2xl font-semibold bg-transparent border-b border-transparent focus:border-neutral-700 outline-none w-full text-neutral-100" />
+          <input value={tagsInput} onChange={(e) => setTagsInput(e.target.value)} placeholder="tags, comma, separated" className="text-xs text-neutral-500 bg-transparent outline-none w-full" />
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 disabled:opacity-50 text-white rounded-md px-4 py-2 text-sm">
+            <Save className="w-4 h-4" />
+            {saving ? 'Saving...' : 'Save'}
+          </button>
+          <button onClick={onDelete} className="text-neutral-600 hover:text-red-500 p-2" title={`Delete ${entityType.label.toLowerCase()}`}>
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {entityType.nestable && (
+        <div className="max-w-xs">
+          <label className="text-xs uppercase tracking-wide text-neutral-500">Nested inside</label>
+          <select value={parentId} onChange={(e) => setParentId(e.target.value)} className="mt-1 w-full bg-neutral-900 border border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-200 outline-none focus:border-orange-600">
+            <option value="">— Top level (no parent) —</option>
+            {validParentOptions.map((e) => <option key={e.data.id} value={e.data.id}>{e.data.name || 'Untitled'}</option>)}
+          </select>
+        </div>
+      )}
+
+      <PanelGrid panels={panels} onChange={setPanels} />
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/entities/EntityModule.tsx">
+// src/components/entities/EntityModule.tsx
+import { useEffect, useState } from 'react'
+import { Plus } from 'lucide-react'
+import { useEntityData } from '../../hooks/useEntityData'
+import { useUnsavedChanges } from '../../context/UnsavedChangesContext'
+import { useNavigation } from '../../context/NavigationContext'
+import { useEntityRegistry } from '../../context/EntityRegistryContext'
+import { buildEntityTree } from '../../utils/buildEntityTree'
+import { EntityTree } from './EntityTree'
+import { EntityEditor } from './EntityEditor'
+import { getIconComponent } from '../../config/iconOptions'
+import type { EntityTypeDefinition } from '../../types/entityType'
+import type { EntityData } from '../../types/entity'
+
+export function EntityModule({ entityType }: { entityType: EntityTypeDefinition }) {
+  const { entities, loading, createEntity, saveEntity, deleteEntity } = useEntityData(entityType.folder)
+  const { guardNavigation } = useUnsavedChanges()
+  const { pendingTarget, clearPendingTarget } = useNavigation()
+  const { refresh: refreshRegistry } = useEntityRegistry()
+  const [selectedFileName, setSelectedFileName] = useState<string | null>(null)
+
+  const Icon = getIconComponent(entityType.icon)
+  const tree = entityType.nestable ? buildEntityTree(entities) : null
+  const selected = entities.find((e) => e.fileName === selectedFileName) ?? null
+
+  useEffect(() => {
+    if (pendingTarget?.entityTypeId === entityType.id) {
+      const match = entities.find((e) => e.data.id === pendingTarget.entityId)
+      if (match) { setSelectedFileName(match.fileName); clearPendingTarget() }
+    }
+  }, [pendingTarget, entities, clearPendingTarget, entityType.id])
+
+  const handleSelect = (fileName: string) => guardNavigation(() => setSelectedFileName(fileName))
+
+  const handleCreate = (parentId: string | null = null) => guardNavigation(async () => {
+    const created = await createEntity(entityType.defaultPanels, entityType.nestable ? { parentId } : {})
+    refreshRegistry()
+    setSelectedFileName(created.fileName)
+  })
+
+  const handleSave = async (fileName: string, data: EntityData, content: string) => {
+    await saveEntity(fileName, data, content)
+    refreshRegistry()
+  }
+
+  const handleDelete = async (fileName: string, name: string) => {
+    const confirmed = window.confirm(`Delete "${name}"? This cannot be undone.`)
+    if (!confirmed) return
+    const result = await deleteEntity(fileName)
+    refreshRegistry()
+    if (!result.success) { window.alert(`Couldn't delete: ${result.error ?? 'unknown error'}`); return }
+    if (selectedFileName === fileName) setSelectedFileName(null)
+  }
+
+  return (
+    <div className="flex h-full -m-6">
+      <div className="w-72 shrink-0 border-r border-neutral-800 flex flex-col">
+        <div className="p-3 border-b border-neutral-800">
+          <button onClick={() => handleCreate(null)} className="w-full flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white rounded-md px-3 py-2 text-sm">
+            <Plus className="w-4 h-4" />
+            New {entityType.label}
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto">
+          {loading && <p className="text-sm text-neutral-500 p-4">Loading...</p>}
+          {!loading && entities.length === 0 && <p className="text-sm text-neutral-500 p-4">No {entityType.pluralLabel.toLowerCase()} yet.</p>}
+
+          {entityType.nestable ? (
+            <EntityTree nodes={tree!} selectedFileName={selectedFileName} onSelect={handleSelect} onAddChild={(parentId) => handleCreate(parentId)} icon={Icon} />
+          ) : (
+            entities.map((e) => (
+              <button key={e.fileName} onClick={() => handleSelect(e.fileName)} className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm text-left border-b border-neutral-800/50 ${e.fileName === selectedFileName ? 'bg-orange-600/10 text-orange-400' : 'text-neutral-300 hover:bg-neutral-800'}`}>
+                <Icon className="w-3.5 h-3.5 shrink-0 opacity-60" />
+                <span className="truncate">{e.data.name || 'Untitled'}</span>
+              </button>
+            ))
+          )}
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-y-auto p-6">
+        {selected ? (
+          <EntityEditor key={selected.fileName} entity={selected} entityType={entityType} allEntities={entities} onSave={handleSave} onDelete={() => handleDelete(selected.fileName, selected.data.name)} />
+        ) : (
+          <div className="flex items-center justify-center h-full text-neutral-600 text-sm">Select a {entityType.label.toLowerCase()} or create a new one.</div>
+        )}
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/entities/EntityTree.tsx">
+// src/components/entities/EntityTree.tsx
+import { useState } from 'react'
+import { ChevronRight, ChevronDown, Plus } from 'lucide-react'
+import type { EntityTreeNode } from '../../utils/buildEntityTree'
+
+interface EntityTreeProps {
+  nodes: EntityTreeNode[]
+  selectedFileName: string | null
+  onSelect: (fileName: string) => void
+  onAddChild: (parentId: string) => void
+  icon: React.ElementType
+  depth?: number
+}
+
+export function EntityTree({ nodes, selectedFileName, onSelect, onAddChild, icon, depth = 0 }: EntityTreeProps) {
+  const list = (
+    <div>
+      {nodes.map((node) => (
+        <EntityTreeItem key={node.entity.data.id} node={node} selectedFileName={selectedFileName} onSelect={onSelect} onAddChild={onAddChild} icon={icon} depth={depth} />
+      ))}
+    </div>
+  )
+  if (depth === 0) return list
+  return <div className="ml-[9px] border-l border-neutral-800/70">{list}</div>
+}
+
+function EntityTreeItem({ node, selectedFileName, onSelect, onAddChild, icon: Icon, depth }: {
+  node: EntityTreeNode; selectedFileName: string | null; onSelect: (fileName: string) => void
+  onAddChild: (parentId: string) => void; icon: React.ElementType; depth: number
+}) {
+  const [expanded, setExpanded] = useState(true)
+  const hasChildren = node.children.length > 0
+  const isSelected = node.entity.fileName === selectedFileName
+
+  return (
+    <div>
+      <div
+        className={`group flex items-center gap-1 pr-2 py-[3px] text-[13px] leading-tight cursor-pointer transition-colors duration-100 ${isSelected ? 'bg-orange-600/10 text-orange-400' : 'text-neutral-300 hover:bg-neutral-800/70'}`}
+        style={{ paddingLeft: `${depth === 0 ? 8 : 6}px` }}
+      >
+        <button onClick={() => setExpanded((e) => !e)} className={`shrink-0 w-3.5 h-3.5 flex items-center justify-center text-neutral-500 ${!hasChildren ? 'invisible' : ''}`}>
+          {expanded ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
+        </button>
+        <div className="flex-1 flex items-center gap-1.5 min-w-0" onClick={() => onSelect(node.entity.fileName)}>
+          <Icon className="w-3 h-3 shrink-0 opacity-50" />
+          <span className="truncate">{node.entity.data.name || 'Untitled'}</span>
+        </div>
+        <button onClick={() => onAddChild(node.entity.data.id)} className="opacity-0 group-hover:opacity-100 shrink-0 text-neutral-500 hover:text-orange-400 p-0.5" title="Add nested entry">
+          <Plus className="w-3 h-3" />
+        </button>
+      </div>
+      {expanded && hasChildren && <EntityTree nodes={node.children} selectedFileName={selectedFileName} onSelect={onSelect} onAddChild={onAddChild} icon={Icon} depth={depth + 1} />}
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/entities/ManageEntityTypesModal.tsx">
+// src/components/entities/ManageEntityTypesModal.tsx
+import { useState } from 'react'
+import { X, Plus, Trash2 } from 'lucide-react'
+import { useEntityTypes } from '../../context/EntityTypesContext'
+import { getIconComponent, ICON_OPTIONS } from '../../config/iconOptions'
+import { PanelGrid } from '../panels/PanelGrid'
+import type { Panel } from '../../types/panel'
+
+export function ManageEntityTypesModal({ onClose }: { onClose: () => void }) {
+  const { entityTypes, createEntityType, deleteEntityType } = useEntityTypes()
+  const [creating, setCreating] = useState(false)
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-6">
+      <div className="bg-neutral-900 border border-neutral-700 rounded-lg shadow-xl w-full max-w-2xl max-h-[85vh] flex flex-col">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-800">
+          <h2 className="text-neutral-100 font-medium">Entity Types</h2>
+          <button onClick={onClose} className="text-neutral-500 hover:text-neutral-200"><X className="w-4 h-4" /></button>
+        </div>
+
+        <div className="overflow-y-auto p-5 space-y-2">
+          {entityTypes.map((type) => {
+            const Icon = getIconComponent(type.icon)
+            return (
+              <div key={type.id} className="flex items-center justify-between gap-2 bg-neutral-800/50 rounded-md px-3 py-2">
+                <div className="flex items-center gap-2 text-sm text-neutral-200">
+                  <Icon className="w-4 h-4 text-neutral-400" />
+                  {type.pluralLabel}
+                  {type.isBuiltIn && <span className="text-[10px] uppercase tracking-wide text-neutral-500 border border-neutral-700 rounded px-1.5 py-0.5">Built-in</span>}
+                  {type.nestable && <span className="text-[10px] uppercase tracking-wide text-neutral-500 border border-neutral-700 rounded px-1.5 py-0.5">Nestable</span>}
+                </div>
+                {!type.isBuiltIn && (
+                  <button onClick={() => deleteEntityType(type.id)} className="text-neutral-600 hover:text-red-500 p-1" title="Delete entity type">
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
+            )
+          })}
+        </div>
+
+        <div className="border-t border-neutral-800 p-5">
+          {!creating ? (
+            <button onClick={() => setCreating(true)} className="w-full flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white rounded-md px-3 py-2 text-sm">
+              <Plus className="w-4 h-4" /> Create New Entity Type
+            </button>
+          ) : (
+            <CreateEntityTypeForm onCancel={() => setCreating(false)} onCreate={async (def) => { await createEntityType(def); setCreating(false) }} />
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function CreateEntityTypeForm({ onCancel, onCreate }: {
+  onCancel: () => void
+  onCreate: (def: { label: string; pluralLabel: string; folder: string; icon: string; nestable: boolean; defaultPanels: Panel[] }) => Promise<void>
+}) {
+  const [label, setLabel] = useState('')
+  const [pluralLabel, setPluralLabel] = useState('')
+  const [icon, setIcon] = useState('sparkles')
+  const [nestable, setNestable] = useState(false)
+  const [panels, setPanels] = useState<Panel[]>([])
+  const [saving, setSaving] = useState(false)
+  const canSave = label.trim() && pluralLabel.trim()
+
+  const handleSubmit = async () => {
+    if (!canSave) return
+    setSaving(true)
+    await onCreate({ label: label.trim(), pluralLabel: pluralLabel.trim(), folder: pluralLabel.trim(), icon, nestable, defaultPanels: panels })
+    setSaving(false)
+  }
+
+  return (
+    <div className="space-y-4 max-h-[50vh] overflow-y-auto pr-1">
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="text-xs uppercase tracking-wide text-neutral-500">Singular Label</label>
+          <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="Faction" className="mt-1 w-full bg-neutral-900 border border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-200 outline-none focus:border-orange-600" />
+        </div>
+        <div>
+          <label className="text-xs uppercase tracking-wide text-neutral-500">Plural Label</label>
+          <input value={pluralLabel} onChange={(e) => setPluralLabel(e.target.value)} placeholder="Factions" className="mt-1 w-full bg-neutral-900 border border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-200 outline-none focus:border-orange-600" />
+        </div>
+      </div>
+
+      <div>
+        <label className="text-xs uppercase tracking-wide text-neutral-500 mb-1 block">Icon</label>
+        <div className="flex flex-wrap gap-2">
+          {Object.entries(ICON_OPTIONS).map(([key, Icon]) => (
+            <button key={key} onClick={() => setIcon(key)} className={`w-8 h-8 flex items-center justify-center rounded-md border ${icon === key ? 'border-orange-500 bg-orange-600/20 text-orange-400' : 'border-neutral-800 text-neutral-500 hover:border-neutral-700'}`}>
+              <Icon className="w-4 h-4" />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <label className="flex items-center gap-2 text-sm text-neutral-300">
+        <input type="checkbox" checked={nestable} onChange={(e) => setNestable(e.target.checked)} />
+        Supports nesting (e.g. continent → kingdom → city)
+      </label>
+
+      <div>
+        <label className="text-xs uppercase tracking-wide text-neutral-500 mb-1 block">Default Panel Template</label>
+        <p className="text-xs text-neutral-600 mb-2">New entries of this type start with these panels. Still editable per-entry afterward.</p>
+        <PanelGrid panels={panels} onChange={setPanels} />
+      </div>
+
+      <div className="flex justify-end gap-2 pt-2">
+        <button onClick={onCancel} className="px-3 py-1.5 text-sm text-neutral-400 hover:text-neutral-200">Cancel</button>
+        <button onClick={handleSubmit} disabled={!canSave || saving} className="px-3 py-1.5 text-sm bg-orange-600 hover:bg-orange-700 disabled:opacity-50 text-white rounded-md">
+          {saving ? 'Creating...' : 'Create Entity Type'}
+        </button>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/manuscript/ChapterList.tsx">
+// src/components/manuscript/ChapterList.tsx
+import { ChevronUp, ChevronDown, FileText } from 'lucide-react'
+import type { Chapter } from '../../types/chapter'
+
+interface ChapterListProps {
+  chapters: Chapter[]
+  selectedFileName: string | null
+  onSelect: (fileName: string) => void
+  onReorder: (fileName: string, direction: 'up' | 'down') => void
+}
+
+export function ChapterList({ chapters, selectedFileName, onSelect, onReorder }: ChapterListProps) {
+  return (
+    <div>
+      {chapters.map((chapter, index) => (
+        <div key={chapter.fileName} className={`group flex items-center gap-1 pr-1 border-b border-neutral-800/50 ${chapter.fileName === selectedFileName ? 'bg-orange-600/10 text-orange-400' : 'text-neutral-300 hover:bg-neutral-800'}`}>
+          <button onClick={() => onSelect(chapter.fileName)} className="flex-1 flex items-center gap-2 px-4 py-2.5 text-sm text-left min-w-0">
+            <FileText className="w-3.5 h-3.5 shrink-0 opacity-60" />
+            <span className="truncate">{chapter.data.title || 'Untitled'}</span>
+          </button>
+          <div className="flex flex-col opacity-0 group-hover:opacity-100 shrink-0">
+            <button onClick={() => onReorder(chapter.fileName, 'up')} disabled={index === 0} className="text-neutral-500 hover:text-orange-400 disabled:opacity-20 disabled:hover:text-neutral-500 p-0.5">
+              <ChevronUp className="w-3.5 h-3.5" />
+            </button>
+            <button onClick={() => onReorder(chapter.fileName, 'down')} disabled={index === chapters.length - 1} className="text-neutral-500 hover:text-orange-400 disabled:opacity-20 disabled:hover:text-neutral-500 p-0.5">
+              <ChevronDown className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/manuscript/ManuscriptModule.tsx">
+// src/components/manuscript/ManuscriptModule.tsx
+import { useState } from 'react'
+import { Plus } from 'lucide-react'
+import { useManuscriptData } from '../../hooks/useManuscriptData'
+import { useUnsavedChanges } from '../../context/UnsavedChangesContext'
+import { ChapterList } from './ChapterList'
+import { ChapterEditor } from './ChapterEditor'
+
+export function ManuscriptModule() {
+  const { chapters, loading, createChapter, saveChapter, deleteChapter, reorderChapter } = useManuscriptData()
+  const { guardNavigation } = useUnsavedChanges()
+  const [selectedFileName, setSelectedFileName] = useState<string | null>(null)
+
+  const selected = chapters.find((c) => c.fileName === selectedFileName) ?? null
+
+  const handleSelect = (fileName: string) => guardNavigation(() => setSelectedFileName(fileName))
+
+  const handleCreate = () => guardNavigation(async () => {
+    const created = await createChapter()
+    setSelectedFileName(created.fileName)
+  })
+
+  const handleDelete = async (fileName: string, title: string) => {
+    const confirmed = window.confirm(`Delete "${title}"? This cannot be undone.`)
+    if (!confirmed) return
+    const result = await deleteChapter(fileName)
+    if (!result.success) { window.alert(`Couldn't delete: ${result.error ?? 'unknown error'}`); return }
+    if (selectedFileName === fileName) setSelectedFileName(null)
+  }
+
+  return (
+    <div className="flex h-full -m-6">
+      <div className="w-64 shrink-0 border-r border-neutral-800 flex flex-col">
+        <div className="p-3 border-b border-neutral-800">
+          <button onClick={handleCreate} className="w-full flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white rounded-md px-3 py-2 text-sm">
+            <Plus className="w-4 h-4" />
+            New Chapter
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto">
+          {loading && <p className="text-sm text-neutral-500 p-4">Loading...</p>}
+          {!loading && chapters.length === 0 && <p className="text-sm text-neutral-500 p-4">No chapters yet.</p>}
+          <ChapterList chapters={chapters} selectedFileName={selectedFileName} onSelect={handleSelect} onReorder={reorderChapter} />
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-y-auto p-6">
+        {selected ? (
+          <ChapterEditor key={selected.fileName} chapter={selected} onSave={saveChapter} onDelete={() => handleDelete(selected.fileName, selected.data.title)} />
+        ) : (
+          <div className="flex items-center justify-center h-full text-neutral-600 text-sm">Select a chapter or create a new one.</div>
+        )}
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/manuscript/MarkdownRenderer.tsx">
+// src/components/manuscript/MarkdownRenderer.tsx
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { LINK_TOKEN_REGEX } from '../shared/LinkedText'
+import { useNavigation } from '../../context/NavigationContext'
+import { useEntityRegistry } from '../../context/EntityRegistryContext'
+
+function preprocessLinks(text: string): string {
+  return text.replace(LINK_TOKEN_REGEX, (_m, entityTypeId, id, name) => `[${name}](openblaze://${entityTypeId}/${id})`)
+}
+
+function LinkRenderer({ href, children }: { href?: string; children?: React.ReactNode }) {
+  const { navigateToEntity } = useNavigation()
+  const { entities } = useEntityRegistry()
+
+  if (href?.startsWith('openblaze://')) {
+    const match = href.match(/^openblaze:\/\/([^/]+)\/(.+)$/)
+    if (match) {
+      const [, entityTypeId, id] = match
+      const live = entities.find((e) => e.id === id && e.entityTypeId === entityTypeId)
+      if (!live) {
+        return <span className="text-neutral-600 line-through" title="This linked entry no longer exists">{children}</span>
+      }
+      return (
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigateToEntity(entityTypeId, id) }}
+          className="inline text-orange-400 hover:text-orange-300 underline underline-offset-2 decoration-orange-400/40 cursor-pointer"
+        >
+          {children}
+        </button>
+      )
+    }
+  }
+
+  // Regular external links: don't let Electron navigate the whole app window away.
+  // (Opening these in the system browser is a good future addition via shell.openExternal.)
+  return (
+    <span onClick={(e) => e.preventDefault()} title={`${href} (external links aren't opened yet)`} className="text-neutral-400 underline decoration-dotted cursor-default">
+      {children}
+    </span>
+  )
+}
+
+export function MarkdownRenderer({ text }: { text: string }) {
+  const processed = preprocessLinks(text)
+  return (
+    <div className="text-sm text-neutral-300 leading-relaxed space-y-3">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          a: LinkRenderer,
+          h1: (props) => <h1 className="text-2xl font-semibold text-neutral-100 mt-4 mb-2" {...props} />,
+          h2: (props) => <h2 className="text-xl font-semibold text-neutral-100 mt-4 mb-2" {...props} />,
+          h3: (props) => <h3 className="text-lg font-semibold text-neutral-100 mt-3 mb-1.5" {...props} />,
+          p: (props) => <p className="text-neutral-300 leading-relaxed" {...props} />,
+          ul: (props) => <ul className="list-disc list-inside space-y-1 text-neutral-300" {...props} />,
+          ol: (props) => <ol className="list-decimal list-inside space-y-1 text-neutral-300" {...props} />,
+          strong: (props) => <strong className="text-neutral-100 font-semibold" {...props} />,
+          em: (props) => <em className="text-neutral-300 italic" {...props} />,
+          blockquote: (props) => <blockquote className="border-l-2 border-neutral-700 pl-3 italic text-neutral-400" {...props} />,
+          code: (props) => <code className="bg-neutral-800 px-1 py-0.5 rounded text-xs text-orange-300" {...props} />,
+          hr: () => <hr className="border-neutral-800 my-4" />,
+        }}
+      >
+        {processed}
+      </ReactMarkdown>
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/panels/PanelCard.tsx">
+// src/components/panels/PanelCard.tsx
+import { useState, useRef, useEffect } from 'react'
+import { MoreVertical, Trash2, Columns2, Square } from 'lucide-react'
+import type { Panel } from '../../types/panel'
+import { PanelBody } from './PanelBody'
+
+interface PanelCardProps {
+  panel: Panel
+  onUpdate: (updates: Partial<Panel>) => void
+  onDelete: () => void
+}
+
+export function PanelCard({ panel, onUpdate, onDelete }: PanelCardProps) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  return (
+    <div className={`bg-neutral-900 border border-neutral-800 rounded-lg p-4 ${panel.width === 'full' ? 'col-span-2' : 'col-span-1'}`}>
+      <div className="flex items-start justify-between gap-2 mb-2">
+        <input
+          value={panel.title}
+          onChange={(e) => onUpdate({ title: e.target.value })}
+          className="text-base font-semibold bg-transparent outline-none text-neutral-100 min-w-0 flex-1"
+        />
+        <div className="relative shrink-0" ref={menuRef}>
+          <button onClick={() => setMenuOpen((o) => !o)} className="text-neutral-600 hover:text-neutral-300 p-1">
+            <MoreVertical className="w-4 h-4" />
+          </button>
+          {menuOpen && (
+            <div className="absolute right-0 top-7 z-10 w-44 bg-neutral-800 border border-neutral-700 rounded-md shadow-lg py-1 text-sm">
+              <button
+                onClick={() => { onUpdate({ width: panel.width === 'full' ? 'half' : 'full' }); setMenuOpen(false) }}
+                className="w-full flex items-center gap-2 px-3 py-1.5 text-neutral-300 hover:bg-neutral-700"
+              >
+                {panel.width === 'full' ? <Columns2 className="w-3.5 h-3.5" /> : <Square className="w-3.5 h-3.5" />}
+                {panel.width === 'full' ? 'Make Half Width' : 'Make Full Width'}
+              </button>
+              <button
+                onClick={() => { onDelete(); setMenuOpen(false) }}
+                className="w-full flex items-center gap-2 px-3 py-1.5 text-red-400 hover:bg-neutral-700"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                Delete Panel
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+      <PanelBody panel={panel} onChange={(data) => onUpdate({ data })} />
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/panels/PanelGrid.tsx">
+// src/components/panels/PanelGrid.tsx
+import type { Panel, PanelType } from '../../types/panel'
+import { createEmptyPanelData } from '../../types/panel'
+import { PanelCard } from './PanelCard'
+import { AddPanelMenu } from './AddPanelMenu'
+
+interface PanelGridProps {
+  panels: Panel[]
+  onChange: (panels: Panel[]) => void
+}
+
+export function PanelGrid({ panels, onChange }: PanelGridProps) {
+  const addPanel = (type: PanelType) => {
+    const newPanel: Panel = {
+      id: `panel_${Date.now()}`,
+      type,
+      title: 'New Panel',
+      width: 'full',
+      data: createEmptyPanelData(type),
+    }
+    onChange([...panels, newPanel])
+  }
+
+  const updatePanel = (id: string, updates: Partial<Panel>) =>
+    onChange(panels.map((p) => (p.id === id ? ({ ...p, ...updates } as Panel) : p)))
+
+  const deletePanel = (id: string) => onChange(panels.filter((p) => p.id !== id))
+  const deleteAll = () => onChange([])
+
+  return (
+    <div>
+      <div className="flex justify-end mb-3">
+        <AddPanelMenu onAdd={addPanel} onDeleteAll={deleteAll} />
+      </div>
+      {panels.length === 0 ? (
+        <div className="text-center text-neutral-600 text-sm py-16 border border-dashed border-neutral-800 rounded-lg">
+          No panels yet — click "Add Panel" to start building this page.
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-4">
+          {panels.map((panel) => (
+            <PanelCard key={panel.id} panel={panel} onUpdate={(u) => updatePanel(panel.id, u)} onDelete={() => deletePanel(panel.id)} />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/shared/LinkedText.tsx">
+// src/components/shared/LinkedText.tsx
+import type { LinkableEntity } from '../../types/entity'
+
+export const LINK_TOKEN_REGEX = /\[\[(\w[\w-]*):([\w-]+):([^\]]+)\]\]/g
+
+interface LinkedTextProps {
+  text: string
+  entities: LinkableEntity[]
+  onLinkClick: (entityTypeId: string, id: string) => void
+}
+
+export function LinkedText({ text, entities, onLinkClick }: LinkedTextProps) {
+  const parts: React.ReactNode[] = []
+  let lastIndex = 0
+  let match: RegExpExecArray | null
+  let key = 0
+  const regex = new RegExp(LINK_TOKEN_REGEX)
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index))
+    const [, entityTypeId, id, fallbackDisplay] = match
+    const live = entities.find((e) => e.id === id && e.entityTypeId === entityTypeId)
+    const displayName = live?.name || fallbackDisplay
+    const broken = !live
+
+    parts.push(
+      <button
+        key={key++}
+        onClick={(e) => { e.stopPropagation(); if (!broken) onLinkClick(entityTypeId, id) }}
+        title={broken ? 'This linked entry no longer exists' : `Go to ${displayName}`}
+        className={broken ? 'inline text-neutral-600 line-through cursor-default' : 'inline text-orange-400 hover:text-orange-300 underline underline-offset-2 decoration-orange-400/40 cursor-pointer'}
+      >
+        {displayName}
+      </button>
+    )
+    lastIndex = regex.lastIndex
+  }
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex))
+  return <>{parts}</>
+}
+</file>
+
+<file path="src/config/builtInEntityTypes.ts">
+// src/config/builtInEntityTypes.ts
+import type { EntityTypeDefinition } from '../types/entityType'
+import { characterPanelTemplate, locationPanelTemplate } from '../templates/panelTemplates'
+
+export function getBuiltInEntityTypes(): EntityTypeDefinition[] {
+  return [
+    { id: 'characters', label: 'Character', pluralLabel: 'Characters', folder: 'Characters', icon: 'users', nestable: false, isBuiltIn: true, defaultPanels: characterPanelTemplate() },
+    { id: 'locations', label: 'Location', pluralLabel: 'Locations', folder: 'Locations', icon: 'map', nestable: true, isBuiltIn: true, defaultPanels: locationPanelTemplate() },
+  ]
+}
+</file>
+
+<file path="src/config/entityTypes.ts">
+// src/config/entityTypes.ts
+import type { ModuleKey } from '../types/navigation'
+
+export interface EntityTypeConfig {
+  moduleKey: ModuleKey
+  folder: string
+  label: string
+}
+
+export const ENTITY_TYPES: EntityTypeConfig[] = [
+  { moduleKey: 'characters', folder: 'Characters', label: 'Character' },
+  { moduleKey: 'locations', folder: 'Locations', label: 'Location' },
+]
+</file>
+
+<file path="src/config/iconOptions.ts">
+// src/config/iconOptions.ts
+import {
+  Users, Map, Sword, Crown, Ship, Landmark, Scroll, Sparkles, PawPrint,
+  Building2, Gem, Shield, Flag, Skull, BookOpen, Compass,
+} from 'lucide-react'
+
+export const ICON_OPTIONS: Record<string, React.ElementType> = {
+  users: Users, map: Map, sword: Sword, crown: Crown, ship: Ship,
+  landmark: Landmark, scroll: Scroll, sparkles: Sparkles, pawPrint: PawPrint,
+  building: Building2, gem: Gem, shield: Shield, flag: Flag, skull: Skull,
+  book: BookOpen, compass: Compass,
+}
+
+export function getIconComponent(key: string): React.ElementType {
+  return ICON_OPTIONS[key] ?? Users
+}
+</file>
+
+<file path="src/context/EntityTypesContext.tsx">
+// src/context/EntityTypesContext.tsx
+import { createContext, useContext, useEffect, useState, useCallback } from 'react'
+import type { ReactNode } from 'react'
+import { useVault } from './VaultContext'
+import type { EntityTypeDefinition } from '../types/entityType'
+import { getBuiltInEntityTypes } from '../config/builtInEntityTypes'
+
+interface EntityTypesContextValue {
+  entityTypes: EntityTypeDefinition[]
+  loading: boolean
+  createEntityType: (def: Omit<EntityTypeDefinition, 'id' | 'isBuiltIn'>) => Promise<void>
+  deleteEntityType: (id: string) => Promise<void>
+}
+
+const EntityTypesContext = createContext<EntityTypesContextValue | undefined>(undefined)
+const CONFIG_KEY = 'entity-types'
+
+function slugify(label: string) {
+  return label.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `type-${Date.now()}`
+}
+
+export function EntityTypesProvider({ children }: { children: ReactNode }) {
+  const { vaultPath } = useVault()
+  const [entityTypes, setEntityTypes] = useState<EntityTypeDefinition[]>([])
+  const [loading, setLoading] = useState(false)
+
+  const load = useCallback(async () => {
+    if (!vaultPath) { setEntityTypes([]); return }
+    setLoading(true)
+    const stored = await window.electron.readConfig(vaultPath, CONFIG_KEY)
+    if (stored && Array.isArray(stored)) {
+      setEntityTypes(stored)
+    } else {
+      const seed = getBuiltInEntityTypes()
+      await window.electron.writeConfig(vaultPath, CONFIG_KEY, seed)
+      setEntityTypes(seed)
+    }
+    setLoading(false)
+  }, [vaultPath])
+
+  useEffect(() => { load() }, [load])
+
+  const persist = async (next: EntityTypeDefinition[]) => {
+    setEntityTypes(next)
+    if (vaultPath) await window.electron.writeConfig(vaultPath, CONFIG_KEY, next)
+  }
+
+  const createEntityType = async (def: Omit<EntityTypeDefinition, 'id' | 'isBuiltIn'>) => {
+    const id = slugify(def.pluralLabel)
+    const newType: EntityTypeDefinition = { ...def, id, isBuiltIn: false }
+    await persist([...entityTypes, newType])
+  }
+
+  const deleteEntityType = async (id: string) => {
+    const target = entityTypes.find((t) => t.id === id)
+    if (!target || target.isBuiltIn) return
+    await persist(entityTypes.filter((t) => t.id !== id))
+    // Note: this only removes the type from navigation — .md files already
+    // saved in that folder are left untouched on disk, never deleted.
+  }
+
+  return (
+    <EntityTypesContext.Provider value={{ entityTypes, loading, createEntityType, deleteEntityType }}>
+      {children}
+    </EntityTypesContext.Provider>
+  )
+}
+
+export function useEntityTypes() {
+  const ctx = useContext(EntityTypesContext)
+  if (!ctx) throw new Error('useEntityTypes must be used within EntityTypesProvider')
+  return ctx
+}
+</file>
+
+<file path="src/hooks/useEntitySearch.ts">
+// src/hooks/useEntitySearch.ts
+import { useMemo } from 'react'
+import { useEntityRegistry } from '../context/EntityRegistryContext'
+import type { LinkableEntity } from '../types/entity'
+
+export function useEntitySearch(query: string): { results: LinkableEntity[]; loading: boolean } {
+  const { entities, loading } = useEntityRegistry()
+  const results = useMemo(
+    () => entities.filter((e) => e.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8),
+    [entities, query]
+  )
+  return { results, loading }
+}
+</file>
+
+<file path="src/hooks/useManuscriptData.ts">
+// src/hooks/useManuscriptData.ts
+import { useCallback, useEffect, useState } from 'react'
+import { useVault } from '../context/VaultContext'
+import type { Chapter, ChapterData } from '../types/chapter'
+
+const MODULE_FOLDER = 'Manuscript'
+
+export function useManuscriptData() {
+  const { vaultPath } = useVault()
+  const [chapters, setChapters] = useState<Chapter[]>([])
+  const [loading, setLoading] = useState(false)
+
+  const refresh = useCallback(async () => {
+    if (!vaultPath) return
+    setLoading(true)
+    const fileNames = await window.electron.listEntries(vaultPath, MODULE_FOLDER)
+    const loaded = await Promise.all(fileNames.map((fn) => window.electron.readEntry(vaultPath, MODULE_FOLDER, fn)))
+    const normalized = (loaded as any[]).map((c) => ({ ...c, data: { order: 0, mode: 'markdown', ...c.data } })) as Chapter[]
+    normalized.sort((a, b) => a.data.order - b.data.order)
+    setChapters(normalized)
+    setLoading(false)
+  }, [vaultPath])
+
+  useEffect(() => { refresh() }, [refresh])
+
+  const saveChapter = useCallback(async (fileName: string, data: ChapterData, content: string) => {
+    if (!vaultPath) return
+    await window.electron.writeEntry(vaultPath, MODULE_FOLDER, fileName, data, content)
+    await refresh()
+  }, [vaultPath, refresh])
+
+  const createChapter = useCallback(async (): Promise<Chapter> => {
+    const id = `chapter_${Date.now()}`
+    const fileName = `${id}.md`
+    const order = chapters.length > 0 ? Math.max(...chapters.map((c) => c.data.order)) + 1 : 0
+    const data: ChapterData = { id, title: `Chapter ${chapters.length + 1}`, order, mode: 'markdown' }
+    await saveChapter(fileName, data, '')
+    return { data, content: '', fileName }
+  }, [chapters, saveChapter])
+
+  const deleteChapter = useCallback(async (fileName: string) => {
+    if (!vaultPath) return { success: false, error: 'No vault open.' }
+    const result = await window.electron.deleteEntry(vaultPath, MODULE_FOLDER, fileName)
+    if (result.success) await refresh()
+    return result
+  }, [vaultPath, refresh])
+
+  const reorderChapter = useCallback(async (fileName: string, direction: 'up' | 'down') => {
+    const index = chapters.findIndex((c) => c.fileName === fileName)
+    if (index === -1) return
+    const swapIndex = direction === 'up' ? index - 1 : index + 1
+    if (swapIndex < 0 || swapIndex >= chapters.length) return
+
+    const current = chapters[index]
+    const swapWith = chapters[swapIndex]
+    await window.electron.writeEntry(vaultPath!, MODULE_FOLDER, current.fileName, { ...current.data, order: swapWith.data.order }, current.content)
+    await window.electron.writeEntry(vaultPath!, MODULE_FOLDER, swapWith.fileName, { ...swapWith.data, order: current.data.order }, swapWith.content)
+    await refresh()
+  }, [chapters, vaultPath, refresh])
+
+  return { chapters, loading, refresh, saveChapter, createChapter, deleteChapter, reorderChapter }
+}
+</file>
+
+<file path="src/templates/panelTemplates.ts">
+// src/templates/panelTemplates.ts
+import type { Panel } from '../types/panel'
+
+function panel(partial: Omit<Panel, 'id'>): Panel {
+  return { id: `panel_${Math.random().toString(36).slice(2, 10)}`, ...partial }
+}
+
+export const characterPanelTemplate = (): Panel[] => [
+  panel({ type: 'text', title: 'Overview', width: 'full', data: { text: '' } }),
+  panel({
+    type: 'attributes', title: 'Basic Information', width: 'half',
+    data: { attributes: [
+      { label: 'Age', value: '' },
+      { label: 'Role', value: '' },
+      { label: 'Species', value: '' },
+    ] },
+  }),
+  panel({ type: 'text', title: 'Personality', width: 'half', data: { text: '' } }),
+  panel({ type: 'table', title: 'Relationships', width: 'full', data: { columns: ['Name', 'Relation'], rows: [] } }),
+]
+
+export const locationPanelTemplate = (): Panel[] => [
+  panel({
+    type: 'attributes', title: 'Location Details', width: 'half',
+    data: { attributes: [
+      { label: 'Location Type', value: '' },
+      { label: 'Location Age', value: '' },
+      { label: 'Created/Built by', value: '' },
+      { label: 'Date Created/Built', value: '' },
+      { label: 'Purpose of Construction', value: '' },
+    ] },
+  }),
+  panel({ type: 'text', title: 'Overview', width: 'half', data: { text: '' } }),
+  panel({ type: 'text', title: 'Geography', width: 'half', data: { text: '' } }),
+  panel({
+    type: 'attributes', title: 'Basic Information', width: 'half',
+    data: { attributes: [
+      { label: 'Area', value: '' },
+      { label: 'Population', value: '' },
+      { label: 'Climate', value: '' },
+      { label: 'Natural Resources', value: '' },
+    ] },
+  }),
+]
+</file>
+
+<file path="src/types/chapter.ts">
+// src/types/chapter.ts
+export interface ChapterData {
+  id: string
+  title: string
+  order: number
+  mode: 'markdown' | 'plaintext'
+}
+
+export interface Chapter {
+  data: ChapterData
+  content: string
+  fileName: string
+}
+</file>
+
+<file path="src/types/entityType.ts">
+// src/types/entityType.ts
+import type { Panel } from './panel'
+
+export interface EntityTypeDefinition {
+  id: string
+  label: string          // singular, e.g. "Character"
+  pluralLabel: string     // e.g. "Characters"
+  folder: string          // storage subfolder name
+  icon: string             // key into iconOptions.ts
+  nestable: boolean        // supports parent/child tree like Locations
+  isBuiltIn: boolean        // Characters & Locations — can't be deleted
+  defaultPanels: Panel[]    // starting template for new entries
+}
+</file>
+
+<file path="src/utils/buildEntityTree.ts">
+// src/utils/buildEntityTree.ts
+import type { Entity } from '../types/entity'
+
+export interface EntityTreeNode {
+  entity: Entity
+  children: EntityTreeNode[]
+}
+
+export function buildEntityTree(entities: Entity[]): EntityTreeNode[] {
+  const nodeMap = new Map<string, EntityTreeNode>()
+  entities.forEach((e) => nodeMap.set(e.data.id, { entity: e, children: [] }))
+
+  const roots: EntityTreeNode[] = []
+  nodeMap.forEach((node) => {
+    const parentId = node.entity.data.parentId
+    if (parentId && nodeMap.has(parentId)) nodeMap.get(parentId)!.children.push(node)
+    else roots.push(node)
+  })
+  return roots
+}
+
+export function getDescendantIds(entityId: string, entities: Entity[]): Set<string> {
+  const childrenOf = new Map<string, string[]>()
+  entities.forEach((e) => {
+    const pid = e.data.parentId
+    if (pid) {
+      if (!childrenOf.has(pid)) childrenOf.set(pid, [])
+      childrenOf.get(pid)!.push(e.data.id)
+    }
+  })
+  const result = new Set<string>()
+  const stack = [...(childrenOf.get(entityId) ?? [])]
+  while (stack.length) {
+    const current = stack.pop()!
+    if (result.has(current)) continue
+    result.add(current)
+    stack.push(...(childrenOf.get(current) ?? []))
+  }
+  return result
+}
+</file>
+
+<file path="src/utils/getCaretCoordinates.ts">
+// src/utils/getCaretCoordinates.ts
+const PROPERTIES = [
+  'boxSizing', 'width', 'height', 'overflowX', 'overflowY',
+  'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth', 'borderStyle',
+  'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
+  'fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize', 'fontSizeAdjust',
+  'lineHeight', 'fontFamily', 'textAlign', 'textTransform', 'textIndent', 'textDecoration',
+  'letterSpacing', 'wordSpacing', 'tabSize',
+] as const
+
+export interface CaretCoordinates {
+  top: number
+  left: number
+  height: number
+}
+
+export function getCaretCoordinates(el: HTMLTextAreaElement, position: number): CaretCoordinates {
+  const div = document.createElement('div')
+  document.body.appendChild(div)
+  const style = div.style
+  const computed = window.getComputedStyle(el)
+
+  style.whiteSpace = 'pre-wrap'
+  style.wordWrap = 'break-word'
+  style.position = 'absolute'
+  style.visibility = 'hidden'
+  style.left = '-9999px'
+  style.top = '0px'
+  style.width = computed.width
+
+  PROPERTIES.forEach((prop) => {
+    // @ts-expect-error dynamic CSSStyleDeclaration key
+    style[prop] = computed[prop]
+  })
+
+  div.textContent = el.value.substring(0, position)
+  const span = document.createElement('span')
+  span.textContent = el.value.substring(position) || '.'
+  div.appendChild(span)
+
+  const top = span.offsetTop + parseInt(computed.borderTopWidth || '0', 10)
+  const left = span.offsetLeft + parseInt(computed.borderLeftWidth || '0', 10)
+  const height = parseInt(computed.lineHeight || '16', 10)
+
+  document.body.removeChild(div)
+  return { top, left, height }
+}
+</file>
+
+<file path="src/App.css">
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  margin-bottom: 24px;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.hero {
+  position: relative;
+
+  .base,
+  .framework,
+  .vite {
+    inset-inline: 0;
+    margin: 0 auto;
+  }
+
+  .base {
+    width: 170px;
+    position: relative;
+    z-index: 0;
+  }
+
+  .framework,
+  .vite {
+    position: absolute;
+  }
+
+  .framework {
+    z-index: 1;
+    top: 34px;
+    height: 28px;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
+      scale(1.4);
+  }
+
+  .vite {
+    z-index: 0;
+    top: 107px;
+    height: 26px;
+    width: auto;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
+      scale(0.8);
+  }
+}
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+}
+
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+  text-align: left;
+
+  & > div {
+    flex: 1 1 0;
+    padding: 32px;
+    @media (max-width: 1024px) {
+      padding: 24px 20px;
+    }
+  }
+
+  .icon {
+    margin-bottom: 16px;
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+#docs {
+  border-right: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+#next-steps ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  margin: 32px 0 0;
+
+  .logo {
+    height: 18px;
+  }
+
+  a {
+    color: var(--text-h);
+    font-size: 16px;
+    border-radius: 6px;
+    background: var(--social-bg);
+    display: flex;
+    padding: 6px 12px;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: var(--shadow);
+    }
+    .button-icon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      flex: 1 1 calc(50% - 8px);
+    }
+
+    a {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+  }
+}
+
+#spacer {
+  height: 88px;
+  border-top: 1px solid var(--border);
+  @media (max-width: 1024px) {
+    height: 48px;
+  }
+}
+
+.ticks {
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4.5px;
+    border: 5px solid transparent;
+  }
+
+  &::before {
+    left: 0;
+    border-left-color: var(--border);
+  }
+  &::after {
+    right: 0;
+    border-right-color: var(--border);
+  }
+}
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+])
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>openblaze</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="README.md">
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+
+```
+</file>
+
+<file path="tailwind.config.js">
+// tailwind.config.js
+export default {
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
+  theme: { extend: {} },
+  plugins: [],
+}
+</file>
+
+<file path="tsconfig.app.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023", "DOM"],
+    "module": "esnext",
+    "types": ["vite/client"],
+    "allowArbitraryExtensions": true,
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+</file>
+
+<file path="tsconfig.json">
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
+</file>
+
+<file path="tsconfig.node.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "module": "nodenext",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["vite.config.ts"]
+}
+</file>
+
+<file path="vite.config.ts">
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import electron from 'vite-plugin-electron/simple'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+    electron({
+      main: { entry: 'electron/main.ts' },
+      preload: { input: 'electron/preload.ts' },
+      renderer: {},
+    }),
+  ],
+})
+</file>
+
+<file path="src/components/manuscript/ChapterEditor.tsx">
+// src/components/manuscript/ChapterEditor.tsx
+import { useEffect, useRef, useState } from 'react'
+import { Save, Trash2, FileText, Code2 } from 'lucide-react'
+import type { Chapter, ChapterData } from '../../types/chapter'
+import { useUnsavedChanges } from '../../context/UnsavedChangesContext'
+import { useNavigation } from '../../context/NavigationContext'
+import { useEntityRegistry } from '../../context/EntityRegistryContext'
+import { useLinkableTextarea } from '../../hooks/useLinkableTextarea'
+import { LinkedText } from '../shared/LinkedText'
+import { MarkdownRenderer } from './MarkdownRenderer'
+import { EntityPicker } from '../panels/EntityPicker'
+
+interface ChapterEditorProps {
+  chapter: Chapter
+  onSave: (fileName: string, data: ChapterData, content: string) => Promise<void>
+  onDelete: () => void
+}
+
+export function ChapterEditor({ chapter, onSave, onDelete }: ChapterEditorProps) {
+  const [title, setTitle] = useState(chapter.data.title ?? '')
+  const [mode, setMode] = useState<'markdown' | 'plaintext'>(chapter.data.mode ?? 'markdown')
+  const [content, setContent] = useState(chapter.content)
+  const [editing, setEditing] = useState(false)
+  const [saving, setSaving] = useState(false)
+
+  const { setDirty, registerHandlers } = useUnsavedChanges()
+  const { navigateToEntity } = useNavigation()
+  const { entities } = useEntityRegistry()
+
+  const initialSnapshot = useRef(JSON.stringify({ title: chapter.data.title ?? '', mode: chapter.data.mode ?? 'markdown', content: chapter.content }))
+
+  const { textareaRef, pickerOpen, pickerQuery, highlightedIndex, anchorRect, handleChange, handleKeyDown, insertLink, closePicker } =
+    useLinkableTextarea({ value: content, onChange: setContent })
+
+  const buildData = (): ChapterData => ({ id: chapter.data.id, title: title.trim() || 'Untitled Chapter', order: chapter.data.order, mode })
+
+  const handleSave = async () => {
+    setSaving(true)
+    await onSave(chapter.fileName, buildData(), content)
+    setSaving(false)
+    initialSnapshot.current = JSON.stringify({ title, mode, content })
+    setDirty(false)
+  }
+
+  useEffect(() => {
+    setDirty(JSON.stringify({ title, mode, content }) !== initialSnapshot.current)
+  }, [title, mode, content, setDirty])
+
+  useEffect(() => {
+    registerHandlers({ onSave: handleSave })
+    return () => registerHandlers(null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title, mode, content])
+
+  return (
+    <div className="max-w-3xl mx-auto space-y-4 pb-16">
+      <div className="flex items-start justify-between gap-4">
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Chapter title"
+          className="text-2xl font-semibold bg-transparent border-b border-transparent focus:border-neutral-700 outline-none w-full text-neutral-100"
+        />
+        <div className="flex items-center gap-2 shrink-0">
+          <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 disabled:opacity-50 text-white rounded-md px-4 py-2 text-sm">
+            <Save className="w-4 h-4" />
+            {saving ? 'Saving...' : 'Save'}
+          </button>
+          <button onClick={onDelete} className="text-neutral-600 hover:text-red-500 p-2" title="Delete chapter">
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-1 bg-neutral-900 border border-neutral-800 rounded-md p-1 w-fit">
+        <button onClick={() => setMode('markdown')} className={`flex items-center gap-1.5 px-3 py-1 rounded text-xs ${mode === 'markdown' ? 'bg-orange-600/20 text-orange-400' : 'text-neutral-500 hover:text-neutral-300'}`}>
+          <Code2 className="w-3.5 h-3.5" /> Markdown
+        </button>
+        <button onClick={() => setMode('plaintext')} className={`flex items-center gap-1.5 px-3 py-1 rounded text-xs ${mode === 'plaintext' ? 'bg-orange-600/20 text-orange-400' : 'text-neutral-500 hover:text-neutral-300'}`}>
+          <FileText className="w-3.5 h-3.5" /> Plain Text
+        </button>
+      </div>
+
+      {!editing ? (
+        <div onClick={() => setEditing(true)} className="min-h-[50vh] cursor-text bg-neutral-900/40 border border-neutral-800 rounded-lg p-5">
+          {content ? (
+            mode === 'markdown' ? (
+              <MarkdownRenderer text={content} />
+            ) : (
+              <div className="text-sm text-neutral-300 leading-relaxed whitespace-pre-wrap">
+                <LinkedText text={content} entities={entities} onLinkClick={navigateToEntity} />
+              </div>
+            )
+          ) : (
+            <span className="text-neutral-600 text-sm">Click to start writing — use @ to link a character, location, or other entry.</span>
+          )}
+        </div>
+      ) : (
+        <div className="relative">
+          <textarea
+            ref={textareaRef}
+            autoFocus
+            value={content}
+            onChange={(e) => handleChange(e.target.value)}
+            onKeyDown={handleKeyDown}
+            onBlur={() => { setEditing(false); closePicker() }}
+            placeholder={mode === 'markdown' ? 'Write in Markdown — # headings, **bold**, *italic*, lists, > quotes...' : 'Write freely — plain text, no formatting.'}
+            rows={24}
+            className="w-full min-h-[50vh] bg-neutral-900/40 border border-neutral-800 rounded-lg p-5 text-sm text-neutral-200 placeholder-neutral-600 outline-none focus:border-orange-600 resize-y leading-relaxed font-mono"
+          />
+          {pickerOpen && <EntityPicker query={pickerQuery} highlightedIndex={highlightedIndex} onSelect={insertLink} anchorRect={anchorRect} />}
+        </div>
+      )}
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/panels/AddPanelMenu.tsx">
+// src/components/panels/AddPanelMenu.tsx
+import { useEffect, useRef, useState } from 'react'
+import { Plus, Type, List, BarChart2, Table2, Image, Link2, Info, Trash2 } from 'lucide-react'
+import type { PanelType } from '../../types/panel'
+
+interface AddPanelMenuProps {
+  onAdd: (type: PanelType) => void
+  onDeleteAll: () => void
+}
+
+const PANEL_OPTIONS: { type: PanelType; label: string; icon: React.ElementType }[] = [
+  { type: 'text', label: 'Text Panel', icon: Type },
+  { type: 'list', label: 'List Panel', icon: List },
+  { type: 'stats', label: 'Stats Panel', icon: BarChart2 },
+  { type: 'table', label: 'Table Panel', icon: Table2 },
+  { type: 'image', label: 'Image Panel', icon: Image },
+  { type: 'links', label: 'Links Panel', icon: Link2 },
+  { type: 'attributes', label: 'Attributes Panel', icon: Info },
+]
+
+export function AddPanelMenu({ onAdd, onDeleteAll }: AddPanelMenuProps) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  return (
+    <div className="relative" ref={ref}>
+      <button onClick={() => setOpen((o) => !o)} className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white rounded-md px-3 py-1.5 text-sm">
+        <Plus className="w-4 h-4" />
+        Add Panel
+      </button>
+      {open && (
+        <div className="absolute right-0 top-9 z-10 w-52 bg-neutral-800 border border-neutral-700 rounded-md shadow-lg py-1 text-sm overflow-hidden">
+          {PANEL_OPTIONS.map(({ type, label, icon: Icon }) => (
+            <button
+              key={type}
+              onClick={() => { onAdd(type); setOpen(false) }}
+              className="w-full flex items-center gap-2.5 px-3 py-2 text-neutral-300 hover:bg-neutral-700"
+            >
+              <Icon className="w-4 h-4 text-neutral-500" />
+              {label}
+            </button>
+          ))}
+          <div className="border-t border-neutral-700 mt-1 pt-1">
+            <button
+              onClick={() => { onDeleteAll(); setOpen(false) }}
+              className="w-full flex items-center gap-2.5 px-3 py-2 text-red-400 hover:bg-neutral-700"
+            >
+              <Trash2 className="w-4 h-4" />
+              Delete All Panels
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+</file>
+
+<file path="src/context/EntityRegistryContext.tsx">
+// src/context/EntityRegistryContext.tsx
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
+import { useVault } from './VaultContext'
+import { useEntityTypes } from './EntityTypesContext'
+import type { LinkableEntity } from '../types/entity'
+
+interface EntityRegistryContextValue {
+  entities: LinkableEntity[]
+  loading: boolean
+  refresh: () => void
+}
+
+const EntityRegistryContext = createContext<EntityRegistryContextValue | undefined>(undefined)
+
+export function EntityRegistryProvider({ children }: { children: ReactNode }) {
+  const { vaultPath } = useVault()
+  const { entityTypes } = useEntityTypes()
+  const [entities, setEntities] = useState<LinkableEntity[]>([])
+  const [loading, setLoading] = useState(false)
+  const [tick, setTick] = useState(0)
+
+  const refresh = useCallback(() => setTick((t) => t + 1), [])
+
+  useEffect(() => {
+    let cancelled = false
+    async function load() {
+      if (!vaultPath || entityTypes.length === 0) { setEntities([]); return }
+      setLoading(true)
+      const all: LinkableEntity[] = []
+      for (const type of entityTypes) {
+        const fileNames = await window.electron.listEntries(vaultPath, type.folder)
+        const loaded = await Promise.all(fileNames.map((fn) => window.electron.readEntry(vaultPath, type.folder, fn)))
+        loaded.forEach((e: any) => all.push({ id: e.data.id, name: e.data.name, entityTypeId: type.id, typeLabel: type.label, fileName: e.fileName }))
+      }
+      if (!cancelled) { setEntities(all); setLoading(false) }
+    }
+    load()
+    return () => { cancelled = true }
+  }, [vaultPath, entityTypes, tick])
+
+  return <EntityRegistryContext.Provider value={{ entities, loading, refresh }}>{children}</EntityRegistryContext.Provider>
+}
+
+export function useEntityRegistry() {
+  const ctx = useContext(EntityRegistryContext)
+  if (!ctx) throw new Error('useEntityRegistry must be used within EntityRegistryProvider')
+  return ctx
+}
+</file>
+
+<file path="src/context/NavigationContext.tsx">
+// src/context/NavigationContext.tsx
+import { createContext, useCallback, useContext, useState } from 'react'
+import type { ReactNode } from 'react'
+import type { ModuleKey } from '../types/navigation'
+import { useUnsavedChanges } from './UnsavedChangesContext'
+
+interface PendingTarget {
+  entityTypeId: string
+  entityId: string
+}
+
+interface NavigationContextValue {
+  activeModule: ModuleKey
+  setActiveModule: (key: ModuleKey) => void
+  pendingTarget: PendingTarget | null
+  navigateToEntity: (entityTypeId: string, entityId: string) => void
+  clearPendingTarget: () => void
+}
+
+const NavigationContext = createContext<NavigationContextValue | undefined>(undefined)
+
+export function NavigationProvider({ children }: { children: ReactNode }) {
+  const [activeModule, setActiveModuleState] = useState<ModuleKey>('dashboard')
+  const [pendingTarget, setPendingTarget] = useState<PendingTarget | null>(null)
+  const { guardNavigation } = useUnsavedChanges()
+
+  const setActiveModule = useCallback((key: ModuleKey) => guardNavigation(() => setActiveModuleState(key)), [guardNavigation])
+
+  const navigateToEntity = useCallback(
+    (entityTypeId: string, entityId: string) => {
+      guardNavigation(() => {
+        setPendingTarget({ entityTypeId, entityId })
+        setActiveModuleState(entityTypeId)
+      })
+    },
+    [guardNavigation]
+  )
+
+  const clearPendingTarget = useCallback(() => setPendingTarget(null), [])
+
+  return (
+    <NavigationContext.Provider value={{ activeModule, setActiveModule, pendingTarget, navigateToEntity, clearPendingTarget }}>
+      {children}
+    </NavigationContext.Provider>
+  )
+}
+
+export function useNavigation() {
+  const ctx = useContext(NavigationContext)
+  if (!ctx) throw new Error('useNavigation must be used within NavigationProvider')
+  return ctx
+}
+</file>
+
+<file path="src/context/UnsavedChangesContext.tsx">
+// src/context/UnsavedChangesContext.tsx
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
+import { UnsavedChangesModal } from './UnsavedChangesModal'
+
+interface Handlers {
+  onSave: () => Promise<void>
+}
+
+interface UnsavedChangesContextValue {
+  isDirty: boolean
+  setDirty: (dirty: boolean) => void
+  registerHandlers: (handlers: Handlers | null) => void
+  guardNavigation: (proceed: () => void) => void
+}
+
+const UnsavedChangesContext = createContext<UnsavedChangesContextValue | undefined>(undefined)
+
+export function UnsavedChangesProvider({ children }: { children: ReactNode }) {
+  const [isDirty, setIsDirty] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [saving, setSaving] = useState(false)
+
+  const handlersRef = useRef<Handlers | null>(null)
+  const pendingActionRef = useRef<(() => void) | null>(null)
+
+  const registerHandlers = useCallback((handlers: Handlers | null) => {
+    handlersRef.current = handlers
+  }, [])
+
+  const guardNavigation = useCallback(
+    (proceed: () => void) => {
+      if (!isDirty) {
+        proceed()
+        return
+      }
+      pendingActionRef.current = proceed
+      setModalOpen(true)
+    },
+    [isDirty]
+  )
+
+  const handleSave = async () => {
+    if (!handlersRef.current) return
+    setSaving(true)
+    await handlersRef.current.onSave()
+    setSaving(false)
+    setIsDirty(false)
+    setModalOpen(false)
+    pendingActionRef.current?.()
+    pendingActionRef.current = null
+  }
+
+  const handleDiscard = () => {
+    setIsDirty(false)
+    setModalOpen(false)
+    pendingActionRef.current?.()
+    pendingActionRef.current = null
+  }
+
+  const handleCancel = () => {
+    setModalOpen(false)
+    pendingActionRef.current = null
+  }
+
+  // Main process asks "is it safe to close?" — route that through the same guard
+  useEffect(() => {
+    const unsubscribe = window.electron.onBeforeClose(() => {
+      guardNavigation(() => window.electron.confirmClose())
+    })
+    return unsubscribe
+  }, [guardNavigation])
+
+  return (
+    <UnsavedChangesContext.Provider value={{ isDirty, setDirty: setIsDirty, registerHandlers, guardNavigation }}>
+      {children}
+      {modalOpen && (
+        <UnsavedChangesModal saving={saving} onSave={handleSave} onDiscard={handleDiscard} onCancel={handleCancel} />
+      )}
+    </UnsavedChangesContext.Provider>
+  )
+}
+
+export function useUnsavedChanges() {
+  const ctx = useContext(UnsavedChangesContext)
+  if (!ctx) throw new Error('useUnsavedChanges must be used within UnsavedChangesProvider')
+  return ctx
+}
+</file>
+
+<file path="src/context/UnsavedChangesModal.tsx">
+// src/components/UnsavedChangesModal.tsx
+import { AlertTriangle } from 'lucide-react'
+
+interface UnsavedChangesModalProps {
+  saving: boolean
+  onSave: () => void
+  onDiscard: () => void
+  onCancel: () => void
+}
+
+export function UnsavedChangesModal({ saving, onSave, onDiscard, onCancel }: UnsavedChangesModalProps) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+      <div className="bg-neutral-900 border border-neutral-700 rounded-lg shadow-xl w-full max-w-sm p-5">
+        <div className="flex items-start gap-3">
+          <div className="shrink-0 w-9 h-9 rounded-full bg-orange-600/20 flex items-center justify-center">
+            <AlertTriangle className="w-5 h-5 text-orange-400" />
+          </div>
+          <div>
+            <h2 className="text-neutral-100 font-medium">Unsaved changes</h2>
+            <p className="text-sm text-neutral-400 mt-1">
+              You have unsaved changes. Do you want to save them before continuing?
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-end gap-2 mt-5">
+          <button onClick={onCancel} disabled={saving} className="px-3 py-1.5 text-sm text-neutral-400 hover:text-neutral-200 rounded-md disabled:opacity-50">
+            Cancel
+          </button>
+          <button onClick={onDiscard} disabled={saving} className="px-3 py-1.5 text-sm text-neutral-300 hover:bg-neutral-800 border border-neutral-700 rounded-md disabled:opacity-50">
+            Don't Save
+          </button>
+          <button onClick={onSave} disabled={saving} className="px-3 py-1.5 text-sm bg-orange-600 hover:bg-orange-700 text-white rounded-md disabled:opacity-50">
+            {saving ? 'Saving...' : 'Save'}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/context/VaultContext.tsx">
+// src/context/VaultContext.tsx
+import { createContext, useContext, useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
+
+interface VaultContextValue {
+  vaultPath: string | null
+  selectVault: () => Promise<void>
+  createVault: (folderName: string) => Promise<{ success: boolean; error?: string }>
+  clearVault: () => void
+}
+
+const VaultContext = createContext<VaultContextValue | undefined>(undefined)
+const STORAGE_KEY = 'openblaze:lastVaultPath'
+
+export function VaultProvider({ children }: { children: ReactNode }) {
+  const [vaultPath, setVaultPath] = useState<string | null>(null)
+
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) setVaultPath(saved)
+  }, [])
+
+  const selectVault = async () => {
+    const folder = await window.electron.selectVaultFolder()
+    if (folder) {
+      setVaultPath(folder)
+      localStorage.setItem(STORAGE_KEY, folder)
+    }
+  }
+
+  const createVault = async (folderName: string) => {
+    const trimmed = folderName.trim()
+    if (!trimmed) return { success: false, error: 'Project name cannot be empty.' }
+
+    // Ask where the new project folder should live
+    const parentPath = await window.electron.selectVaultFolder()
+    if (!parentPath) return { success: false, error: 'No location selected.' }
+
+    const newVaultPath = await window.electron.createVaultFolder(parentPath, trimmed)
+    if (!newVaultPath) {
+      return { success: false, error: 'A folder with that name may already exist there.' }
+    }
+
+    setVaultPath(newVaultPath)
+    localStorage.setItem(STORAGE_KEY, newVaultPath)
+    return { success: true }
+  }
+
+  const clearVault = () => {
+    setVaultPath(null)
+    localStorage.removeItem(STORAGE_KEY)
+  }
+
+  return (
+    <VaultContext.Provider value={{ vaultPath, selectVault, createVault, clearVault }}>
+      {children}
+    </VaultContext.Provider>
+  )
+}
+
+export function useVault() {
+  const ctx = useContext(VaultContext)
+  if (!ctx) throw new Error('useVault must be used within a VaultProvider')
+  return ctx
+}
+</file>
+
+<file path="src/hooks/useEntityData.ts">
+// src/hooks/useEntityData.ts
+import { useCallback, useEffect, useState } from 'react'
+import { useVault } from '../context/VaultContext'
+import type { Entity, EntityData } from '../types/entity'
+import type { Panel } from '../types/panel'
+
+export function useEntityData(moduleFolder: string) {
+  const { vaultPath } = useVault()
+  const [entities, setEntities] = useState<Entity[]>([])
+  const [loading, setLoading] = useState(false)
+
+  const refresh = useCallback(async () => {
+    if (!vaultPath) return
+    setLoading(true)
+    const fileNames = await window.electron.listEntries(vaultPath, moduleFolder)
+    const loaded = await Promise.all(
+      fileNames.map((fn) => window.electron.readEntry(vaultPath, moduleFolder, fn))
+    )
+    // Guard against older files saved before the panel system existed
+    const normalized = (loaded as any[]).map((e) => ({
+      ...e,
+      data: { panels: [], ...e.data },
+    })) as Entity[]
+    normalized.sort((a, b) => (a.data.name || '').localeCompare(b.data.name || ''))
+    setEntities(normalized)
+    setLoading(false)
+  }, [vaultPath, moduleFolder])
+
+  useEffect(() => {
+    refresh()
+  }, [refresh])
+
+  const saveEntity = useCallback(
+    async (fileName: string, data: EntityData, content: string) => {
+      if (!vaultPath) return
+      await window.electron.writeEntry(vaultPath, moduleFolder, fileName, data, content)
+      await refresh()
+    },
+    [vaultPath, moduleFolder, refresh]
+  )
+
+  const createEntity = useCallback(
+    async (defaultPanels: Panel[], extra: Partial<EntityData> = {}): Promise<Entity> => {
+      const id = `${moduleFolder.toLowerCase()}_${Date.now()}`
+      const fileName = `${id}.md`
+      const data: EntityData = { id, name: 'New Entry', panels: defaultPanels, ...extra }
+      await saveEntity(fileName, data, '')
+      return { data, content: '', fileName }
+    },
+    [moduleFolder, saveEntity]
+  )
+
+    const deleteEntity = useCallback(
+    async (fileName: string) => {
+        if (!vaultPath) return { success: false, error: 'No vault open.' }
+        const result = await window.electron.deleteEntry(vaultPath, moduleFolder, fileName)
+        if (result.success) await refresh()
+        return result
+    },
+    [vaultPath, moduleFolder, refresh]
+  )
+
+  return { entities, loading, refresh, saveEntity, createEntity, deleteEntity }
+}
+</file>
+
+<file path="src/hooks/useLinkableTextarea.ts">
+// src/hooks/useLinkableTextarea.ts
+import { useEffect, useRef, useState } from 'react'
+import { useEntitySearch } from './useEntitySearch'
+import { getCaretCoordinates } from '../utils/getCaretCoordinates'
+import type { LinkableEntity } from '../types/entity'
+
+interface AnchorRect { top: number; left: number }
+
+interface UseLinkableTextareaOptions {
+  value: string
+  onChange: (value: string) => void
+}
+
+export function useLinkableTextarea({ value, onChange }: UseLinkableTextareaOptions) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const [pickerOpen, setPickerOpen] = useState(false)
+  const [pickerQuery, setPickerQuery] = useState('')
+  const [highlightedIndex, setHighlightedIndex] = useState(0)
+  const [anchorRect, setAnchorRect] = useState<AnchorRect | null>(null)
+  const { results } = useEntitySearch(pickerQuery)
+
+  // Close instead of leaving a stale position if the page scrolls underneath the picker
+  useEffect(() => {
+    if (!pickerOpen) return
+    const handleScroll = () => setPickerOpen(false)
+    window.addEventListener('scroll', handleScroll, true)
+    return () => window.removeEventListener('scroll', handleScroll, true)
+  }, [pickerOpen])
+
+  const updateAnchor = (cursor: number) => {
+    const el = textareaRef.current
+    if (!el) return
+    const caret = getCaretCoordinates(el, cursor)
+    const box = el.getBoundingClientRect()
+    setAnchorRect({
+      top: box.top + (caret.top - el.scrollTop) + caret.height + 4,
+      left: box.left + caret.left,
+    })
+  }
+
+  const handleChange = (newValue: string) => {
+    onChange(newValue)
+    const cursor = textareaRef.current?.selectionStart ?? newValue.length
+    const uptoCursor = newValue.slice(0, cursor)
+    const match = uptoCursor.match(/@([^\s@[\]]*)$/)
+    if (match) {
+      setPickerQuery(match[1])
+      setPickerOpen(true)
+      setHighlightedIndex(0)
+      updateAnchor(cursor)
+    } else {
+      setPickerOpen(false)
+    }
+  }
+
+  const insertLink = (entity: LinkableEntity) => {
+    const el = textareaRef.current
+    if (!el) return
+    const cursor = el.selectionStart
+    const uptoCursor = value.slice(0, cursor)
+    const match = uptoCursor.match(/@([^\s@[\]]*)$/)
+    if (!match) return
+    const startOfAt = cursor - match[0].length
+    const token = `[[${entity.entityTypeId}:${entity.id}:${entity.name}]]`
+    const newValue = value.slice(0, startOfAt) + token + ' ' + value.slice(cursor)
+    onChange(newValue)
+    setPickerOpen(false)
+    requestAnimationFrame(() => {
+      el.focus()
+      const newCursor = startOfAt + token.length + 1
+      el.setSelectionRange(newCursor, newCursor)
+    })
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (!pickerOpen || results.length === 0) return
+    if (e.key === 'ArrowDown') { e.preventDefault(); setHighlightedIndex((i) => (i + 1) % results.length) }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setHighlightedIndex((i) => (i - 1 + results.length) % results.length) }
+    else if (e.key === 'Enter') { e.preventDefault(); insertLink(results[highlightedIndex]) }
+    else if (e.key === 'Escape') { e.preventDefault(); setPickerOpen(false) }
+  }
+
+  const closePicker = () => setPickerOpen(false)
+
+  return { textareaRef, pickerOpen, pickerQuery, highlightedIndex, anchorRect, handleChange, handleKeyDown, insertLink, closePicker }
+}
+</file>
+
+<file path="src/hooks/useVaultData.ts">
+// src/hooks/useVaultData.ts
+import { useCallback, useState } from 'react'
+import type { VaultEntry } from '../types/electron'
+
+export function useVaultData(vaultPath: string | null) {
+  const [entries, setEntries] = useState<VaultEntry[]>([])
+  const [loading, setLoading] = useState(false)
+
+  const loadModule = useCallback(async (moduleFolder: string) => {
+    if (!vaultPath) return
+    setLoading(true)
+    const fileNames = await window.electron.listEntries(vaultPath, moduleFolder)
+    const loaded = await Promise.all(
+      fileNames.map(fn => window.electron.readEntry(vaultPath, moduleFolder, fn))
+    )
+    setEntries(loaded)
+    setLoading(false)
+  }, [vaultPath])
+
+  const saveEntry = useCallback(
+    async (moduleFolder: string, fileName: string, data: object, content: string) => {
+      if (!vaultPath) return
+      await window.electron.writeEntry(vaultPath, moduleFolder, fileName, data, content)
+    },
+    [vaultPath]
+  )
+
+  return { entries, loading, loadModule, saveEntry }
+}
+</file>
+
+<file path="src/types/panel.ts">
+// src/types/panel.ts
+export type PanelType = 'text' | 'list' | 'stats' | 'table' | 'image' | 'links' | 'attributes'
+export type PanelWidth = 'half' | 'full'
+
+export interface TextPanelData { text: string }
+export interface ListPanelData { items: string[] }
+export interface StatsPanelData { stats: { label: string; value: string }[] }
+export interface TablePanelData { columns: string[]; rows: string[][] }
+export interface ImagePanelData { imageUrl: string; caption: string }
+export interface LinksPanelData { links: { label: string; url: string }[] }
+export interface AttributesPanelData { attributes: { label: string; value: string }[] }
+
+export type AnyPanelData =
+  | TextPanelData | ListPanelData | StatsPanelData | TablePanelData
+  | ImagePanelData | LinksPanelData | AttributesPanelData
+
+export interface Panel {
+  id: string
+  type: PanelType
+  title: string
+  width: PanelWidth
+  data: AnyPanelData
+}
+
+export function createEmptyPanelData(type: PanelType): AnyPanelData {
+  switch (type) {
+    case 'text': return { text: '' }
+    case 'list': return { items: [] }
+    case 'stats': return { stats: [] }
+    case 'table': return { columns: ['Column 1', 'Column 2'], rows: [] }
+    case 'image': return { imageUrl: '', caption: '' }
+    case 'links': return { links: [] }
+    case 'attributes': return { attributes: [] }
+  }
+}
+</file>
+
+<file path="src/components/modules/Dashboard.tsx">
+// src/components/modules/Dashboard.tsx
+import { useState } from 'react'
+import { FolderOpen, FolderPlus, FolderCheck } from 'lucide-react'
+import { useVault } from '../../context/VaultContext'
+
+export function Dashboard() {
+  const { vaultPath, selectVault, createVault, clearVault } = useVault()
+  const [newProjectName, setNewProjectName] = useState('')
+  const [creating, setCreating] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleCreate = async () => {
+    setError(null)
+    setCreating(true)
+    const result = await createVault(newProjectName)
+    setCreating(false)
+    if (!result.success) setError(result.error ?? 'Something went wrong.')
+    else setNewProjectName('')
+  }
+
+  if (!vaultPath) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-center gap-6 max-w-sm mx-auto">
+        <FolderOpen className="w-10 h-10 text-neutral-600" />
+        <div>
+          <h2 className="text-lg font-medium text-neutral-200">No vault open</h2>
+          <p className="text-sm text-neutral-500 mt-1">
+            Create a new project, or open an existing OpenBlaze folder.
+          </p>
+        </div>
+
+        <div className="w-full space-y-2">
+          <input
+            value={newProjectName}
+            onChange={(e) => setNewProjectName(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleCreate()}
+            placeholder="New project name..."
+            className="w-full bg-neutral-900 border border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-200 outline-none focus:border-orange-600"
+          />
+          <button
+            onClick={handleCreate}
+            disabled={creating || !newProjectName.trim()}
+            className="w-full flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 disabled:opacity-50 text-white rounded-md px-4 py-2 text-sm"
+          >
+            <FolderPlus className="w-4 h-4" />
+            {creating ? 'Creating...' : 'Create New Vault'}
+          </button>
+          {error && <p className="text-xs text-red-400">{error}</p>}
+        </div>
+
+        <div className="flex items-center gap-2 w-full text-neutral-700 text-xs">
+          <div className="flex-1 h-px bg-neutral-800" />
+          or
+          <div className="flex-1 h-px bg-neutral-800" />
+        </div>
+
+        <button
+          onClick={selectVault}
+          className="w-full flex items-center justify-center gap-2 border border-neutral-800 hover:bg-neutral-900 text-neutral-300 rounded-md px-4 py-2 text-sm"
+        >
+          <FolderOpen className="w-4 h-4" />
+          Open Existing Vault
+        </button>
+      </div>
+    )
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2 text-neutral-200">
+        <FolderCheck className="w-5 h-5 text-green-500" />
+        <h2 className="text-lg font-medium">Vault Connected</h2>
+      </div>
+      <p className="text-sm text-neutral-500 break-all">{vaultPath}</p>
+      <button onClick={clearVault} className="text-sm text-neutral-500 hover:text-neutral-300 underline">
+        Switch vault
+      </button>
+    </div>
+  )
+}
+</file>
+
+<file path="src/types/navigation.ts">
+// src/types/navigation.ts
+export type SystemModuleKey = 'dashboard' | 'manuscript'
+export type ModuleKey = SystemModuleKey | string // string = an entity type's id
+</file>
+
+<file path="src/index.css">
+/* src/index.css */
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 150ms ease-out;
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "openblaze",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && electron-builder"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^1.33.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "concurrently": "^10.0.5",
+    "cross-env": "^10.1.0",
+    "electron": "^43.4.1",
+    "electron-builder": "^26.15.3",
+    "eslint": "^10.8.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.65.0",
+    "vite": "^8.2.0",
+    "vite-plugin-electron": "^1.1.1",
+    "vite-plugin-electron-renderer": "^1.0.0"
+  }
+}
+</file>
+
+<file path="src/components/panels/EntityPicker.tsx">
+// src/components/panels/EntityPicker.tsx
+import { createPortal } from 'react-dom'
+import { useEntitySearch } from '../../hooks/useEntitySearch'
+import type { LinkableEntity } from '../../types/entity'
+
+interface EntityPickerProps {
+  query: string
+  highlightedIndex: number
+  onSelect: (entity: LinkableEntity) => void
+  anchorRect: { top: number; left: number } | null
+}
+
+export function EntityPicker({ query, highlightedIndex, onSelect, anchorRect }: EntityPickerProps) {
+  const { results, loading } = useEntitySearch(query)
+  if (!anchorRect) return null
+
+  return createPortal(
+    <div
+      style={{ position: 'fixed', top: anchorRect.top, left: anchorRect.left }}
+      className="z-50 w-64 bg-neutral-800 border border-neutral-700 rounded-md shadow-lg py-1 text-sm max-h-64 overflow-y-auto"
+    >
+      {loading && <p className="px-3 py-2 text-neutral-500 text-xs">Loading...</p>}
+      {!loading && results.length === 0 && <p className="px-3 py-2 text-neutral-500 text-xs">No matches for "{query}"</p>}
+      {results.map((entity, i) => (
+        <button
+          key={`${entity.entityTypeId}-${entity.id}`}
+          onMouseDown={(e) => { e.preventDefault(); onSelect(entity) }}
+          className={`w-full flex items-center justify-between gap-2 px-3 py-1.5 text-left ${
+            i === highlightedIndex ? 'bg-orange-600/20 text-orange-300' : 'text-neutral-200 hover:bg-neutral-700'
+          }`}
+        >
+          <span className="truncate">{entity.name || 'Untitled'}</span>
+          <span className="text-[10px] uppercase tracking-wide text-neutral-500 shrink-0">{entity.typeLabel}</span>
+        </button>
+      ))}
+    </div>,
+    document.body
+  )
+}
+</file>
+
+<file path="src/types/entity.ts">
+// src/types/entity.ts
+import type { Panel } from './panel'
+
+export interface LinkableEntity {
+  id: string
+  name: string
+  entityTypeId: string
+  typeLabel: string
+  fileName: string
+}
+
+export interface EntityData {
+  id: string
+  name: string
+  parentId?: string | null   // only meaningful for Locations; ignored elsewhere
+  tags?: string[]
+  panels: Panel[]
+}
+
+export interface Entity {
+  data: EntityData
+  content: string
+  fileName: string
+}
+</file>
+
+<file path="src/components/layout/Sidebar.tsx">
+// src/components/layout/Sidebar.tsx
+import { useState } from 'react'
+import { LayoutDashboard, BookOpen, PanelLeftClose, PanelLeftOpen, Flame, Settings } from 'lucide-react'
+import { useEntityTypes } from '../../context/EntityTypesContext'
+import { getIconComponent } from '../../config/iconOptions'
+import type { ModuleKey } from '../../types/navigation'
+export type { ModuleKey } from '../../types/navigation'
+
+interface SidebarProps {
+  active: ModuleKey
+  onSelect: (key: ModuleKey) => void
+  onManageTypes: () => void
+}
+
+export function Sidebar({ active, onSelect, onManageTypes }: SidebarProps) {
+  const [pinned, setPinned] = useState(false)
+  const [hovering, setHovering] = useState(false)
+  const [suppressHover, setSuppressHover] = useState(false)
+  const { entityTypes } = useEntityTypes()
+  const expanded = pinned || (hovering && !suppressHover)
+
+  const handleSelect = (key: ModuleKey) => { onSelect(key); if (!pinned) setSuppressHover(true) }
+  const handleMouseLeave = () => { setHovering(false); setSuppressHover(false) }
+
+  return (
+    <aside onMouseEnter={() => setHovering(true)} onMouseLeave={handleMouseLeave}
+      className={`relative shrink-0 h-screen bg-neutral-900 text-neutral-200 flex flex-col border-r border-neutral-800 transition-[width] duration-150 ease-in-out overflow-hidden ${expanded ? 'w-60' : 'w-14'}`}>
+      <div className="flex items-center justify-between px-3 h-14 shrink-0 border-b border-neutral-800">
+        <div className="flex items-center gap-2 min-w-0">
+          <Flame className="w-5 h-5 text-orange-500 shrink-0" />
+          <span className={`text-base font-semibold whitespace-nowrap transition-opacity duration-150 ${expanded ? 'opacity-100' : 'opacity-0'}`}>OpenBlaze</span>
+        </div>
+        <button onClick={() => setPinned((p) => !p)} className={`shrink-0 text-neutral-500 hover:text-neutral-200 p-1 transition-opacity duration-150 ${expanded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} title={pinned ? 'Unpin sidebar' : 'Pin sidebar open'}>
+          {pinned ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeftOpen className="w-4 h-4" />}
+        </button>
+      </div>
+
+      <nav className="flex-1 px-2 py-3 space-y-1 overflow-y-auto">
+        <NavButton active={active === 'dashboard'} icon={LayoutDashboard} label="Dashboard" expanded={expanded} onClick={() => handleSelect('dashboard')} />
+        <NavButton active={active === 'manuscript'} icon={BookOpen} label="Manuscript" expanded={expanded} onClick={() => handleSelect('manuscript')} />
+        <div className="pt-2 mt-2 border-t border-neutral-800/60">
+          {entityTypes.map((type) => (
+            <NavButton key={type.id} active={active === type.id} icon={getIconComponent(type.icon)} label={type.pluralLabel} expanded={expanded} onClick={() => handleSelect(type.id)} />
+          ))}
+        </div>
+      </nav>
+
+      <div className="px-2 py-3 border-t border-neutral-800">
+        <NavButton active={false} icon={Settings} label="Entity Types" expanded={expanded} onClick={onManageTypes} />
+      </div>
+    </aside>
+  )
+}
+
+function NavButton({ active, icon: Icon, label, expanded, onClick }: { active: boolean; icon: React.ElementType; label: string; expanded: boolean; onClick: () => void }) {
+  return (
+    <button onClick={onClick} title={label} className={`w-full flex items-center gap-3 px-2.5 py-2 rounded-md text-sm transition-colors duration-100 whitespace-nowrap ${active ? 'bg-orange-600/20 text-orange-400' : 'text-neutral-400 hover:bg-neutral-800 hover:text-neutral-100'}`}>
+      <Icon className="w-4 h-4 shrink-0" />
+      <span className={`transition-opacity duration-150 ${expanded ? 'opacity-100' : 'opacity-0'}`}>{label}</span>
+    </button>
+  )
+}
+</file>
+
+<file path="src/main.tsx">
+// src/main.tsx
+import { EntityTypesProvider } from './context/EntityTypesContext'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App'
+import { VaultProvider } from './context/VaultContext'
+import { UnsavedChangesProvider } from './context/UnsavedChangesContext'
+import { EntityRegistryProvider } from './context/EntityRegistryContext'
+import { NavigationProvider } from './context/NavigationContext'
+import './index.css'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <VaultProvider>
+      <UnsavedChangesProvider>
+        <EntityTypesProvider>
+          <EntityRegistryProvider>
+            <NavigationProvider>
+              <App />
+            </NavigationProvider>
+          </EntityRegistryProvider>
+        </EntityTypesProvider>
+      </UnsavedChangesProvider>
+    </VaultProvider>
+  </StrictMode>,
+)
+</file>
+
+<file path="src/components/panels/PanelBody.tsx">
+import { useState } from 'react'
+import { Plus, Trash2 } from 'lucide-react'
+import type {
+  Panel, AnyPanelData, TextPanelData, ListPanelData, StatsPanelData,
+  TablePanelData, ImagePanelData, LinksPanelData, AttributesPanelData,
+} from '../../types/panel'
+import { useNavigation } from '../../context/NavigationContext'
+import { useEntityRegistry } from '../../context/EntityRegistryContext'
+import { EntityPicker } from './EntityPicker'
+import { useLinkableTextarea } from '../../hooks/useLinkableTextarea'
+import { LinkedText } from '../shared/LinkedText'
+
+interface PanelBodyProps {
+  panel: Panel
+  onChange: (data: AnyPanelData) => void
+}
+
+export function PanelBody({ panel, onChange }: PanelBodyProps) {
+  switch (panel.type) {
+    case 'text': return <TextBody data={panel.data as TextPanelData} onChange={onChange} />
+    case 'list': return <ListBody data={panel.data as ListPanelData} onChange={onChange} />
+    case 'stats': return <StatsBody data={panel.data as StatsPanelData} onChange={onChange} />
+    case 'table': return <TableBody data={panel.data as TablePanelData} onChange={onChange} />
+    case 'image': return <ImageBody data={panel.data as ImagePanelData} onChange={onChange} />
+    case 'links': return <LinksBody data={panel.data as LinksPanelData} onChange={onChange} />
+    case 'attributes': return <AttributesBody data={panel.data as AttributesPanelData} onChange={onChange} />
+  }
+}
+
+function TextBody({ data, onChange }: { data: TextPanelData; onChange: (d: TextPanelData) => void }) {
+  const [editing, setEditing] = useState(false)
+  const { navigateToEntity } = useNavigation()
+  const { entities } = useEntityRegistry()
+  const { textareaRef, pickerOpen, pickerQuery, highlightedIndex, anchorRect, handleChange, handleKeyDown, insertLink, closePicker } =
+    useLinkableTextarea({ value: data.text, onChange: (text) => onChange({ text }) })
+
+  if (!editing) {
+    return (
+      <div onClick={() => setEditing(true)} className="min-h-[80px] cursor-text text-sm text-neutral-300 leading-relaxed whitespace-pre-wrap">
+        {data.text ? (
+          <LinkedText text={data.text} entities={entities} onLinkClick={navigateToEntity} />
+        ) : (
+          <span className="text-neutral-600">Click to add notes — type @ to link a character, location, or other entry.</span>
+        )}
+      </div>
+    )
+  }
+
+  return (
+    <div className="relative">
+      <textarea
+        ref={textareaRef}
+        autoFocus
+        value={data.text}
+        onChange={(e) => handleChange(e.target.value)}
+        onKeyDown={handleKeyDown}
+        onBlur={() => { setEditing(false); closePicker() }}
+        placeholder="Type here... use @ to link a character, location, or other entry"
+        rows={5}
+        className="w-full bg-transparent text-sm text-neutral-300 placeholder-neutral-600 outline-none resize-y leading-relaxed"
+      />
+      {pickerOpen && <EntityPicker query={pickerQuery} highlightedIndex={highlightedIndex} onSelect={insertLink} anchorRect={anchorRect} />}
+    </div>
+  )
+}
+
+function AttributesBody({ data, onChange }: { data: AttributesPanelData; onChange: (d: AttributesPanelData) => void }) {
+  const update = (i: number, field: 'label' | 'value', val: string) =>
+    onChange({ attributes: data.attributes.map((a, idx) => (idx === i ? { ...a, [field]: val } : a)) })
+  const addRow = () => onChange({ attributes: [...data.attributes, { label: 'New Field', value: '' }] })
+  const removeRow = (i: number) => onChange({ attributes: data.attributes.filter((_, idx) => idx !== i) })
+
+  return (
+    <div className="space-y-1.5">
+      {data.attributes.map((attr, i) => (
+        <div key={i} className="flex items-center gap-2 group">
+          <input value={attr.label} onChange={(e) => update(i, 'label', e.target.value)} className="text-sm font-semibold text-neutral-200 bg-transparent outline-none w-36 shrink-0 truncate focus:text-orange-400" />
+          <span className="text-neutral-600">:</span>
+          <input value={attr.value} onChange={(e) => update(i, 'value', e.target.value)} placeholder="—" className="text-sm text-neutral-400 bg-transparent outline-none flex-1 min-w-0" />
+          <button onClick={() => removeRow(i)} className="opacity-0 group-hover:opacity-100 text-neutral-600 hover:text-red-500">
+            <Trash2 className="w-3 h-3" />
+          </button>
+        </div>
+      ))}
+      <button onClick={addRow} className="flex items-center gap-1 text-xs text-neutral-600 hover:text-orange-400 mt-2">
+        <Plus className="w-3 h-3" /> Add field
+      </button>
+    </div>
+  )
+}
+
+function ListBody({ data, onChange }: { data: ListPanelData; onChange: (d: ListPanelData) => void }) {
+  const update = (i: number, val: string) => onChange({ items: data.items.map((it, idx) => (idx === i ? val : it)) })
+  const addItem = () => onChange({ items: [...data.items, ''] })
+  const removeItem = (i: number) => onChange({ items: data.items.filter((_, idx) => idx !== i) })
+
+  return (
+    <div className="space-y-1">
+      {data.items.map((item, i) => (
+        <div key={i} className="flex items-center gap-2 group">
+          <span className="text-neutral-600 text-sm">•</span>
+          <input value={item} onChange={(e) => update(i, e.target.value)} placeholder="List item..." className="text-sm text-neutral-300 bg-transparent outline-none flex-1" />
+          <button onClick={() => removeItem(i)} className="opacity-0 group-hover:opacity-100 text-neutral-600 hover:text-red-500">
+            <Trash2 className="w-3 h-3" />
+          </button>
+        </div>
+      ))}
+      <button onClick={addItem} className="flex items-center gap-1 text-xs text-neutral-600 hover:text-orange-400 mt-1">
+        <Plus className="w-3 h-3" /> Add item
+      </button>
+    </div>
+  )
+}
+
+function StatsBody({ data, onChange }: { data: StatsPanelData; onChange: (d: StatsPanelData) => void }) {
+  const update = (i: number, field: 'label' | 'value', val: string) =>
+    onChange({ stats: data.stats.map((s, idx) => (idx === i ? { ...s, [field]: val } : s)) })
+  const addStat = () => onChange({ stats: [...data.stats, { label: 'Stat', value: '0' }] })
+  const removeStat = (i: number) => onChange({ stats: data.stats.filter((_, idx) => idx !== i) })
+
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {data.stats.map((s, i) => (
+        <div key={i} className="group relative bg-neutral-800/50 rounded-md p-2">
+          <input value={s.value} onChange={(e) => update(i, 'value', e.target.value)} className="text-lg font-semibold text-orange-400 bg-transparent outline-none w-full" />
+          <input value={s.label} onChange={(e) => update(i, 'label', e.target.value)} className="text-xs text-neutral-500 bg-transparent outline-none w-full" />
+          <button onClick={() => removeStat(i)} className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 text-neutral-600 hover:text-red-500">
+            <Trash2 className="w-3 h-3" />
+          </button>
+        </div>
+      ))}
+      <button onClick={addStat} className="flex items-center justify-center gap-1 text-xs text-neutral-600 hover:text-orange-400 border border-dashed border-neutral-800 rounded-md p-2">
+        <Plus className="w-3 h-3" /> Add stat
+      </button>
+    </div>
+  )
+}
+
+function TableBody({ data, onChange }: { data: TablePanelData; onChange: (d: TablePanelData) => void }) {
+  const updateHeader = (i: number, val: string) => onChange({ ...data, columns: data.columns.map((c, idx) => (idx === i ? val : c)) })
+  const updateCell = (r: number, c: number, val: string) => {
+    const rows = data.rows.map((row, ri) => (ri === r ? row.map((cell, ci) => (ci === c ? val : cell)) : row))
+    onChange({ ...data, rows })
+  }
+  const addColumn = () => onChange({ columns: [...data.columns, 'New Column'], rows: data.rows.map((r) => [...r, '']) })
+  const addRow = () => onChange({ ...data, rows: [...data.rows, data.columns.map(() => '')] })
+  const removeRow = (r: number) => onChange({ ...data, rows: data.rows.filter((_, idx) => idx !== r) })
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm border-collapse">
+        <thead>
+          <tr>
+            {data.columns.map((col, i) => (
+              <th key={i} className="text-left border-b border-neutral-800 pb-1.5">
+                <input value={col} onChange={(e) => updateHeader(i, e.target.value)} className="bg-transparent text-xs uppercase tracking-wide text-neutral-500 outline-none w-full" />
+              </th>
+            ))}
+            <th className="w-6" />
+          </tr>
+        </thead>
+        <tbody>
+          {data.rows.map((row, r) => (
+            <tr key={r} className="group">
+              {row.map((cell, c) => (
+                <td key={c} className="py-1 pr-2">
+                  <input value={cell} onChange={(e) => updateCell(r, c, e.target.value)} className="bg-transparent text-neutral-300 outline-none w-full" />
+                </td>
+              ))}
+              <td>
+                <button onClick={() => removeRow(r)} className="opacity-0 group-hover:opacity-100 text-neutral-600 hover:text-red-500">
+                  <Trash2 className="w-3 h-3" />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="flex gap-3 mt-2">
+        <button onClick={addRow} className="flex items-center gap-1 text-xs text-neutral-600 hover:text-orange-400">
+          <Plus className="w-3 h-3" /> Row
+        </button>
+        <button onClick={addColumn} className="flex items-center gap-1 text-xs text-neutral-600 hover:text-orange-400">
+          <Plus className="w-3 h-3" /> Column
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function ImageBody({ data, onChange }: { data: ImagePanelData; onChange: (d: ImagePanelData) => void }) {
+  return (
+    <div className="space-y-2">
+      {data.imageUrl && <img src={data.imageUrl} alt={data.caption} className="w-full rounded-md border border-neutral-800 object-cover max-h-64" />}
+      <input value={data.imageUrl} onChange={(e) => onChange({ ...data, imageUrl: e.target.value })} placeholder="Paste an image URL or local file path..." className="w-full text-xs bg-neutral-800/50 border border-neutral-800 rounded px-2 py-1.5 text-neutral-300 outline-none focus:border-orange-600" />
+      <input value={data.caption} onChange={(e) => onChange({ ...data, caption: e.target.value })} placeholder="Caption..." className="w-full text-xs bg-transparent text-neutral-500 outline-none" />
+    </div>
+  )
+}
+
+function LinksBody({ data, onChange }: { data: LinksPanelData; onChange: (d: LinksPanelData) => void }) {
+  const update = (i: number, field: 'label' | 'url', val: string) =>
+    onChange({ links: data.links.map((l, idx) => (idx === i ? { ...l, [field]: val } : l)) })
+  const addLink = () => onChange({ links: [...data.links, { label: 'New Link', url: '' }] })
+  const removeLink = (i: number) => onChange({ links: data.links.filter((_, idx) => idx !== i) })
+
+  return (
+    <div className="space-y-1.5">
+      {data.links.map((link, i) => (
+        <div key={i} className="flex items-center gap-2 group">
+          <input value={link.label} onChange={(e) => update(i, 'label', e.target.value)} className="text-sm text-orange-400 bg-transparent outline-none w-28 shrink-0 truncate" />
+          <input value={link.url} onChange={(e) => update(i, 'url', e.target.value)} placeholder="https://..." className="text-sm text-neutral-500 bg-transparent outline-none flex-1" />
+          <button onClick={() => removeLink(i)} className="opacity-0 group-hover:opacity-100 text-neutral-600 hover:text-red-500">
+            <Trash2 className="w-3 h-3" />
+          </button>
+        </div>
+      ))}
+      <button onClick={addLink} className="flex items-center gap-1 text-xs text-neutral-600 hover:text-orange-400 mt-1">
+        <Plus className="w-3 h-3" /> Add link
+      </button>
+    </div>
+  )
+}
+</file>
+
+<file path="electron/preload.ts">
+// electron/preload.ts
+import { contextBridge, ipcRenderer } from 'electron'
+
+contextBridge.exposeInMainWorld('electron', {
+  selectVaultFolder: (): Promise<string | null> =>
+    ipcRenderer.invoke('vault:select-folder'),
+  
+  listEntries: (vaultPath: string, moduleFolder: string): Promise<string[]> =>
+    ipcRenderer.invoke('vault:list-entries', vaultPath, moduleFolder),
+  
+  readEntry: (vaultPath: string, moduleFolder: string, fileName: string) =>
+    ipcRenderer.invoke('vault:read-entry', vaultPath, moduleFolder, fileName),
+  
+  writeEntry: (vaultPath: string, moduleFolder: string, fileName: string, data: object, content: string) =>
+    ipcRenderer.invoke('vault:write-entry', vaultPath, moduleFolder, fileName, data, content),
+  
+  deleteEntry: (vaultPath: string, moduleFolder: string, fileName: string): Promise<{ success: boolean; error?: string }> =>
+    ipcRenderer.invoke('vault:delete-entry', vaultPath, moduleFolder, fileName),
+  
+  createVaultFolder: (parentPath: string, folderName: string): Promise<string | null> =>
+    ipcRenderer.invoke('vault:create-folder', parentPath, folderName),
+
+  readConfig: (vaultPath: string, key: string) => 
+    ipcRenderer.invoke('vault:read-config', vaultPath, key),
+  
+  writeConfig: (vaultPath: string, key: string, data: unknown) => 
+    ipcRenderer.invoke('vault:write-config', vaultPath, key, data),
+
+  // App lifecycle methods added here:
+  onBeforeClose: (callback: () => void) => {
+    const listener = () => callback()
+    ipcRenderer.on('app:before-close', listener)
+    return () => ipcRenderer.removeListener('app:before-close', listener)
+  },
+  
+  confirmClose: () => ipcRenderer.send('app:confirm-close')
+})
+</file>
+
+<file path="src/types/electron.d.ts">
+// src/types/electron.d.ts
+export interface VaultEntry {
+  data: Record<string, any>
+  content: string
+  fileName: string
+}
+
+export interface ElectronAPI {
+  selectVaultFolder: () => Promise<string | null>
+  listEntries: (vaultPath: string, moduleFolder: string) => Promise<string[]>
+  readEntry: (vaultPath: string, moduleFolder: string, fileName: string) => Promise<VaultEntry>
+  writeEntry: (
+    vaultPath: string,
+    moduleFolder: string,
+    fileName: string,
+    data: object,
+    content: string
+  ) => Promise<boolean>
+  deleteEntry: (vaultPath: string, moduleFolder: string, fileName: string) => Promise<{ success: boolean; error?: string }>
+  createVaultFolder: (parentPath: string, folderName: string) => Promise<string | null>
+  readConfig: (vaultPath: string, key: string) => Promise<any | null>
+  writeConfig: (vaultPath: string, key: string, data: unknown) => Promise<boolean>
+  onBeforeClose: (callback: () => void) => () => void
+  confirmClose: () => void
+}
+
+declare global {
+  interface Window {
+    electron: ElectronAPI
+  }
+}
+</file>
+
+<file path="src/App.tsx">
+// src/App.tsx
+import { AppShell } from './components/layout/AppShell'
+import { Dashboard } from './components/modules/Dashboard'
+import { EntityModule } from './components/entities/EntityModule'
+import { ManuscriptModule } from './components/manuscript/ManuscriptModule'
+import { useEntityTypes } from './context/EntityTypesContext'
+
+function App() {
+  const { entityTypes } = useEntityTypes()
+  return (
+    <AppShell>
+      {(activeModule) => {
+        if (activeModule === 'dashboard') return <Dashboard />
+        if (activeModule === 'manuscript') return <ManuscriptModule />
+        const entityType = entityTypes.find((t) => t.id === activeModule)
+        if (!entityType) return <div className="text-neutral-600 text-sm">Select something from the sidebar.</div>
+        return <EntityModule entityType={entityType} />
+      }}
+    </AppShell>
+  )
+}
+export default App
+</file>
+
+<file path="src/components/layout/AppShell.tsx">
+// src/components/layout/AppShell.tsx
+import { useState } from 'react'
+import { Sidebar } from './Sidebar'
+import type { ModuleKey } from './Sidebar'
+import { useNavigation } from '../../context/NavigationContext'
+import { ManageEntityTypesModal } from '../entities/ManageEntityTypesModal'
+
+export function AppShell({ children }: { children: (activeModule: ModuleKey) => React.ReactNode }) {
+  const { activeModule, setActiveModule } = useNavigation()
+  const [manageOpen, setManageOpen] = useState(false)
+
+  return (
+    <div className="flex h-screen w-screen bg-neutral-950 text-neutral-100 overflow-hidden">
+      <Sidebar active={activeModule} onSelect={setActiveModule} onManageTypes={() => setManageOpen(true)} />
+      <main className="flex-1 overflow-y-auto overflow-x-hidden p-6 min-w-0">
+        <div key={activeModule} className="fade-in h-full">{children(activeModule)}</div>
+      </main>
+      {manageOpen && <ManageEntityTypesModal onClose={() => setManageOpen(false)} />}
+    </div>
+  )
+}
+</file>
+
+<file path="electron/main.ts">
+// electron/main.ts
+import { app, BrowserWindow, ipcMain, dialog } from 'electron'
+import path from 'node:path'
+import fs from 'node:fs/promises'
+import matter from 'gray-matter'
+import { fileURLToPath } from 'node:url'
+
+// ESM has no __dirname — reconstruct it from import.meta.url
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+let mainWindow: BrowserWindow | null = null
+let allowClose = false // set true only after the renderer confirms it's safe to close
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 1400,
+    height: 900,
+    minWidth: 900,
+    minHeight: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.mjs'),
+      contextIsolation: true,
+      nodeIntegration: false,
+    },
+  })
+
+  mainWindow.maximize()
+
+  // Intercept close attempts — ask the renderer first instead of closing immediately
+  mainWindow.on('close', (event) => {
+    if (!allowClose) {
+      event.preventDefault()
+      mainWindow?.webContents.send('app:before-close')
+    }
+  })
+
+  if (process.env.VITE_DEV_SERVER_URL) {
+    mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
+  } else {
+    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'))
+  }
+}
+
+// electron/main.ts — add above your IPC handlers
+function stripUndefined<T extends Record<string, any>>(obj: T): Partial<T> {
+  const clean: Partial<T> = {}
+  for (const key in obj) {
+    if (obj[key] !== undefined) {
+      clean[key] = obj[key]
+    }
+  }
+  return clean
+}
+
+
+// Renderer calls this once it's confirmed there's nothing unsaved (or user chose to discard)
+ipcMain.on('app:confirm-close', () => {
+  allowClose = true
+  mainWindow?.close()
+})
+
+
+
+// --- IPC: pick a project folder (the "vault") ---
+ipcMain.handle('vault:select-folder', async () => {
+  const result = await dialog.showOpenDialog({ properties: ['openDirectory'] })
+  if (result.canceled || result.filePaths.length === 0) return null
+  return result.filePaths[0]
+})
+
+// --- IPC: list .md files in a subfolder (e.g. "Characters", "Locations") ---
+ipcMain.handle('vault:list-entries', async (_event, vaultPath: string, moduleFolder: string) => {
+  const dirPath = path.join(vaultPath, moduleFolder)
+  try {
+    await fs.mkdir(dirPath, { recursive: true }) // safe: create if missing
+    const files = await fs.readdir(dirPath)
+    return files.filter(f => f.endsWith('.md'))
+  } catch (err) {
+    console.error('list-entries failed:', err)
+    return []
+  }
+})
+
+// --- IPC: read + parse a single .md file (YAML frontmatter + body) ---
+ipcMain.handle('vault:read-entry', async (_event, vaultPath: string, moduleFolder: string, fileName: string) => {
+  const filePath = path.join(vaultPath, moduleFolder, fileName)
+  try {
+    const raw = await fs.readFile(filePath, 'utf-8')
+    const parsed = matter(raw) // { data: {...yaml}, content: "body text" }
+    return { data: parsed.data ?? {}, content: parsed.content ?? '', fileName }
+  } catch (err) {
+    console.error('read-entry failed:', err)
+    // Safe fallback per protocol — never throw a crashing error to the renderer
+    return { data: {}, content: '', fileName }
+  }
+})
+
+// --- IPC: write (create/update) a .md file from YAML data + body ---
+ipcMain.handle(
+  'vault:write-entry',
+  async (_event, vaultPath: string, moduleFolder: string, fileName: string, data: object, content: string) => {
+    const dirPath = path.join(vaultPath, moduleFolder)
+    await fs.mkdir(dirPath, { recursive: true })
+    const filePath = path.join(dirPath, fileName)
+    const cleanData = stripUndefined(data as Record<string, any>) // <-- strip undefined before serializing
+    const fileString = matter.stringify(content ?? '', cleanData)
+    await fs.writeFile(filePath, fileString, 'utf-8')
+    return true
+  }
+)
+
+// electron/main.ts — add below vault:write-entry
+ipcMain.handle('vault:delete-entry', async (_event, vaultPath: string, moduleFolder: string, fileName: string) => {
+  const filePath = path.join(vaultPath, moduleFolder, fileName)
+  try {
+    await fs.unlink(filePath)
+    return { success: true }
+  } catch (err) {
+    console.error('delete-entry failed:', err)
+    return { success: false, error: (err as Error).message }
+  }
+})
+
+// electron/main.ts — add below your other handlers
+ipcMain.handle('vault:create-folder', async (_event, parentPath: string, folderName: string) => {
+  const newVaultPath = path.join(parentPath, folderName)
+  try {
+    // fails if it already exists — prevents silently overwriting an existing project
+    await fs.mkdir(newVaultPath, { recursive: false })
+
+    // Scaffold the standard module subfolders up front
+    await fs.mkdir(path.join(newVaultPath, 'Characters'), { recursive: true })
+    await fs.mkdir(path.join(newVaultPath, 'Locations'), { recursive: true })
+    await fs.mkdir(path.join(newVaultPath, 'Manuscript'), { recursive: true })
+
+    return newVaultPath
+  } catch (err) {
+    console.error('create-folder failed:', err)
+    return null
+  }
+})
+
+// --- NEW CONFIG HANDLERS ---
+const CONFIG_DIR = '.openblaze'
+
+ipcMain.handle('vault:read-config', async (_event, vaultPath: string, key: string) => {
+  const filePath = path.join(vaultPath, CONFIG_DIR, `${key}.json`)
+  try {
+    const raw = await fs.readFile(filePath, 'utf-8')
+    return JSON.parse(raw)
+  } catch {
+    return null // missing/corrupt — caller falls back to defaults
+  }
+})
+
+ipcMain.handle('vault:write-config', async (_event, vaultPath: string, key: string, data: unknown) => {
+  const dirPath = path.join(vaultPath, CONFIG_DIR)
+  await fs.mkdir(dirPath, { recursive: true })
+  await fs.writeFile(path.join(dirPath, `${key}.json`), JSON.stringify(data, null, 2), 'utf-8')
+  return true
+})
+
+app.whenReady().then(createWindow)
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit()
+})
+</file>
+
+</files>
