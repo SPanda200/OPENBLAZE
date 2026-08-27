@@ -32,19 +32,23 @@ export function BacklinksPanel({ entityTypeId, entityId }: BacklinksPanelProps) 
       </div>
       <div className="space-y-1">
         {backlinks.map((link, i) => {
-          const Icon = iconFor(link.sourceEntityTypeId)
-          return (
-            <button
-              key={i}
-              onClick={() => navigateToEntity(link.sourceEntityTypeId, link.sourceId)}
-              className="w-full flex items-center gap-2 text-left text-sm text-neutral-300 hover:text-orange-400 hover:bg-neutral-800/50 rounded px-2 py-1.5"
-            >
-              <Icon className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
-              <span className="truncate">{link.sourceName || 'Untitled'}</span>
-              {link.panelTitle && <span className="text-xs text-neutral-600 shrink-0">via "{link.panelTitle}"</span>}
-            </button>
-          )
-        })}
+            const Icon = iconFor(link.sourceEntityTypeId)
+            return (
+                <button
+                key={i}
+                onClick={() => navigateToEntity(link.sourceEntityTypeId, link.sourceId)}
+                className="w-full flex items-center gap-2 text-left text-sm text-neutral-300 hover:text-orange-400 hover:bg-neutral-800/50 rounded px-2 py-1.5"
+                >
+                <Icon className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
+                <span className="truncate">{link.sourceName || 'Untitled'}</span>
+                {link.panelTitles.length > 0 && (
+                    <span className="text-xs text-neutral-600 shrink-0 truncate">
+                    via {link.panelTitles.map((t) => `"${t}"`).join(', ')}
+                    </span>
+                )}
+                </button>
+            )
+            })}
       </div>
     </div>
   )

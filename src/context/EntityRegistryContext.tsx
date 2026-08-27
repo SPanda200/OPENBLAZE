@@ -9,10 +9,10 @@ import { LINK_TOKEN_REGEX } from '../components/shared/LinkedText'
 
 export interface BacklinkSource {
   sourceType: 'entity' | 'chapter'
-  sourceEntityTypeId: string   // entity type id, or 'manuscript' for chapters
+  sourceEntityTypeId: string
   sourceId: string
   sourceName: string
-  panelTitle?: string           // which panel the link was found in (entities only)
+  panelTitles: string[]   // every panel/place the link appeared, deduped
 }
 
 export interface SearchResult {
@@ -92,12 +92,27 @@ export function EntityRegistryProvider({ children }: { children: ReactNode }) {
   )
 
   const backlinkIndex = useMemo(() => {
-    const index = new Map<string, BacklinkSource[]>()
-    const addBacklink = (targetKey: string, source: BacklinkSource) => {
-      if (!index.has(targetKey)) index.set(targetKey, [])
-      index.get(targetKey)!.push(source)
+    const raw = new Map<string, BacklinkSource>()
+
+    const addBacklink = (targetKey: string, source: { sourceType: 'entity' | 'chapter'; sourceEntityTypeId: string; sourceId: string; sourceName: string; panelTitle?: string }) => {
+      const sourceKey = `${targetKey}|${source.sourceType}|${source.sourceId}`
+      const existing = raw.get(sourceKey)
+      if (existing) {
+        if (source.panelTitle && !existing.panelTitles.includes(source.panelTitle)) {
+          existing.panelTitles.push(source.panelTitle)
+        }
+      } else {
+        raw.set(sourceKey, {
+          sourceType: source.sourceType,
+          sourceEntityTypeId: source.sourceEntityTypeId,
+          sourceId: source.sourceId,
+          sourceName: source.sourceName,
+          panelTitles: source.panelTitle ? [source.panelTitle] : [],
+        })
+      }
     }
-    const scanText = (text: string, source: BacklinkSource) => {
+
+    const scanText = (text: string, source: { sourceType: 'entity' | 'chapter'; sourceEntityTypeId: string; sourceId: string; sourceName: string; panelTitle?: string }) => {
       const regex = new RegExp(LINK_TOKEN_REGEX)
       let match: RegExpExecArray | null
       while ((match = regex.exec(text)) !== null) {
@@ -123,6 +138,12 @@ export function EntityRegistryProvider({ children }: { children: ReactNode }) {
       })
     })
 
+    const index = new Map<string, BacklinkSource[]>()
+    raw.forEach((source, sourceKey) => {
+      const [targetKey] = sourceKey.split('|')
+      if (!index.has(targetKey)) index.set(targetKey, [])
+      index.get(targetKey)!.push(source)
+    })
     return index
   }, [rawEntities, chapters])
 
