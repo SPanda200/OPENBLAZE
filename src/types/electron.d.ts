@@ -1,4 +1,6 @@
 // src/types/electron.d.ts
+import type { ExportBlock } from './export'
+
 export interface VaultEntry {
   data: Record<string, any>
   content: string
@@ -17,6 +19,8 @@ export interface ElectronAPI {
     content: string
   ) => Promise<boolean>
   deleteEntry: (vaultPath: string, moduleFolder: string, fileName: string) => Promise<{ success: boolean; error?: string }>
+  exportText: (defaultFileName: string, extension: string, content: string) => Promise<{ success: boolean; canceled?: boolean; filePath?: string; error?: string }>
+  exportDocx: (defaultFileName: string, blocks: ExportBlock[]) => Promise<{ success: boolean; canceled?: boolean; filePath?: string; error?: string }>
   createVaultFolder: (parentPath: string, folderName: string) => Promise<string | null>
   readConfig: (vaultPath: string, key: string) => Promise<any | null>
   writeConfig: (vaultPath: string, key: string, data: unknown) => Promise<boolean>

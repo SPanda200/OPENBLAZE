@@ -4,6 +4,7 @@ import path from 'node:path'
 import fs from 'node:fs/promises'
 import matter from 'gray-matter'
 import { fileURLToPath, pathToFileURL } from 'node:url'
+import { Document, Packer, Paragraph, HeadingLevel, TextRun } from 'docx'
 
 // ESM has no __dirname — reconstruct it from import.meta.url
 const __filename = fileURLToPath(import.meta.url)
@@ -134,6 +135,48 @@ ipcMain.handle('vault:delete-entry', async (_event, vaultPath: string, moduleFol
     return { success: true }
   } catch (err) {
     console.error('delete-entry failed:', err)
+    return { success: false, error: (err as Error).message }
+  }
+})
+
+interface ExportBlock { type: 'h1' | 'h2' | 'p' | 'bullet' | 'pageBreak'; text?: string }
+
+ipcMain.handle('export:save-text', async (_event, defaultFileName: string, extension: string, content: string) => {
+  const result = await dialog.showSaveDialog({
+    defaultPath: defaultFileName,
+    filters: [{ name: extension.toUpperCase(), extensions: [extension] }],
+  })
+  if (result.canceled || !result.filePath) return { success: false, canceled: true }
+  try {
+    await fs.writeFile(result.filePath, content, 'utf-8')
+    return { success: true, filePath: result.filePath }
+  } catch (err) {
+    console.error('export-text failed:', err)
+    return { success: false, error: (err as Error).message }
+  }
+})
+
+ipcMain.handle('export:save-docx', async (_event, defaultFileName: string, blocks: ExportBlock[]) => {
+  const result = await dialog.showSaveDialog({
+    defaultPath: defaultFileName,
+    filters: [{ name: 'Word Document', extensions: ['docx'] }],
+  })
+  if (result.canceled || !result.filePath) return { success: false, canceled: true }
+
+  try {
+    const children = blocks.map((block) => {
+      if (block.type === 'pageBreak') return new Paragraph({ children: [], pageBreakBefore: true })
+      if (block.type === 'h1') return new Paragraph({ text: block.text ?? '', heading: HeadingLevel.HEADING_1 })
+      if (block.type === 'h2') return new Paragraph({ text: block.text ?? '', heading: HeadingLevel.HEADING_2 })
+      if (block.type === 'bullet') return new Paragraph({ text: block.text ?? '', bullet: { level: 0 } })
+      return new Paragraph({ children: [new TextRun(block.text ?? '')] })
+    })
+    const doc = new Document({ sections: [{ children }] })
+    const buffer = await Packer.toBuffer(doc)
+    await fs.writeFile(result.filePath, buffer)
+    return { success: true, filePath: result.filePath }
+  } catch (err) {
+    console.error('export-docx failed:', err)
     return { success: false, error: (err as Error).message }
   }
 })

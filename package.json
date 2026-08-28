@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "docx": "^9.7.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.33.0",
     "react": "^19.2.8",

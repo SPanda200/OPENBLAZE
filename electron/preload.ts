@@ -16,6 +16,12 @@ contextBridge.exposeInMainWorld('electron', {
   
   deleteEntry: (vaultPath: string, moduleFolder: string, fileName: string): Promise<{ success: boolean; error?: string }> =>
     ipcRenderer.invoke('vault:delete-entry', vaultPath, moduleFolder, fileName),
+
+  exportText: (defaultFileName: string, extension: string, content: string) =>
+    ipcRenderer.invoke('export:save-text', defaultFileName, extension, content),
+  
+  exportDocx: (defaultFileName: string, blocks: unknown[]) =>
+    ipcRenderer.invoke('export:save-docx', defaultFileName, blocks),
   
   createVaultFolder: (parentPath: string, folderName: string): Promise<string | null> =>
     ipcRenderer.invoke('vault:create-folder', parentPath, folderName),
