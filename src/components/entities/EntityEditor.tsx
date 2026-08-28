@@ -8,6 +8,9 @@ import { PanelGrid } from '../panels/PanelGrid'
 import { getDescendantIds } from '../../utils/buildEntityTree'
 import { useUnsavedChanges } from '../../context/UnsavedChangesContext'
 import { BacklinksPanel } from './BacklinksPanel'
+import { ExportMenu, type ExportFormat } from '../shared/ExportMenu'
+import { exportAsText, exportAsDocx } from '../../hooks/useExport'
+import { entityToMarkdown, entityToPlainText, entityToBlocks } from '../../utils/exportBuilders'
 
 interface EntityEditorProps {
   entity: Entity
@@ -50,6 +53,14 @@ export function EntityEditor({ entity, entityType, allEntities, onSave, onDelete
     setDirty(false)
   }
 
+  const handleExport = async (format: ExportFormat) => {
+    const exportEntity = { ...entity, data: buildData() }
+    const safeName = name.trim() || 'Untitled'
+    if (format === 'md') await exportAsText(`${safeName}.md`, 'md', entityToMarkdown(exportEntity))
+    else if (format === 'txt') await exportAsText(`${safeName}.txt`, 'txt', entityToPlainText(exportEntity))
+    else await exportAsDocx(`${safeName}.docx`, entityToBlocks(exportEntity))
+  }
+
   useEffect(() => {
     setDirty(JSON.stringify({ name, tagsInput, parentId, panels }) !== initialSnapshot.current)
   }, [name, tagsInput, parentId, panels, setDirty])
@@ -67,7 +78,10 @@ export function EntityEditor({ entity, entityType, allEntities, onSave, onDelete
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder={`${entityType.label} name`} className="text-2xl font-semibold bg-transparent border-b border-transparent focus:border-neutral-700 outline-none w-full text-neutral-100" />
           <input value={tagsInput} onChange={(e) => setTagsInput(e.target.value)} placeholder="tags, comma, separated" className="text-xs text-neutral-500 bg-transparent outline-none w-full" />
         </div>
+        
+        {/* --- UPDATED SECTION --- */}
         <div className="flex items-center gap-2 shrink-0">
+          <ExportMenu onExport={handleExport} />
           <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 disabled:opacity-50 text-white rounded-md px-4 py-2 text-sm">
             <Save className="w-4 h-4" />
             {saving ? 'Saving...' : 'Save'}
@@ -76,6 +90,8 @@ export function EntityEditor({ entity, entityType, allEntities, onSave, onDelete
             <Trash2 className="w-4 h-4" />
           </button>
         </div>
+        {/* ----------------------- */}
+
       </div>
 
       {entityType.nestable && (

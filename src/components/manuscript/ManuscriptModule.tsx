@@ -8,6 +8,10 @@ import { useEntityRegistry } from '../../context/EntityRegistryContext'
 import { ChapterList } from './ChapterList'
 import { ChapterEditor } from './ChapterEditor'
 import type { ChapterData } from '../../types/chapter'
+import { ExportMenu, type ExportFormat } from '../shared/ExportMenu'
+import { exportAsText, exportAsDocx } from '../../hooks/useExport'
+import { manuscriptToMarkdown, manuscriptToPlainText, manuscriptToBlocks } from '../../utils/exportBuilders'
+import { countWords } from '../../utils/wordCount'
 
 export function ManuscriptModule() {
   const { chapters, loading, createChapter, saveChapter, deleteChapter, reorderChapter } = useManuscriptData()
@@ -47,14 +51,29 @@ export function ManuscriptModule() {
     if (selectedFileName === fileName) setSelectedFileName(null)
   }
 
+  const totalWords = chapters.reduce((sum, c) => sum + countWords(c.content), 0)
+
+  const handleExportAll = async (format: ExportFormat) => {
+    if (chapters.length === 0) return
+    if (format === 'md') await exportAsText('Manuscript.md', 'md', manuscriptToMarkdown(chapters))
+    else if (format === 'txt') await exportAsText('Manuscript.txt', 'txt', manuscriptToPlainText(chapters))
+    else await exportAsDocx('Manuscript.docx', manuscriptToBlocks(chapters))
+  }
+
   return (
     <div className="flex h-full -m-6">
       <div className="w-64 shrink-0 border-r border-neutral-800 flex flex-col">
-        <div className="p-3 border-b border-neutral-800">
+        <div className="p-3 border-b border-neutral-800 space-y-2">
           <button onClick={handleCreate} className="w-full flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white rounded-md px-3 py-2 text-sm">
             <Plus className="w-4 h-4" />
             New Chapter
           </button>
+          {chapters.length > 0 && (
+            <>
+              <p className="text-xs text-neutral-600 text-center">{totalWords.toLocaleString()} words total</p>
+              <ExportMenu label="Export Manuscript" onExport={handleExportAll} />
+            </>
+          )}
         </div>
         <div className="flex-1 overflow-y-auto">
           {loading && <p className="text-sm text-neutral-500 p-4">Loading...</p>}

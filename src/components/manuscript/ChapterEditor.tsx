@@ -9,6 +9,10 @@ import { useLinkableTextarea } from '../../hooks/useLinkableTextarea'
 import { LinkedText } from '../shared/LinkedText'
 import { MarkdownRenderer } from './MarkdownRenderer'
 import { EntityPicker } from '../panels/EntityPicker'
+import { ExportMenu, type ExportFormat } from '../shared/ExportMenu'
+import { exportAsText, exportAsDocx } from '../../hooks/useExport'
+import { chapterToMarkdown, chapterToPlainText, chapterToBlocks } from '../../utils/exportBuilders'
+import { countWords } from '../../utils/wordCount'
 
 interface ChapterEditorProps {
   chapter: Chapter
@@ -40,6 +44,14 @@ export function ChapterEditor({ chapter, onSave, onDelete }: ChapterEditorProps)
     setSaving(false)
     initialSnapshot.current = JSON.stringify({ title, mode, content })
     setDirty(false)
+  }
+
+  const handleExport = async (format: ExportFormat) => {
+    const exportChapter = { ...chapter, data: buildData(), content }
+    const safeTitle = title.trim() || 'Untitled Chapter'
+    if (format === 'md') await exportAsText(`${safeTitle}.md`, 'md', chapterToMarkdown(exportChapter))
+    else if (format === 'txt') await exportAsText(`${safeTitle}.txt`, 'txt', chapterToPlainText(exportChapter))
+    else await exportAsDocx(`${safeTitle}.docx`, chapterToBlocks(exportChapter))
   }
 
   useEffect(() => {
